@@ -17,7 +17,7 @@ Bundle "tpope/vim-markdown"
 Bundle "pangloss/vim-javascript"
 Bundle "kchmck/vim-coffee-script"
 
-Bundle 'kien/ctrlp.vim'
+Bundle "kien/ctrlp.vim"
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'airblade/vim-rooter'
@@ -97,7 +97,7 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "Alt + 1-5 切换5个tab页
 "-----------------------------------------------------------------
 map <F5> :tabnew<CR>
-map <F2> :tabclose<CR>
+map <F6> :tabclose<CR>
 nmap <M-j> :tabp<CR>
 nmap <M-k> :tabn<CR>
 nmap <M-1> :tabnext 1<CR>
@@ -112,7 +112,7 @@ nmap <M-5> :tabnext 5<CR>
 "ctrl + p 打开窗口， ctrl + f 切换模式， ctrl+t 新tab页打开 ctrl+j/ctrl+k 在结果里移动 ctrl+z 标记多个文件，一起打开
 "let g:ctrlp_working_path_mode = 'ra' "ctrl+p最近的.git目录为根目录。有了rooter之后，不再需要
 inoremap <F1> <C-R>=strftime("%c")<CR> 
-inoremap <F2> :Calendar<CR> 
+map <F2> :Calendar<CR> 
 map <F3> :GundoToggle<CR>
 imap <F3> <ESC> :GundoToggle<CR>
 map <F4> :NERDTreeToggle<CR>
