@@ -17,15 +17,15 @@ Bundle "tpope/vim-markdown"
 Bundle "pangloss/vim-javascript"
 Bundle "kchmck/vim-coffee-script"
 
-Bundle 'kien/ctrlp'
-Bundle 'dyng/ctrlsf'
+Bundle 'kien/ctrlp.vim'
+Bundle 'dyng/ctrlsf.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'airblade/vim-rooter'
-Bundle 'itchyny/calendar'
+Bundle 'itchyny/calendar.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
-Bundle 'sjl/gundo'
+Bundle 'sjl/gundo.vim'
 
 
 
