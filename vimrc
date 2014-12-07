@@ -25,6 +25,8 @@ Bundle 'itchyny/calendar'
 Bundle 'Yggdroot/indentLine'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
+Bundle 'sjl/gundo'
+
 
 
 
