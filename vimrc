@@ -119,6 +119,8 @@ nmap <M-5> :tabnext 5<CR>
 "let g:ctrlp_working_path_mode = 'ra' "ctrl+p最近的.git目录为根目录。有了rooter之后，不再需要
 map <F4> :NERDTreeToggle<CR>
 imap <F4> <ESC>:NERDTreeToggle<CR>
+map <F3> :GundoToggle<CR>
+imap <F3> <ESC> :GundoToggle<CR>
 nnoremap <C-F> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
 let g:airline#extensions#tabline#enabled = 1
