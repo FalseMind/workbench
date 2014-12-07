@@ -21,6 +21,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'airblade/vim-rooter'
+Bundle 'itchyny/calendar.vim'
+
 
 Bundle 'molokai'
 "````````````````````````````````````````````````````````````````````
