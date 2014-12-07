@@ -119,6 +119,7 @@ map <F4> :NERDTreeToggle<CR>
 imap <F4> <ESC>:NERDTreeToggle<CR>
 nnoremap <C-F> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
+let g:airline#extensions#tabline#enabled = 1
 "let g:ctrlsf_auto_close = 0          "不要自动关系搜索结果页
 "o, Enter - Jump to file that contains the line under cursor.
 "t - Like o but open file in a new tab.
