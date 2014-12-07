@@ -24,6 +24,8 @@ Bundle 'airblade/vim-rooter'
 Bundle 'itchyny/calendar.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'tpope/vim-fugitive.git'
+Bundle 'bling/vim-airline'
+
 
 
 Bundle 'molokai'
