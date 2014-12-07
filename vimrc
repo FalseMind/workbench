@@ -85,12 +85,6 @@ set foldmethod=indent " 设置缩进折叠
 set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
 set isk+=- "将-连接符也设置为单词
 "-----------------------------------------------------------------
-"-----------------------------------------------------------------
-"输入模式下，F1输入当前时间
-inoremap <F1> <C-R>=strftime("%c")<CR> 
-inoremap <F2> :Calendar<CR> 
-"let g:calendar_frame = 'default'
-"-----------------------------------------------------------------
 "快捷键设置
 "-----------------------------------------------------------------
 let mapleader = ","
@@ -117,10 +111,14 @@ nmap <M-5> :tabnext 5<CR>
 "ctrlp使用
 "ctrl + p 打开窗口， ctrl + f 切换模式， ctrl+t 新tab页打开 ctrl+j/ctrl+k 在结果里移动 ctrl+z 标记多个文件，一起打开
 "let g:ctrlp_working_path_mode = 'ra' "ctrl+p最近的.git目录为根目录。有了rooter之后，不再需要
-map <F4> :NERDTreeToggle<CR>
-imap <F4> <ESC>:NERDTreeToggle<CR>
+inoremap <F1> <C-R>=strftime("%c")<CR> 
+inoremap <F2> :Calendar<CR> 
 map <F3> :GundoToggle<CR>
 imap <F3> <ESC> :GundoToggle<CR>
+map <F4> :NERDTreeToggle<CR>
+imap <F4> <ESC>:NERDTreeToggle<CR>
+
+"let g:calendar_frame = 'default'
 nnoremap <C-F> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
 let g:airline#extensions#tabline#enabled = 1
