@@ -23,7 +23,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'airblade/vim-rooter'
 Bundle 'itchyny/calendar.vim'
 Bundle 'Yggdroot/indentLine'
-Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive.git'
 
 
 Bundle 'molokai'
