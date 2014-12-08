@@ -7,11 +7,10 @@
 "因为该包有点大，手动下载youcompleteme包
 ":~/.vim/bundle$ git clone https://github.com/Valloric/YouCompleteMe
 ":~/.vim/bundle/YouCompleteMe$ ./install.sh
-"C安装tern
+"C安装tern支持
 ":~/.vim/bundle$ git clone https://github.com/marijnh/tern_for_vim
 ":~/.vimr/bundle/tern_for_vim$ npm install
-"为tern安装meteor的支持扩展
-"去 https://github.com/Slava/tern-meteor 下载meteor.js放到 "tern_for_vim/node_modules/tern/plugin 文件夹里
+"下载meteor.js 放到 ~/.vimr/bundle/tern_for_vim/node_modules/tern/plugin 文件夹下
 "在meteor项目根目录建立一个.tern-project文件，写入下面内容：
 "{
 "  "libs": [
@@ -54,7 +53,7 @@ Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 
 Bundle 'molokai'
 Bundle 'altercation/vim-colors-solarized'
@@ -63,7 +62,9 @@ filetype plugin indent on " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"窗口启动时的位置与大小
+winpos 135 135
+set lines=18 columns=90
 "set guifont=Monospace\ 15
 "set guifont=DejaVu\ Sans\ Mono\ 14
 set guifont=Liberation\ Mono\ 15
@@ -184,6 +185,9 @@ let g:airline#extensions#tabline#enabled = 1
 "<C-J> - Move cursor to next match.
 "<C-K> - Move cursor to previous match.
 
+"set completeopt-=preview  "youcompleteme不要自动出现提示窗口
+"let g:ycm_autoclose_preview_window_after_insertion = 1 "Esc自动关闭弹出窗口
+let g:ycm_autoclose_preview_window_after_completion = 1 "输入完毕自动关闭提示窗口
 
 " 更改了vim之后，自动生效，无需重启
 augroup VimrcSo
