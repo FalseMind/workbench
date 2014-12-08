@@ -1,7 +1,30 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 使用Vundle来管理插件
-" 1下载: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" 2使用: :BundleInstall :BundleInstall! :BundleClean
+"A使用Vundle来管理插件
+" 1下载: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle  2使用: :BundleInstall :BundleInstall! :BundleClean
+"B安装youcompleteme的编译环境
+"sudo apt-get install build-essential cmake
+"sudo apt-get install python-dev
+"因为该包有点大，手动下载youcompleteme包
+":~/.vim/bundle$ git clone https://github.com/Valloric/YouCompleteMe
+":~/.vim/bundle/YouCompleteMe$ ./install.sh
+"C安装tern
+":~/.vim/bundle$ git clone https://github.com/marijnh/tern_for_vim
+":~/.vimr/bundle/tern_for_vim$ npm install
+"为tern安装meteor的支持扩展
+"去 https://github.com/Slava/tern-meteor 下载meteor.js放到 "tern_for_vim/node_modules/tern/plugin 文件夹里
+"在meteor项目根目录建立一个.tern-project文件，写入下面内容：
+"{
+"  "libs": [
+"    "browser",
+"    "jquery",
+"    "underscore"
+"  ],
+"  "loadEagerly": [ "*.js", "*/*.js", "*/*/*.js", "*/*/*/*.js" ],
+"  "dontLoad": [ ".meteor" ],
+"  "plugins": {
+"    "meteor": {}
+"  }
+"}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible " be iMproved
 filetype off " required!
@@ -17,7 +40,7 @@ Bundle "tpope/vim-markdown"
 Bundle "pangloss/vim-javascript"
 Bundle "kchmck/vim-coffee-script"
 
-Bundle "kien/ctrlp.vim"
+Bundle 'kien/ctrlp.vim'
 Bundle 'dyng/ctrlsf.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'airblade/vim-rooter'
@@ -26,17 +49,21 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
 Bundle 'sjl/gundo.vim'
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'Lokaltog/vim-easymotion'
 
-
-
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'scrooloose/syntastic'
 
 Bundle 'molokai'
+Bundle 'altercation/vim-colors-solarized'
 "````````````````````````````````````````````````````````````````````
 filetype plugin indent on " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme molokai "颜色
+
 "set guifont=Monospace\ 15
 "set guifont=DejaVu\ Sans\ Mono\ 14
 set guifont=Liberation\ Mono\ 15
@@ -79,7 +106,7 @@ set smartindent " 开启新行时使用智能自动缩进
 set noerrorbells " 关闭错误信息响铃
 set cmdheight=1 " 设定命令行的行数为 1
 set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
-set statusline=\ %<%F%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ " 设置在状态行显示的信息
+"set statusline=\ %<%F%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ " 设置在状态行显示的信息
 set foldenable " 开始折叠
 set foldmethod=indent " 设置缩进折叠
 set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
@@ -88,7 +115,7 @@ set isk+=- "将-连接符也设置为单词
 "快捷键设置
 "-----------------------------------------------------------------
 let mapleader = ","
-nnoremap <leader>, :vi<space>
+nnoremap <leader>o :vi<space>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
  "空格控制折叠
@@ -96,8 +123,8 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "-----------------------------------------------------------------
 "Alt + 1-5 切换5个tab页
 "-----------------------------------------------------------------
+map <F2> :tabclose<CR>
 map <F5> :tabnew<CR>
-map <F6> :tabclose<CR>
 nmap <M-j> :tabp<CR>
 nmap <M-k> :tabn<CR>
 nmap <M-1> :tabnext 1<CR>
@@ -112,11 +139,36 @@ nmap <M-5> :tabnext 5<CR>
 "ctrl + p 打开窗口， ctrl + f 切换模式， ctrl+t 新tab页打开 ctrl+j/ctrl+k 在结果里移动 ctrl+z 标记多个文件，一起打开
 "let g:ctrlp_working_path_mode = 'ra' "ctrl+p最近的.git目录为根目录。有了rooter之后，不再需要
 inoremap <F1> <C-R>=strftime("%c")<CR> 
-map <F2> :Calendar<CR> 
 map <F3> :GundoToggle<CR>
 imap <F3> <ESC> :GundoToggle<CR>
 map <F4> :NERDTreeToggle<CR>
 imap <F4> <ESC>:NERDTreeToggle<CR>
+map <F12> :Calendar<CR> 
+"airlin设置
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#tabline#show_buffers = 0 "不显示buffers
+let g:airline#extensions#tabline#show_close_button = 0 "不显示关闭button
+let g:airline#extensions#tabline#tab_nr_type = 1 "tab显示序号
+let g:airline#extensions#tabline#fnamemod = ':t' "tab页仅显示文件名，不显示目录
+
+
+let g:ctrlp_mruf_max = 50 "ctrlP mrufiles 记录50个最近打开的
+let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
+
+"colorscheme molokai "颜色
+set background=dark
+colorscheme solarized
 
 "let g:calendar_frame = 'default'
 nnoremap <C-F> :CtrlSF<space>
@@ -139,4 +191,4 @@ au!
 autocmd BufWritePost $MYVIMRC so $MYVIMRC
 augroup END
 
-"tab 替换为空格的命令 :%s/\t/    /g 
+"tab 替换为空格的命令 :%s/\t/    /g
