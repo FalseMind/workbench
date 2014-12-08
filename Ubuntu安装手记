@@ -1,0 +1,22 @@
+sudo apt-get install curl
+sudo apt-get install mongodb
+sudo atp-get install git
+
+解压：
+$ tar -zxf node-v0.8.14.tar.gz
+$ cd node-v0.8.14
+默认安装：
+$ ./configure
+$ make
+$ sudo make install
+
+安装ag搜索引擎
+vim
+apt-get install silversearcher-ag
+
+
+
+安装32bit 的安卓包
+sudo apt-get install lib32z1 lib32stdc++6
+
+meteor install-sdk android
