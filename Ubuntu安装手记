@@ -18,5 +18,4 @@ apt-get install silversearcher-ag
 
 安装32bit 的安卓包
 sudo apt-get install lib32z1 lib32stdc++6
-
 meteor install-sdk android
