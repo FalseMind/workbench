@@ -1,0 +1,21 @@
+git 文件的几种状态
+未跟踪 git add> 未修改 edit> 修改过的 git add> 暂存的 git commit> 未修改
+git clone 
+git add 
+git status
+git commit     
+git diff         修改的跟暂存的之间的差异
+git diff -cached 已经暂存的和上次提交的之间的差异
+.gitignore
+git rm 文件名
+git rm \*~ 递归删除当前目录下所有～
+git rm log/\*~ 递归删除log目录下所有～
+git mv file_from file_to
+git log -p -2 显示最近2次提交的内容差异
+git log --stat 仅显示统计
+git remote -v 显示远程库以及地址
+git fetch [remote-name] 从远程库抓取数据到本地，并不会合并当前的工作分支。
+git pull  先是git fetch远程库的内容，然后合并到本地分支
+git push [remote-name] [branch-name] 将本地的master推送到远程库
+git tag 
+git tag -a v1.4 -m 'my version 1.4'

@@ -182,11 +182,11 @@ let g:ctrlsf_width = '40%'
 "let g:ycm_autoclose_preview_window_after_insertion = 1 "Esc自动关闭弹出窗口
 "let g:ycm_autoclose_preview_window_after_completion = 1 "输入完毕自动关闭提示窗口
 
+"nnoremap <leader>gr :Gread<CR>  "该命令有点危险，还是取消快捷键了
+nnoremap <leader>gd :Gvdiff<CR> "仅对当前文件有效
+nnoremap <leader>gw :Gwrite<CR> "git add  仅对当前文件有效
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gl :Glog<CR>
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>gr :Gread<CR>
-nnoremap <leader>ga :Gwrite<CR> "git add
 nnoremap <leader>gc :Gcommit<CR> "git commit
 
 " 更改了vim之后，自动生效，无需重启
