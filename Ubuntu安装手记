@@ -1,3 +1,7 @@
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install ubuntu-restricted-extras
+
+
 下载安装sogou输入法，安装完毕，去语言设置里启动输入设置为fcitx，把输入设置里在状态栏显示去掉
 
 

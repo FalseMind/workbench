@@ -188,6 +188,7 @@ nnoremap <leader>gw :Gwrite<CR> "git add  仅对当前文件有效
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gl :Glog<CR>
 nnoremap <leader>gc :Gcommit<CR> "git commit
+nnoremap <leader>gp :Git push<CR>
 
 " 更改了vim之后，自动生效，无需重启
 augroup VimrcSo
