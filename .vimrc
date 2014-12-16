@@ -37,18 +37,22 @@ set lines=18 columns=90
 "set guifont=Monospace\ 15
 set guifont=DejaVu\ Sans\ Mono\ 15
 "set guifont=Liberation\ Mono\ 15
-syntax on " 语法高亮
 "highlight StatusLine guifg=#383838 guibg=#76EE00 "状态行颜色
 "set showmatch "匹配到的高亮
 set guioptions-=m "去掉菜单
 set guioptions-=T "不显示工具栏
 set guioptions-=L "把gui右边的滑动条去掉
 set linespace=5 "字符间插入的像素行数目
+set nocursorline "不高亮光标所在行
+"set noendofline binary
 set wrap "自动换行
-nnoremap j gj "自动换行的时候，J 可以在虚拟的行间移动
+set synmaxcol=128 "这个默认值是3000导致vim处理大行文本时卡顿"
+set display=lastline "长行不显示@
+"set linebreak
+"set textwidth=78 fo+=Mm
+nnoremap j gj
 nnoremap k gk
 set number "显示行号
-set cursorline "突出显示当前行
 set ruler "打开状态栏标尺
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
@@ -59,6 +63,7 @@ set nocompatible " 不要使用vi的键盘模式，而是vim自己的
 set history=100 " history文件中需要记录的行数
 set nobackup
 set noswapfile
+syntax on " 语法高亮
 set bufhidden=hide
 set backspace=2 " 使回格键（backspace）正常处理indent, eol, start等
 set mouse=a " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
@@ -141,10 +146,6 @@ nnoremap <leader>gl :Glog<CR>
 nnoremap <leader>gc :Gcommit<CR> "git commit
 nnoremap <leader>gp :Git push<CR> "git commit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimrc改动自动载入，根据文本类型设置不要自动换行
+" 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup VimrcAndFiletype
-au!
-autocmd BufWritePost $MYVIMRC so $MYVIMRC " 更改了vim之后，自动生效，无需重启
-autocmd filetype javascript,html setlocal nowrap "代码不自动换行
-augroup END
+autocmd Filetype javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80
