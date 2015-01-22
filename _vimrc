@@ -25,9 +25,6 @@ filetype plugin indent on     " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set guifont=Monaco:h12
-"窗口启动时的位置与大小
-autocmd GUIEnter * simalt ~x
 set guioptions-=m "去掉菜单
 set guioptions-=T "不显示工具栏
 set guioptions-=L "把gui右边的滑动条去掉
@@ -69,15 +66,6 @@ set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 set foldenable " 开始折叠
 set foldmethod=indent " 设置缩进折叠
 set isk+=- "将-连接符也设置为单词
-set statusline= 
-set statusline+=%f\ " file name 
-set statusline+=%h%1*%m%r%w%0* " flag 
-set statusline+=%=" right align 
-set statusline+=[ 
-set statusline+=%{strlen(&ft)?&ft:'none'}, " filetype 
-set statusline+=%{&fileencoding}, " encoding 
-set statusline+=%{&fileformat}]\ " file format 
-set statusline+=%-14.(%l,%c%V%)\ %<%P " offset 
 "-----------------------------------------------------------------
 "快捷键设置
 "-----------------------------------------------------------------
@@ -130,3 +118,20 @@ nnoremap <leader>gp :Git push<CR> "git commit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd Filetype javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80
 cd C:\APICloud\workspace
+
+
+
+set t_vb=
+set foldlevel=5
+set guifont=Monaco:h12
+"窗口启动时的位置与大小
+autocmd GUIEnter * simalt ~x
+set statusline= 
+set statusline+=%f\ " file name 
+set statusline+=%h%1*%m%r%w%0* " flag 
+set statusline+=%=" right align 
+set statusline+=[ 
+set statusline+=%{strlen(&ft)?&ft:'none'}, " filetype 
+set statusline+=%{&fileencoding}, " encoding 
+set statusline+=%{&fileformat}]\ " file format 
+set statusline+=%-14.(%l,%c%V%)\ %<%P " offset 
