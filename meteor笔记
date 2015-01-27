@@ -1,0 +1,19 @@
+官方文档
+  http://docs.meteor.com/#/full/accounts_api
+*****
+  meteor 表模式
+  https://github.com/aldeed/meteor-simple-schema
+  meteor 用户注册
+  https://github.com/meteor-useraccounts/core
+****
+  meteor 动态样式
+  https://github.com/gadicc/meteor-famous-views
+  meteor 测试框架
+  https://github.com/meteor-velocity/velocity
+***
+  meteor自动生成表单
+  https://github.com/aldeed/meteor-autoform
+  meteor上传
+  https://github.com/CollectionFS/Meteor-CollectionFS
+  meteor 多国语言
+  https://github.com/TAPevents/tap-i18n
