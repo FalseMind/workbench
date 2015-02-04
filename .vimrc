@@ -1,33 +1,42 @@
-set nocompatible " be iMproved
-filetype off " required!
-set rtp+=~/.vim/bundle/vundle/ " required!
-call vundle#rc() " required!
+if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
+  !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+endif
+if !isdirectory(expand("~/.vim/Ultisnips"))
+  !git clone https://github.com/Mantak/Ultisnips ~/.vim/Ultisnips
+endif
+set nocompatible "turn off vi compatibility, required for vundle
+filetype off "required!
+set rtp+=~/.vim/bundle/vundle/ "required!
+call vundle#rc() "required!
 Bundle 'gmarik/vundle'
 " ````````````````````````````````````````````````````````````````````
+Bundle 'scrooloose/nerdtree'
 Bundle 'molokai'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-scripts/VOoM'
+Bundle 'vimwiki/vimwiki'
+Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
+Bundle 'bling/vim-airline'
+Bundle 'airblade/vim-rooter'
+Bundle 'Lokaltog/vim-easymotion'
+
+Plugin 'othree/html5.vim'
+Plugin 'hail2u/vim-css3-syntax'
 Bundle "groenewege/vim-less"
-Bundle "elzr/vim-json"
-Bundle "tpope/vim-markdown"
 Bundle "pangloss/vim-javascript"
 Bundle "kchmck/vim-coffee-script"
-Bundle 'Yggdroot/indentLine'
-Bundle 'tpope/vim-fugitive'
-Bundle 'bling/vim-airline'
-Bundle 'sjl/gundo.vim'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'tmhedberg/SimpylFold'
-Bundle 'vimwiki/vimwiki'
-Bundle 'scrooloose/nerdtree'
-Bundle 'airblade/vim-rooter'
+Bundle "elzr/vim-json"
+Bundle "tpope/vim-markdown"
+
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'kien/ctrlp.vim'
 Bundle 'dyng/ctrlsf.vim'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'SirVer/ultisnips'
 "````````````````````````````````````````````````````````````````````
-filetype plugin indent on " required!
+filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -46,20 +55,22 @@ set linespace=5 "字符间插入的像素行数目
 set nocursorline "不高亮光标所在行
 "set noendofline binary
 set wrap "自动换行
+set linebreak
+set textwidth=78 fo+=Mm
 set synmaxcol=128 "这个默认值是3000导致vim处理大行文本时卡顿"
 set display=lastline "长行不显示@
-"set linebreak
-"set textwidth=78 fo+=Mm
 nnoremap j gj
 nnoremap k gk
 set number "显示行号
 set ruler "打开状态栏标尺
+"颜色设置
+set background=dark
+colorscheme solarized
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set fileencodings=utf-8,chinese,latin-1
+set fileencodings=utf-8,gb2312,gbk,gb18030
 set shell=/bin/bash
-set nocompatible " 不要使用vi的键盘模式，而是vim自己的
 set history=100 " history文件中需要记录的行数
 set nobackup
 set noswapfile
@@ -70,6 +81,7 @@ set mouse=a " 可以在buffer的任何地方使用鼠标（类似office中在工
 set formatoptions=tcrqn " 自动格式化
 set expandtab " 设定取消tab符，改为空格代替
 set shiftwidth=2 " 设定 << 和 >> 命令移动时的宽度为 2
+set tabstop=2 "设定tab的空格数
 set autochdir " 自动切换当前目录为当前文件所在的目录
 set ignorecase smartcase " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 set hlsearch " 搜索时高亮显示被找到的文本
@@ -80,6 +92,8 @@ set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 set foldenable " 开始折叠
 set foldmethod=indent " 设置缩进折叠
 set isk+=- "将-连接符也设置为单词
+"set paste 设置粘贴时不自动换行
+"set nopaste 恢复换行
 "-----------------------------------------------------------------
 "快捷键设置
 "-----------------------------------------------------------------
@@ -94,6 +108,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
+inoremap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 "-----------------------------------------------------------------
 "Alt + 1-5 切换5个tab页
 "-----------------------------------------------------------------
@@ -109,19 +124,32 @@ nmap <silent><M-5> :tabnext 5<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap <F1> <C-R>=strftime("%c")<CR>
-map <F3> :GundoToggle<CR>
-imap <F3> <ESC> :GundoToggle<CR>
 map <silent><F4> :NERDTreeToggle<CR>
 imap <silent><F4> <ESC>:NERDTreeToggle<CR>
-nnoremap <silent><leader>c :pclose<CR>
-nnoremap <C-F> :CtrlSF<space>
-"colorscheme molokai "颜色
-set background=dark
-colorscheme solarized
+vmap <Leader>c <plug>NERDCommenterInvert "注释掉选中的
+map <C-F> :CtrlSF<space>
+let g:voom_return_key = "<C-Return>" "这里相当于注释掉了，用Ｉ和tab组合来跳转
+let g:voom_tab_key = "<C-tab>" "这里相当于注释掉了，用Ｉ和窗口组合来跳转
+nnoremap <leader>t :Voom vimwiki<CR>
+vmap <silent><Leader>= :Tabularize /=<CR>:Tabularize /:<CR>
+"UltiSnips设置
+let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsSnippetDirectories=['Ultisnips']
+let g:UltiSnipsSnippetsDir = '~/.vim/Ultisnips'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+let g:UltiSnipsExpandTrigger = "<C-o>"
+"vimwiki设置
+let g:vimwiki_list = [{'path': '~/Apples/vimwiki/',
+      \'path_html': '~/Apples/Mantak.github.io/',
+      \'template_path': '~/Apples/Mantak.github.io/assets/',
+      \'template_default': 'default',
+      \'template_ext': '.tpl',
+      \'auto_export': 0}]
+map <F12> :VimwikiAll2HTML<cr>
 "airline设置
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
@@ -139,13 +167,28 @@ let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:ctrlp_mruf_max = 50 "ctrlP mrufiles 记录50个最近打开的
 let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
 let g:ctrlsf_width = '40%'
-nnoremap <leader>gd :Gvdiff<CR> "仅对当前文件有效
-nnoremap <leader>gw :Gwrite<CR> "git add  仅对当前文件有效
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gl :Glog<CR>
-nnoremap <leader>gc :Gcommit<CR> "git commit
-nnoremap <leader>gp :Git push<CR> "git commit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd Filetype javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80
+cd ~/Apples
+
+autocmd BufEnter * if &filetype == "" | setlocal ft=markdown | endif
+autocmd Filetype markdown,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd! bufwritepost .vimrc source %
+
+nmap <leader>g gg=G
+nmap <leader>d dG
+nnoremap <silent><leader>f :TernRefs<CR>
+
+function! HandleURL()
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  echo s:uri
+  if s:uri != ""
+    "通过下面命令查看当前chorome版本   dpkg --get-selections | grep chrom
+    silent exec "!chromium-browser '".s:uri."'"
+  else
+    echo "No URI found in line."
+  endif
+endfunction
+map <leader>u :call HandleURL()<cr>
