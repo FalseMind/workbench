@@ -86,3 +86,5 @@ Template.home.rendered = function(){
     return new Blob([ia], {type:mimeString});
   }
 };
+
+http://www.sitepoint.com/beginners-guide-mobile-development-meteor/
