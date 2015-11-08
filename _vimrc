@@ -1,25 +1,32 @@
-"如果不能正常安装插件，将插件以外的都删除
-"git clone https://github.com/gmarik/vundle D:\Vim\vimfiles\bundle\vundle 
-filetype off  
-set rtp+=$VIM/vimfiles/bundle/vundle/  
-call vundle#rc('$VIM/vimfiles/bundle/')  
-Bundle 'gmarik/vundle'  
-filetype plugin indent on  
+"1 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"2 Launch vim and run :PluginInstall
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'molokai'
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'molokai'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
-Bundle "elzr/vim-json"
-Bundle "pangloss/vim-javascript"
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'tmhedberg/SimpylFold'
-Bundle 'scrooloose/nerdtree'
-Bundle 'airblade/vim-rooter'
-Bundle 'kien/ctrlp.vim'
-Bundle 'dyng/ctrlsf.vim'
+Plugin "elzr/vim-json"
+Plugin "pangloss/vim-javascript"
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-rooter'
+Plugin 'kien/ctrlp.vim'
+Plugin 'dyng/ctrlsf.vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 filetype plugin indent on     " required!   
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -45,7 +52,6 @@ set ruler "打开状态栏标尺
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fileencodings=utf-8,chinese,latin-1
 set shell=/bin/bash
-set nocompatible " 不要使用vi的键盘模式，而是vim自己的
 set history=100 " history文件中需要记录的行数
 set nobackup
 set noswapfile
@@ -123,9 +129,8 @@ cd C:\APICloud\workspace
 
 set t_vb=
 set foldlevel=5
-set guifont=Monaco:h12
+set guifont=DejaVu\ Sans\ mono\ 12
 "窗口启动时的位置与大小
-autocmd GUIEnter * simalt ~x
 set statusline= 
 set statusline+=%f\ " file name 
 set statusline+=%h%1*%m%r%w%0* " flag 
