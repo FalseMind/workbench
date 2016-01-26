@@ -1,50 +1,48 @@
 if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
   !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 endif
-if !isdirectory(expand("~/.vim/Ultisnips"))
-  !git clone https://github.com/Mantak/Ultisnips ~/.vim/Ultisnips
-endif
+"if !isdirectory(expand("~/.vim/Ultisnips"))
+"  !git clone https://github.com/Mantak/Ultisnips ~/.vim/Ultisnips
+"endif
 set nocompatible "turn off vi compatibility, required for vundle
 filetype off "required!
 set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 " ````````````````````````````````````````````````````````````````````
-Bundle 'scrooloose/nerdtree'
-Bundle 'molokai'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/VOoM'
-Bundle 'vimwiki/vimwiki'
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
-Bundle 'bling/vim-airline'
-Bundle 'airblade/vim-rooter'
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'scrooloose/nerdtree'
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-rooter'
 
-Plugin 'othree/html5.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Bundle "groenewege/vim-less"
-Bundle "pangloss/vim-javascript"
-Bundle "kchmck/vim-coffee-script"
-Bundle "elzr/vim-json"
-Bundle "tpope/vim-markdown"
+Plugin 'kien/ctrlp.vim'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'marijnh/tern_for_vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'SirVer/ultisnips'
 
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'kien/ctrlp.vim'
-Bundle 'dyng/ctrlsf.vim'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'SirVer/ultisnips'
+Plugin 'molokai'
+Plugin 'altercation/vim-colors-solarized'
+
+Plugin 'fatih/vim-go'
+Plugin 'pangloss/vim-javascript'
+Plugin 'groenewege/vim-less'
+Plugin 'kchmck/vim-coffee-script'
+
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+
+
 "````````````````````````````````````````````````````````````````````
 filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "窗口启动时的位置与大小
-winpos 135 135
-set lines=18 columns=90
+"winpos 135 135
+set lines=68 columns=168
 "set guifont=Monospace\ 15
-set guifont=DejaVu\ Sans\ Mono\ 15
+set guifont=DejaVu\ Sans\ Mono\ 12
 "set guifont=Liberation\ Mono\ 15
 "highlight StatusLine guifg=#383838 guibg=#76EE00 "状态行颜色
 "set showmatch "匹配到的高亮
@@ -65,6 +63,7 @@ set number "显示行号
 set ruler "打开状态栏标尺
 "颜色设置
 set background=dark
+"colorscheme molokai
 colorscheme solarized
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
@@ -124,29 +123,21 @@ nmap <silent><M-5> :tabnext 5<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let b:javascript_fold=1 " 设置javascript折叠为1层
+let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支持
+
 map <silent><F4> :NERDTreeToggle<CR>
-imap <silent><F4> <ESC>:NERDTreeToggle<CR>
-vmap <Leader>c <plug>NERDCommenterInvert "注释掉选中的
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"imap <silent><F4> <ESC>:NERDTreeToggle<CR>
 map <C-F> :CtrlSF<space>
-let g:voom_return_key = "<C-Return>" "这里相当于注释掉了，用Ｉ和tab组合来跳转
-let g:voom_tab_key = "<C-tab>" "这里相当于注释掉了，用Ｉ和窗口组合来跳转
-nnoremap <leader>t :Voom vimwiki<CR>
-vmap <silent><Leader>= :Tabularize /=<CR>:Tabularize /:<CR>
 "UltiSnips设置
-let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsSnippetDirectories=['Ultisnips']
-let g:UltiSnipsSnippetsDir = '~/.vim/Ultisnips'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-let g:UltiSnipsExpandTrigger = "<C-o>"
-"vimwiki设置
-let g:vimwiki_list = [{'path': '~/Apples/vimwiki/',
-      \'path_html': '~/Apples/Mantak.github.io/',
-      \'template_path': '~/Apples/Mantak.github.io/assets/',
-      \'template_default': 'default',
-      \'template_ext': '.tpl',
-      \'auto_export': 0}]
-map <F12> :VimwikiAll2HTML<cr>
+"let g:UltiSnipsEditSplit="horizontal"
+"let g:UltiSnipsSnippetDirectories=['Ultisnips']
+"let g:UltiSnipsSnippetsDir = '~/.vim/Ultisnips'
+"let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+"let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+"let g:UltiSnipsExpandTrigger = "<C-o>"
 "airline设置
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -172,13 +163,12 @@ let g:ctrlsf_width = '40%'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/Apples
 
-autocmd BufEnter * if &filetype == "" | setlocal ft=markdown | endif
-autocmd Filetype markdown,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80
+autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif
+autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd! bufwritepost .vimrc source %
 
 nmap <leader>g gg=G
-nmap <leader>d dG
 nnoremap <silent><leader>f :TernRefs<CR>
 
 function! HandleURL()
