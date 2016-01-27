@@ -22,9 +22,6 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'SirVer/ultisnips'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'molokai'
-Plugin 'morhetz/gruvbox'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'notpratheek/vim-sol'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
 Plugin 'pangloss/vim-javascript'
@@ -39,11 +36,7 @@ filetype plugin indent on "required!
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set lines=68 columns=168 "设置全屏
-"set guifont=Monospace\ 15
-"set guifont=DejaVu\ Sans\ Mono\ 12
 set guifont=Liberation\ Mono\ for\ Powerline\ 12
-"set guifont=Liberation\ Mono\ 15
-"highlight StatusLine guifg=#383838 guibg=#76EE00 "状态行颜色
 "set showmatch "匹配到的高亮
 set guioptions-=m "去掉菜单
 set guioptions-=T "不显示工具栏
@@ -60,13 +53,7 @@ nnoremap j gj
 nnoremap k gk
 set number "显示行号
 set ruler "打开状态栏标尺
-"颜色设置
-"set background=dark
-"set background=light
-colorscheme sol
-"colorscheme molokai
-"colorscheme gruvbox
-"colorscheme solarized
+colorscheme molokai "颜色设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,7 +136,7 @@ let g:ctrlsf_width = '40%'
 "let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 "let g:UltiSnipsExpandTrigger = "<C-o>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:airline_theme="sol"
+let g:airline_theme="sol"
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
