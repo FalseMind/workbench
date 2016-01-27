@@ -10,37 +10,34 @@ set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
 Plugin 'gmarik/vundle'
 " ````````````````````````````````````````````````````````````````````
+Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-rooter'
-
+" ````````````````````````````````````````````````````````````````````
 Plugin 'kien/ctrlp.vim'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'marijnh/tern_for_vim'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'SirVer/ultisnips'
-
+" ````````````````````````````````````````````````````````````````````
 Plugin 'molokai'
+Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized'
-
+" ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
 Plugin 'pangloss/vim-javascript'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
-
+" ````````````````````````````````````````````````````````````````````
 "Plugin 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
-
-
 "````````````````````````````````````````````````````````````````````
 filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"窗口启动时的位置与大小
-"winpos 135 135
-set lines=68 columns=168
+set lines=68 columns=168 "设置全屏
 "set guifont=Monospace\ 15
 set guifont=DejaVu\ Sans\ Mono\ 12
 "set guifont=Liberation\ Mono\ 15
@@ -63,8 +60,9 @@ set number "显示行号
 set ruler "打开状态栏标尺
 "颜色设置
 set background=dark
-"colorscheme molokai
-colorscheme solarized
+colorscheme molokai
+"colorscheme gruvbox
+"colorscheme solarized
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -111,8 +109,8 @@ inoremap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 "-----------------------------------------------------------------
 "Alt + 1-5 切换5个tab页
 "-----------------------------------------------------------------
-map <silent><F2> :tabclose<CR>
-map <silent><F5> :tabnew<CR>
+map <silent><F4> :tabnew<CR>
+map <silent><F5> :tabclose<CR>
 nmap <silent><M-j> :tabp<CR>
 nmap <silent><M-k> :tabn<CR>
 nmap <silent><M-1> :tabnext 1<CR>
@@ -126,7 +124,7 @@ nmap <silent><M-5> :tabnext 5<CR>
 let b:javascript_fold=1 " 设置javascript折叠为1层
 let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支持
 
-map <silent><F4> :NERDTreeToggle<CR>
+map <silent><F2> :NERDTreeToggle<CR>
 autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "imap <silent><F4> <ESC>:NERDTreeToggle<CR>
@@ -163,22 +161,22 @@ let g:ctrlsf_width = '40%'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/Apples
 
-autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif
-autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80
-autocmd BufWritePre * :%s/\s\+$//e
-autocmd! bufwritepost .vimrc source %
+autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif "如果未指定文件类型,文件类型为text
+autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80 "这些文件特殊对待
+autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
+autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 
 nmap <leader>g gg=G
-nnoremap <silent><leader>f :TernRefs<CR>
+"nnoremap <silent><leader>f :TernRefs<CR>
 
 function! HandleURL()
-  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  let s:uri = matchstr(getline("."), '\v(https?://|ftp://|file:/{3}|www\.)((\w|-)+\.)+(\w|-)+(:\d+)?(/(\w|[~@#$%^&+=/.?-])+)?')
   echo s:uri
   if s:uri != ""
     "通过下面命令查看当前chorome版本   dpkg --get-selections | grep chrom
     silent exec "!chromium-browser '".s:uri."'"
   else
-    echo "No URI found in line."
+    echo "当前行未发现链接地址"
   endif
 endfunction
 map <leader>u :call HandleURL()<cr>
