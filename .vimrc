@@ -1,3 +1,12 @@
+" ````````````````````````````````````````````````````````````````````
+"确保安装了node npm go python
+" YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
+"执行完BundleInstall之后
+"cd ~/.vim/bundle
+"git clone https://github.com/ternjs/tern_for_vim
+"cd tern_for_vim && npm install
+"cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
+" ````````````````````````````````````````````````````````````````````
 if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
   !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 endif
@@ -17,13 +26,17 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'marijnh/tern_for_vim'
-"Plugin 'Valloric/YouCompleteMe'
+" ````````````````````````````````````````````````````````````````````
+Plugin 'marijnh/tern_for_vim'
+" ````````````````````````````````````````````````````````````````````
+" ````````````````````````````````````````````````````````````````````
+Plugin 'Valloric/YouCompleteMe'
 "Plugin 'SirVer/ultisnips'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'molokai'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
+Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
@@ -94,9 +107,6 @@ nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改�
 nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" Jump to matching pairs easily, with Tab
-nmap <Tab> %
-vmap <Tab> %
 map  <C-h> <C-w>h
 map  <C-j> <C-w>j
 map  <C-k> <C-w>k
@@ -123,7 +133,9 @@ let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支�
 map <silent><F4> :NERDTreeToggle<CR>
 imap <silent><F4> <ESC>:NERDTreeToggle<CR>
 autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <C-B> :CtrlPBuffer<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-F> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
@@ -145,7 +157,7 @@ let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/Apples/working
-autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif "如果未指定文件类型,文件类型为text
+autocmd BufEnter * if &filetype == "" | setlocal ft=javascript | endif "如果未指定文件类型,文件类型为javascript
 autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80 "这些文件特殊对待
 autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
