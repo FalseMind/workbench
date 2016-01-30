@@ -1,14 +1,14 @@
 " ````````````````````````````````````````````````````````````````````
 "确保安装了node npm go python
 " YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
-"执行完BundleInstall之后
-"cd ~/.vim/bundle
-"git clone https://github.com/ternjs/tern_for_vim
-"cd tern_for_vim && npm install
+"cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
 " ````````````````````````````````````````````````````````````````````
 if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
   !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+endif
+if !isdirectory(expand("~/.vim/bundle/tern_for_vim/.git"))
+  !git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
 endif
 "if !isdirectory(expand("~/.vim/Ultisnips"))
 "  !git clone https://github.com/Mantak/Ultisnips ~/.vim/Ultisnips
@@ -28,8 +28,6 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'marijnh/tern_for_vim'
-" ````````````````````````````````````````````````````````````````````
-" ````````````````````````````````````````````````````````````````````
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'SirVer/ultisnips'
 " ````````````````````````````````````````````````````````````````````
@@ -70,9 +68,11 @@ colorscheme molokai "颜色设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set fileencodings=utf-8,gb2312,gbk,gb18030
 set shell=/bin/bash
-set history=100 " history文件中需要记录的行数
+set fileencodings=utf-8,gb2312,gbk,gb18030
+map <F1> <Nop>
+nmap q <Nop>
+set history=0 " history文件中需要记录的行数
 set nobackup
 set noswapfile
 syntax on " 语法高亮
@@ -93,6 +93,8 @@ set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 set foldenable " 开始折叠
 set foldmethod=indent " 设置缩进折叠
 set isk+=- "将-连接符也设置为单词
+set scrolloff=3 "上下滚动的时候留出3行
+set sidescrolloff=8 "左右滚动的时候,留出8个字符
 "set paste 设置粘贴时不自动换行
 "set nopaste 恢复换行
 "-----------------------------------------------------------------
@@ -103,6 +105,8 @@ nmap <leader>g gg=G
 nmap <leader>o :tabe<space>
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
+vmap <Leader>c "+y
+nmap <Leader>v "+p
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改文件编码
 nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
@@ -130,14 +134,24 @@ nmap <silent><M-5> :tabnext 5<CR>
 let b:javascript_fold=1 " 设置javascript折叠为1层
 let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支持
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nnoremap <silent><leader>d :TernRefs<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <silent><F4> :NERDTreeToggle<CR>
 imap <silent><F4> <ESC>:NERDTreeToggle<CR>
 autocmd vimenter * NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-B> :CtrlPBuffer<CR>
+"map <C-B> :CtrlPBuffer<CR>
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-F> :CtrlSF<space>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map  <leader>f :TernDef<cr>
+map  <leader>d :TernDoc<cr>
+map  <leader>r :TernRefs<cr>
 let g:ctrlsf_width = '40%'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "UltiSnips设置
@@ -148,7 +162,6 @@ let g:ctrlsf_width = '40%'
 "let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 "let g:UltiSnipsExpandTrigger = "<C-o>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="sol"
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -157,11 +170,11 @@ let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/Apples/working
-autocmd BufEnter * if &filetype == "" | setlocal ft=javascript | endif "如果未指定文件类型,文件类型为javascript
+autocmd BufEnter * if &filetype == "" | setlocal ft=javascript | endif
+"如果未指定文件类型,文件类型为javascript
 autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80 "这些文件特殊对待
 autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
-"nnoremap <silent><leader>f :TernRefs<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
