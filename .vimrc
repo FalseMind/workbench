@@ -4,12 +4,12 @@
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
 " ````````````````````````````````````````````````````````````````````
-if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
-  !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-endif
-if !isdirectory(expand("~/.vim/bundle/tern_for_vim/.git"))
-  !git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
-endif
+"if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
+"  !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+"endif
+"if !isdirectory(expand("~/.vim/bundle/tern_for_vim/.git"))
+"  !git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
+"endif
 "if !isdirectory(expand("~/.vim/Ultisnips"))
 "  !git clone https://github.com/Mantak/Ultisnips ~/.vim/Ultisnips
 "endif
@@ -39,15 +39,15 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 " ````````````````````````````````````````````````````````````````````
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 "````````````````````````````````````````````````````````````````````
 filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set lines=68 columns=168 "设置全屏
-set guifont=Liberation\ Mono\ for\ Powerline\ 12
+set guifont=Liberation\ Mono\ for\ Powerline\ 13
 "set showmatch "匹配到的高亮
 set guioptions-=m "去掉菜单
 set guioptions-=T "不显示工具栏
@@ -148,11 +148,13 @@ if executable('ag')
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-F> :CtrlSF<space>
+"map  <leader>f :CtrlSF<cr>
+let g:ctrlsf_width = '40%'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map  <leader>f :TernDef<cr>
 map  <leader>d :TernDoc<cr>
 map  <leader>r :TernRefs<cr>
-let g:ctrlsf_width = '40%'
+map  <leader>h :TernRename<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "UltiSnips设置
 "let g:UltiSnipsEditSplit="horizontal"
@@ -172,7 +174,7 @@ let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
 cd ~/Apples/working
 autocmd BufEnter * if &filetype == "" | setlocal ft=javascript | endif
 "如果未指定文件类型,文件类型为javascript
-autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=80 "这些文件特殊对待
+autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=79 "这些文件特殊对待
 autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
