@@ -4,9 +4,9 @@
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
 " ````````````````````````````````````````````````````````````````````
-"if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
-"  !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-"endif
+if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
+  !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+endif
 "if !isdirectory(expand("~/.vim/bundle/tern_for_vim/.git"))
 "  !git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
 "endif
