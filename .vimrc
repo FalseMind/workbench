@@ -1,19 +1,13 @@
 " ````````````````````````````````````````````````````````````````````
+"0, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 "1，确保安装了node npm 
-" YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
+"2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
+"   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
+"3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
-2, BundelInstall
+"4, BundelInstall
 " ````````````````````````````````````````````````````````````````````
-if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
-  !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-endif
-"if !isdirectory(expand("~/.vim/bundle/tern_for_vim/.git"))
-"  !git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
-"endif
-"if !isdirectory(expand("~/.vim/Ultisnips"))
-"  !git clone https://github.com/Mantak/Ultisnips ~/.vim/Ultisnips
-"endif
 set nocompatible "turn off vi compatibility, required for vundle
 filetype off "required!
 set rtp+=~/.vim/bundle/vundle/ "required!
