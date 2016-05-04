@@ -1,8 +1,9 @@
 " ````````````````````````````````````````````````````````````````````
-"确保安装了node npm go python
+"1，确保安装了node npm 
 " YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
+2, BundelInstall
 " ````````````````````````````````````````````````````````````````````
 if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
   !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
