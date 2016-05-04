@@ -34,7 +34,7 @@ meteor install-sdk android
 
 
 
-sudo  apt-get install build-essential libssl-dev git-cor
+sudo  apt-get install build-essential libssl-dev git-core vim-gtk
 
 安装nvm
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
