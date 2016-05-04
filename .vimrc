@@ -1,4 +1,6 @@
 " ````````````````````````````````````````````````````````````````````
+" ``````````````````````VIM插件安装```````````````````````````````````
+" ````````````````````````````````````````````````````````````````````
 "0，确保安装了node npm 
 "1, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 "2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
@@ -6,7 +8,7 @@
 "3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && ./install.py --tern-completer
-"4, BundelInstall
+"4, 启动VIM 运行 BundelInstall
 " ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
 filetype off "required!
