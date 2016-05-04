@@ -1,6 +1,6 @@
 " ````````````````````````````````````````````````````````````````````
-"0, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-"1，确保安装了node npm 
+"0，确保安装了node npm 
+"1, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 "2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
 "   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
 "3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
