@@ -5,7 +5,7 @@
 "   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
 "3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
-"cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --tern-completer
+"cd ~/.vim/bundle/YouCompleteMe && ./install.py --tern-completer
 "4, BundelInstall
 " ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
