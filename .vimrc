@@ -6,10 +6,12 @@
 "1, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 "2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
 "   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
+"   git clone https://github.com/powerline/fonts ~/.vim/fonts
 "3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive 
 "   ./install.py
+"cd ~/.vim/fonts/ && ./install.sh
 "4, 启动VIM 运行 BundelInstall
 " ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
