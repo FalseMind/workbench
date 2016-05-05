@@ -9,7 +9,7 @@
 "3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive 
-"   ./install.py --tern-completer
+"   ./install.py
 "4, 启动VIM 运行 BundelInstall
 " ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
