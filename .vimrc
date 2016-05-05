@@ -185,8 +185,8 @@ function! HandleURL()
   let s:uri = matchstr(getline("."), '\v(https?://|ftp://|file:/{3}|www\.)((\w|-)+\.)+(\w|-)+(:\d+)?(/(\w|[~@#$%^&+=/.?-])+)?')
   echo s:uri
   if s:uri != ""
-    "通过下面命令查看当前chorome版本   dpkg --get-selections | grep chrom
-    silent exec "!chromium-browser '".s:uri."'"
+    "通过下面命令查看当前firefox版本   dpkg --get-selections | grep firefox
+    silent exec "!firefox '".s:uri."'"
   else
     echo "当前行未发现链接地址"
   endif
