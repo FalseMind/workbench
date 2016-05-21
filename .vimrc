@@ -1,8 +1,8 @@
 " ````````````````````````````````````````````````````````````````````
 " ``````````````````````VIM插件安装```````````````````````````````````
 " ````````````````````````````````````````````````````````````````````
-"0，确保安装了node npm    
-"   sudo apt-get install build-essential cmake python-dev python3-dev
+"0，确保安装了必要的包   
+"   sudo apt-get install build-essential cmake python-dev python3-dev  silversearcher-ag
 "1, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 "2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
 "   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
