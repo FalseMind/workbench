@@ -1,17 +1,15 @@
 " ````````````````````````````````````````````````````````````````````
 " ``````````````````````VIM插件安装```````````````````````````````````
 " ````````````````````````````````````````````````````````````````````
-"0，确保安装了必要的包   
-"   sudo apt-get install build-essential cmake python-dev python3-dev  silversearcher-ag
+"0，确保安装了node npm
+"   sudo apt-get install build-essential cmake python-dev python3-dev
 "1, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 "2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
 "   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
-"   git clone https://github.com/powerline/fonts ~/.vim/fonts
 "3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
-"cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive 
+"cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive
 "   ./install.py
-"cd ~/.vim/fonts/ && ./install.sh
 "4, 启动VIM 运行 BundelInstall
 " ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
@@ -37,6 +35,7 @@ Plugin 'molokai'
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 " ````````````````````````````````````````````````````````````````````
@@ -172,10 +171,10 @@ let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cd ~/Apples/working
+cd ~/working
 autocmd BufEnter * if &filetype == "" | setlocal ft=javascript | endif
 "如果未指定文件类型,文件类型为javascript
-autocmd Filetype go,coffee,javascript,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=79 "这些文件特殊对待
+autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=79 "这些文件特殊对待
 autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -185,9 +184,11 @@ function! HandleURL()
   let s:uri = matchstr(getline("."), '\v(https?://|ftp://|file:/{3}|www\.)((\w|-)+\.)+(\w|-)+(:\d+)?(/(\w|[~@#$%^&+=/.?-])+)?')
   echo s:uri
   if s:uri != ""
-    "通过下面命令查看当前firefox版本   dpkg --get-selections | grep firefox
+    "通过下面命令查看当前chorome版本   dpkg --get-selections | grep chrom
     silent exec "!firefox '".s:uri."'"
   else
     echo "当前行未发现链接地址"
   endif
 endfunction
+"小技巧
+"在文件路径上按gf可以跳转到文件，按ctrl+o跳转回来
