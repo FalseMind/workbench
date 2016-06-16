@@ -106,7 +106,7 @@ nmap <leader>o :tabe<space>
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 vmap <Leader>c "+y
-nmap <Leader>v "+p
+map <Leader>v "+p
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改文件编码
 nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
