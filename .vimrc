@@ -196,3 +196,4 @@ function! HandleURL()
 endfunction
 "小技巧
 "在文件路径上按gf可以跳转到文件，按ctrl+o跳转回来
+"ctrl+;显示剪切板
