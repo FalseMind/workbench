@@ -72,6 +72,7 @@ set shell=/bin/bash
 set fileencodings=utf-8,gb2312,gbk,gb18030
 map <F1> <Nop>
 nmap q <Nop>
+nmap Q <Nop>
 set history=0 " history文件中需要记录的行数
 set nobackup
 set noswapfile
