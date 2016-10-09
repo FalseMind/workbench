@@ -55,16 +55,21 @@ set guioptions-=L "把gui右边的滑动条去掉
 set linespace=5 "字符间插入的像素行数目
 set nocursorline "不高亮光标所在行
 "set noendofline binary
-set wrap "自动换行
-set linebreak
-set textwidth=78 fo+=Mm
+"highlight ColorColumn ctermbg=black
 set synmaxcol=128 "这个默认值是3000导致vim处理大行文本时卡顿"
 set display=lastline "长行不显示@
 nnoremap j gj
 nnoremap k gk
 set number "显示行号
 set ruler "打开状态栏标尺
+set wrap "自动换行
+set linebreak
+set textwidth=80 fo+=Mm "80 break line
+set colorcolumn=+1 "81 highlight column
+syntax on " 语法高亮
 colorscheme molokai "颜色设置
+highlight ColorColumn ctermbg=black "vim
+highlight ColorColumn guibg=#666666 "gvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -76,7 +81,6 @@ nmap Q <Nop>
 set history=0 " history文件中需要记录的行数
 set nobackup
 set noswapfile
-syntax on " 语法高亮
 set bufhidden=hide
 set backspace=2 " 使回格键（backspace）正常处理indent, eol, start等
 set mouse=a " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
@@ -108,7 +112,6 @@ nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 vmap <Leader>c "+y
 map <Leader>v "+p
-nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改文件编码
 nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -118,20 +121,18 @@ map  <C-k> <C-w>k
 map  <C-l> <C-w>l
 map  <leader>u :call HandleURL()<cr>
 "-----------------------------------------------------------------
-"， + 1-0 切换10个tab页
+"， + 1-7 切换7个tab页 ,+8 qiehuan bianma
 "-----------------------------------------------------------------
 map  <silent><F5> :tabnew<CR>
 map  <silent><F2> :tabclose<CR>
-noremap <silent><leader>1 :tabn 1<cr>
-noremap <silent><leader>2 :tabn 2<cr>
-noremap <silent><leader>3 :tabn 3<cr>
-noremap <silent><leader>4 :tabn 4<cr>
-noremap <silent><leader>5 :tabn 5<cr>
-noremap <silent><leader>6 :tabn 6<cr>
-noremap <silent><leader>7 :tabn 7<cr>
-noremap <silent><leader>8 :tabn 8<cr>
-noremap <silent><leader>9 :tabn 9<cr>
-noremap <silent><leader>0 :tabn 10<cr>
+nmap <silent><leader>1 :tabn 1<cr>
+nmap <silent><leader>2 :tabn 2<cr>
+nmap <silent><leader>3 :tabn 3<cr>
+nmap <silent><leader>4 :tabn 4<cr>
+nmap <silent><leader>5 :tabn 5<cr>
+nmap <silent><leader>6 :tabn 6<cr>
+nmap <silent><leader>7 :tabn 7<cr>
+nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改文件编码
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,7 +179,7 @@ let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
 cd ~/working
 autocmd BufEnter * if &filetype == "" | setlocal ft=javascript | endif
 "如果未指定文件类型,文件类型为javascript
-autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline|setlocal colorcolumn=79 "这些文件特殊对待
+autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline "这些文件特殊对待
 autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
