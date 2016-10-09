@@ -72,7 +72,6 @@ set shell=/bin/bash
 set fileencodings=utf-8,gb2312,gbk,gb18030
 map <F1> <Nop>
 nmap q <Nop>
-nmap Q <Nop>
 set history=0 " history文件中需要记录的行数
 set nobackup
 set noswapfile
@@ -122,13 +121,16 @@ map  <leader>u :call HandleURL()<cr>
 "-----------------------------------------------------------------
 map  <silent><F5> :tabnew<CR>
 map  <silent><F2> :tabclose<CR>
-nmap <silent><M-j> :tabp<CR>
-nmap <silent><M-k> :tabn<CR>
-nmap <silent><M-1> :tabnext 1<CR>
-nmap <silent><M-2> :tabnext 2<CR>
-nmap <silent><M-3> :tabnext 3<CR>
-nmap <silent><M-4> :tabnext 4<CR>
-nmap <silent><M-5> :tabnext 5<CR>
+noremap <silent><leader>1 :tabn 1<cr>
+noremap <silent><leader>2 :tabn 2<cr>
+noremap <silent><leader>3 :tabn 3<cr>
+noremap <silent><leader>4 :tabn 4<cr>
+noremap <silent><leader>5 :tabn 5<cr>
+noremap <silent><leader>6 :tabn 6<cr>
+noremap <silent><leader>7 :tabn 7<cr>
+noremap <silent><leader>8 :tabn 8<cr>
+noremap <silent><leader>9 :tabn 9<cr>
+noremap <silent><leader>0 :tabn 10<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
