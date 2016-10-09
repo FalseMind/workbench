@@ -72,6 +72,7 @@ set shell=/bin/bash
 set fileencodings=utf-8,gb2312,gbk,gb18030
 map <F1> <Nop>
 nmap q <Nop>
+nmap Q <Nop>
 set history=0 " history文件中需要记录的行数
 set nobackup
 set noswapfile
@@ -117,7 +118,7 @@ map  <C-k> <C-w>k
 map  <C-l> <C-w>l
 map  <leader>u :call HandleURL()<cr>
 "-----------------------------------------------------------------
-"Alt + 1-5 切换5个tab页
+"， + 1-0 切换10个tab页
 "-----------------------------------------------------------------
 map  <silent><F5> :tabnew<CR>
 map  <silent><F2> :tabclose<CR>
