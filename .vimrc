@@ -12,15 +12,25 @@
 "   ./install.py
 "4, 启动VIM 运行 BundelInstall
 " ````````````````````````````````````````````````````````````````````
+" ```````````NVIM插件安装,在vim插件安装完了做个链接引用即可```````````
+" ````````````````````````````````````````````````````````````````````
+" mkdir ~/.config
+" ln -s ~/.vim   ~/.config/nvim
+" ln -s ~/.vimrc ~/.config/nvim/init.vim
+" ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
 filetype off "required!
 set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
 Plugin 'gmarik/vundle'
 " ````````````````````````````````````````````````````````````````````
+Plugin 'fcitx.vim'
+" ````````````````````````````````````````````````````````````````````
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
+" ````````````````````````````````````````````````````````````````````
+Plugin 'tpope/vim-dispatch'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'kien/ctrlp.vim'
 Plugin 'dyng/ctrlsf.vim'
@@ -45,9 +55,11 @@ Plugin 'plasticboy/vim-markdown'
 filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
+autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set lines=68 columns=168 "设置全屏
 set guifont=Liberation\ Mono\ for\ Powerline\ 13
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline
 "set showmatch "匹配到的高亮
 set guioptions-=m "去掉菜单
 set guioptions-=T "不显示工具栏
@@ -119,10 +131,7 @@ map  <C-h> <C-w>h
 map  <C-j> <C-w>j
 map  <C-k> <C-w>k
 map  <C-l> <C-w>l
-map  <leader>u :call HandleURL()<cr>
-"-----------------------------------------------------------------
-"， + 1-7 切换7个tab页 ,+8 qiehuan bianma
-"-----------------------------------------------------------------
+"map  <leader>u :call HandleURL()<cr>
 map  <silent><F5> :tabnew<CR>
 map  <silent><F2> :tabclose<CR>
 nmap <silent><leader>1 :tabn 1<cr>
@@ -130,8 +139,6 @@ nmap <silent><leader>2 :tabn 2<cr>
 nmap <silent><leader>3 :tabn 3<cr>
 nmap <silent><leader>4 :tabn 4<cr>
 nmap <silent><leader>5 :tabn 5<cr>
-nmap <silent><leader>6 :tabn 6<cr>
-nmap <silent><leader>7 :tabn 7<cr>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改文件编码
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
@@ -184,17 +191,19 @@ autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! HandleURL()
-  let s:uri = matchstr(getline("."), '\v(https?://|ftp://|file:/{3}|www\.)((\w|-)+\.)+(\w|-)+(:\d+)?(/(\w|[~@#$%^&+=/.?-])+)?')
-  echo s:uri
-  if s:uri != ""
-    "通过下面命令查看当前chorome版本   dpkg --get-selections | grep chrom
-    silent exec "!firefox '".s:uri."'"
-  else
-    echo "当前行未发现链接地址"
-  endif
-endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <leader>t :call Translate()<CR>
+"需要vim的asynchronously支持，否则，运行该命令以后，vim会暂时挂起ctrl+z fg来恢复
+fun! Translate()
+  let keyword = expand("<cword>")
+  let url = "http://www.iciba.com/" . keyword
+  "silent exec "!firefox '".url."'"
+  exec ":Dispatch firefox '".url."'"
+endfun
+
 "小技巧
 "在文件路径上按gf可以跳转到文件，按ctrl+o跳转回来
+"使用gx命令，跳转到光标所在URL地址
 "ctrl+;显示剪切板
+"ctrl+z 挂起当前vim回到终端，fg回到刚才挂起的vim,如果有多个任务使用%1...来对应
