@@ -187,9 +187,12 @@ autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|s
 autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" mantra快捷键设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>m :Dispatch mantra<space>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 nmap <leader>t :call Translate()<CR>
 "需要vim的asynchronously支持，否则，运行该命令以后，vim会暂时挂起ctrl+z fg来恢复
 fun! Translate()
