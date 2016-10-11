@@ -87,7 +87,12 @@ set fileencodings=utf-8,gb2312,gbk,gb18030
 map <F1> <Nop>
 nmap q <Nop>
 nmap Q <Nop>
-set history=0 " history文件中需要记录的行数
+nmap s <Nop>
+nmap S <Nop>
+nmap r <Nop>
+nmap R <Nop>
+nmap . <Nop>
+set history=50 " history文件中需要记录的行数
 set nobackup
 set noswapfile
 set bufhidden=hide
@@ -201,9 +206,12 @@ fun! Translate()
   "silent exec "!firefox '".url."'"
   exec ":Dispatch firefox '".url."'"
 endfun
-
 "小技巧
 "在文件路径上按gf可以跳转到文件，按ctrl+o跳转回来
 "使用gx命令，跳转到光标所在URL地址
 "ctrl+;显示剪切板
 "ctrl+z 挂起当前vim回到终端，fg回到刚才挂起的vim,如果有多个任务使用%1...来对应
+"J 合并行
+"gt gT 切换到上一个或下一个标签页
+"zR -> 打开所有的折叠 (open all fold)
+"zM -> 关闭所有的摺叠 (close all fold)
