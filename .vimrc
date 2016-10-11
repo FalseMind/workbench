@@ -55,7 +55,6 @@ Plugin 'plasticboy/vim-markdown'
 filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
-autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set lines=68 columns=168 "设置全屏
 set guifont=Liberation\ Mono\ for\ Powerline\ 13
@@ -66,8 +65,6 @@ set guioptions-=T "不显示工具栏
 set guioptions-=L "把gui右边的滑动条去掉
 set linespace=5 "字符间插入的像素行数目
 set nocursorline "不高亮光标所在行
-"set noendofline binary
-"highlight ColorColumn ctermbg=black
 set synmaxcol=128 "这个默认值是3000导致vim处理大行文本时卡顿"
 set display=lastline "长行不显示@
 nnoremap j gj
@@ -80,8 +77,8 @@ set textwidth=80 fo+=Mm "80 break line
 set colorcolumn=+1 "81 highlight column
 syntax on " 语法高亮
 colorscheme molokai "颜色设置
-highlight ColorColumn ctermbg=black "vim
-highlight ColorColumn guibg=#666666 "gvim
+highlight ColorColumn ctermbg=bg "vim
+highlight ColorColumn guibg=bg "gvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
