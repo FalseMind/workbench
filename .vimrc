@@ -24,8 +24,6 @@ set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
 Plugin 'gmarik/vundle'
 " ````````````````````````````````````````````````````````````````````
-Plugin 'fcitx.vim'
-" ````````````````````````````````````````````````````````````````````
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
@@ -125,10 +123,11 @@ nmap <leader>o :tabe<space>
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 vmap <Leader>c "+y
-map <Leader>v "+p
+map  <Leader>v "+p
 nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
-nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nmap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
+"nmap <space> za
 map  <C-h> <C-w>h
 map  <C-j> <C-w>j
 map  <C-k> <C-w>k
@@ -213,5 +212,8 @@ endfun
 "ctrl+z 挂起当前vim回到终端，fg回到刚才挂起的vim,如果有多个任务使用%1...来对应
 "J 合并行
 "gt gT 切换到上一个或下一个标签页
+"zO -> 打开当前光标所在位置的所有的折叠 (open all fold)
 "zR -> 打开所有的折叠 (open all fold)
 "zM -> 关闭所有的摺叠 (close all fold)
+"[z move to start of open fold.
+"]z move to end of open fold.
