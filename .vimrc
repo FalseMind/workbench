@@ -1,15 +1,21 @@
 " ````````````````````````````````````````````````````````````````````
 " ``````````````````````VIM插件安装```````````````````````````````````
 " ````````````````````````````````````````````````````````````````````
-"0，确保安装了node npm
+"0，确保安装了git node
 "   sudo apt-get install build-essential cmake python-dev python3-dev
 "1, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 "2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
 "   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
-"3 YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
+"3, YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
 "cd ~/.vim/bundle/tern_for_vim && npm install
 "cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive
 "   ./install.py
+"4, 建立一个工作目录，作为vim默认打开路径
+" mkdir ~/working
+"5, 安装字体
+" git clone https://github.com/powerline/fonts
+" cd fonts && ./install.sh
+" cd .. && rm -rf fonts
 "4, 启动VIM 运行 BundelInstall
 " ````````````````````````````````````````````````````````````````````
 " ```````````NVIM插件安装,在vim插件安装完了做个链接引用即可```````````
@@ -23,6 +29,7 @@ filetype off "required!
 set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
 Plugin 'gmarik/vundle'
+" ````````````````````````````````````````````````````````````````````
 " ````````````````````````````````````````````````````````````````````
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
@@ -54,8 +61,8 @@ filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 视觉效果
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set lines=68 columns=168 "设置全屏
-set guifont=Liberation\ Mono\ for\ Powerline\ 13
+"set lines=88 columns=168 "设置全屏
+set guifont=Liberation\ Mono\ for\ Powerline\ 11
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline
 "set showmatch "匹配到的高亮
 set guioptions-=m "去掉菜单
@@ -75,17 +82,14 @@ set textwidth=80 fo+=Mm "80 break line
 set colorcolumn=+1 "81 highlight column
 syntax on " 语法高亮
 colorscheme molokai "颜色设置
-highlight ColorColumn ctermbg=bg "vim
-highlight ColorColumn guibg=bg "gvim
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set shell=/bin/bash
 set fileencodings=utf-8,gb2312,gbk,gb18030
 map <F1> <Nop>
 nmap q <Nop>
 nmap Q <Nop>
-nmap s <Nop>
 nmap S <Nop>
 nmap r <Nop>
 nmap R <Nop>
@@ -126,8 +130,8 @@ vmap <Leader>c "+y
 map  <Leader>v "+p
 nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
-nmap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
 "nmap <space> za
+nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
 map  <C-h> <C-w>h
 map  <C-j> <C-w>j
 map  <C-k> <C-w>k
@@ -135,11 +139,11 @@ map  <C-l> <C-w>l
 "map  <leader>u :call HandleURL()<cr>
 map  <silent><F5> :tabnew<CR>
 map  <silent><F2> :tabclose<CR>
-nmap <silent><leader>1 :tabn 1<cr>
-nmap <silent><leader>2 :tabn 2<cr>
-nmap <silent><leader>3 :tabn 3<cr>
-nmap <silent><leader>4 :tabn 4<cr>
-nmap <silent><leader>5 :tabn 5<cr>
+nmap <silent><A-1> :tabn 1<cr>
+nmap <silent><A-2> :tabn 2<cr>
+nmap <silent><A-3> :tabn 3<cr>
+nmap <silent><A-4> :tabn 4<cr>
+nmap <silent><A-5> :tabn 5<cr>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改文件编码
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
@@ -215,5 +219,7 @@ endfun
 "zO -> 打开当前光标所在位置的所有的折叠 (open all fold)
 "zR -> 打开所有的折叠 (open all fold)
 "zM -> 关闭所有的摺叠 (close all fold)
-"[z move to start of open fold.
-"]z move to end of open fold.
+"[z 移动到当前折叠的开头
+"]z 移动到当前折叠的尾部
+"zj 移动到上一个折叠
+"zk 移动到下一个折叠
