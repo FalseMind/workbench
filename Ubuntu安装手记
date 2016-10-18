@@ -1,56 +1,24 @@
-sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install ubuntu-restricted-extras
+安装 Elementary OS 
 
+准备U盘，iso文件，Universal USB Installer，做好启动盘，重启ESC键，从U盘启动
+安装参考http://www.linuxidc.com/Linux/2016-04/130520.htm
 
-下载安装sogou输入法，安装完毕，去语言设置里启动输入设置为fcitx，把输入设置里在状态栏显示去掉
-
-
-sudo apt-get install curl
-sudo apt-get install mongodb
-sudo atp-get install git
-
-解压：
-$ tar -zxf node-v0.8.14.tar.gz
-$ cd node-v0.8.14
-默认安装：
-$ ./configure
-$ make
-$ sudo make install
-
-安装ag搜索引擎
-vim
-apt-get install silversearcher-ag
-
-
-
-安装32bit 的安卓包
-sudo apt-get install lib32z1 lib32stdc++6
-meteor install-sdk android
-
-
-
-
-
-
-
-
-sudo  apt-get install build-essential libssl-dev git-core vim-gtk
-
+软件安装记录
+安装中文输入法
+sudo apt-get remove ibus
+sudo apt-get install fcitx fcitx-config-gtk  fcitx-googlepinyin
+sudo apt-get install fcitx-table-all #同时安装其他码表
+注销即可使用输入法
+安装git
+sudo apt-get install git
+git config --global user.name "Mantak"
+git config --global user.email "2793058118@qq.com"
 安装nvm
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
-重新打开终端 
+git clone https://github.com/creationix/nvm.git  ~/.nvm 
+echo "source ~/.nvm/nvm.sh" >>  ~/.bashrc  #配置终端启动时自动执行nvm.sh
+安装node
 nvm ls-remote
-nvm install 6.0
-安装mongodb 参考http://blog.csdn.net/chenpy/article/details/50324989
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee 
-
-/etc/apt/sources.list.d/mongodb-org-3.2.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-安装meteor
-curl https://install.meteor.com | /bin/sh
-安装neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt-get update
-sudo apt-get install neovim
+nvm install 6.9  #安装某个版本
+安装vim以及插件
+sudo apt install vim-gtk
+插件安装参考.vimrc
