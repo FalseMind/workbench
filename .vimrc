@@ -1,29 +1,3 @@
-" ````````````````````````````````````````````````````````````````````
-" ``````````````````````VIM插件安装```````````````````````````````````
-" ````````````````````````````````````````````````````````````````````
-"0，确保安装了git node
-"   sudo apt-get install build-essential cmake python-dev python3-dev
-"1, git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-"2, git clone https://github.com/ternjs/tern_for_vim ~/.vim/bundle/tern_for_vim
-"   git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/YouCompleteMe
-"3, YouCompleteMe的安装,执行之前会很卡,关闭消耗资源的进程
-"cd ~/.vim/bundle/tern_for_vim && npm install
-"cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive
-"   ./install.py
-"4, 建立一个工作目录，作为vim默认打开路径
-" mkdir ~/working
-"5, 安装字体
-" git clone https://github.com/powerline/fonts
-" cd fonts && ./install.sh
-" cd .. && rm -rf fonts
-"4, 启动VIM 运行 BundelInstall
-" ````````````````````````````````````````````````````````````````````
-" ```````````NVIM插件安装,在vim插件安装完了做个链接引用即可```````````
-" ````````````````````````````````````````````````````````````````````
-" mkdir ~/.config
-" ln -s ~/.vim   ~/.config/nvim
-" ln -s ~/.vimrc ~/.config/nvim/init.vim
-" ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
 filetype off "required!
 set rtp+=~/.vim/bundle/vundle/ "required!
@@ -209,17 +183,3 @@ fun! Translate()
   "silent exec "!firefox '".url."'"
   exec ":Dispatch firefox '".url."'"
 endfun
-"小技巧
-"在文件路径上按gf可以跳转到文件，按ctrl+o跳转回来
-"使用gx命令，跳转到光标所在URL地址
-"ctrl+;显示剪切板
-"ctrl+z 挂起当前vim回到终端，fg回到刚才挂起的vim,如果有多个任务使用%1...来对应
-"J 合并行
-"gt gT 切换到上一个或下一个标签页
-"zO -> 打开当前光标所在位置的所有的折叠 (open all fold)
-"zR -> 打开所有的折叠 (open all fold)
-"zM -> 关闭所有的摺叠 (close all fold)
-"[z 移动到当前折叠的开头
-"]z 移动到当前折叠的尾部
-"zj 移动到上一个折叠
-"zk 移动到下一个折叠

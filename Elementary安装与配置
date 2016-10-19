@@ -3,6 +3,7 @@
   安装参考http://www.linuxidc.com/Linux/2016-04/130520.htm
 软件安装记录
   安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包
+  更改/etc/hosts文件 https://github.com/racaljk/hosts/
   安装中文输入法
     sudo apt-get remove ibus
     sudo apt-get install fcitx fcitx-config-gtk  fcitx-googlepinyin
