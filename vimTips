@@ -32,11 +32,6 @@ Ctrl+] Ctrl+t 一对跳转组合
 "tab 替换为空格的命令 :%s/\t/    /g
 
 关于插件的使用
-airline
-"let g:airline#extensions#tabline#show_buffers = 0 "不显示buffers
-"let g:airline#extensions#tabline#show_close_button = 0 "不显示关闭button
-"let g:airline#extensions#tabline#tab_nr_type = 1 "tab显示序号
-"let g:airline#extensions#tabline#fnamemod = ':t' "tab页仅显示文件名，不显示目录
 
 "ctrlp使用
 "ctrl + p 打开窗口， ctrl + f 切换模式， ctrl+t 新tab页打开 ctrl+j/ctrl+k 在结果里移动 ctrl+z 标记多个文件，一起打开
@@ -56,43 +51,6 @@ airline
 "set completeopt-=preview  "youcompleteme不要自动出现提示窗口
 "let g:ycm_autoclose_preview_window_after_insertion = 1 "Esc自动关闭弹出窗口
 "let g:ycm_autoclose_preview_window_after_completion = 1 "输入完毕自动关闭提示窗口
-
-"nnoremap <leader>gr :Gread<CR>  "该命令有点危险，还是取消快捷键了
-
-"vimwiki V选择文字回车建链接，再回车进入页面编辑，backspace，回到上级页面
-"[[folder name/filename|link title]]
-"<Leader>ww -- Open default wiki index file.
-"<Leader>wd -- Delete wiki file you are in.
-"<Leader>wr -- Rename wiki file you are in.
-"<Leader>wt -- Open default wiki index file in a new tab.
-"<Enter> -- Folow/Create wiki link
-"<Backspace> -- Go back to parent(previous) wiki link
-"<Tab> -- Find next wiki link
-"<Shift-Tab> -- Find previous wiki link
-"* [] 添加todolist
-"VimwikiTable 添加一个表格
-"|来分割表格，tab来显示效果
-" [ ] -- 0%
-" [.] -- 1-33%
-" [o] -- 34-66%
-" [O] -- 67-99%
-" [X] -- 100%
-
-"小技巧
-"在文件路径上按gf可以跳转到文件，按ctrl+o跳转回来
-"使用gx命令，跳转到光标所在URL地址
-"ctrl+;显示剪切板
-"ctrl+z 挂起当前vim回到终端，fg回到刚才挂起的vim,如果有多个任务使用%1...来对应
-"J 合并行
-"gt gT 切换到上一个或下一个标签页
-"zO -> 打开当前光标所在位置的所有的折叠 (open all fold)
-"zR -> 打开所有的折叠 (open all fold)
-"zM -> 关闭所有的摺叠 (close all fold)
-"[z 移动到当前折叠的开头
-"]z 移动到当前折叠的尾部
-"zj 移动到上一个折叠
-"zk 移动到下一个折叠
-
 
 "小技巧
 "在文件路径上按gf可以跳转到文件，按ctrl+o跳转回来

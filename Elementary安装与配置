@@ -20,6 +20,9 @@
     nvm ls-remote
     nvm install 6.9  #安装某个版本
   安装gvim以及插件
+    sudo apt-get install python-software-properties software-properties-common
+    sudo add-apt-repository ppa:jonathonf/vim
+    sudo apt update
     sudo apt install vim-gtk
     插件安装参考.vimrc
   安装google浏览器
