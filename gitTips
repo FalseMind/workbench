@@ -1,4 +1,5 @@
 github使用
+  git config --list  查看当前项目的git配置
 每次提交都需要帐号密码
   因为clone的时候使用了https地址，则提交也使用https方式，如此则需要帐号密码
   git remote -v  #该命令可以验证使用何种方式clone的项目
