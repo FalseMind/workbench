@@ -1,0 +1,43 @@
+安装 Elementary OS
+
+准备U盘，iso文件，Universal USB Installer，做好启动盘，重启ESC键，从U盘启动
+安装参考http://www.linuxidc.com/Linux/2016-04/130520.htm
+
+
+软件安装记录
+安裝完畢，進入系統，選擇設置，語言和區域，選擇中國
+安装中文输入法
+  sudo apt-get remove ibus
+  sudo apt-get install fcitx fcitx-config-gtk  fcitx-googlepinyin
+  sudo apt-get install fcitx-table-all #同时安装其他码表
+  注销即可使用输入法
+安装git
+  sudo apt-get install git
+  git config --global user.name "Mantak"
+  git config --global user.email "2793058118@qq.com"
+安装nvm
+  git clone https://github.com/creationix/nvm.git  ~/.nvm
+  echo "source ~/.nvm/nvm.sh" >>  ~/.bashrc  #配置终端启动时自动执行nvm.sh
+安装node
+  nvm ls-remote
+  nvm install 6.9  #安装某个版本
+安装gvim以及插件
+  sudo apt install vim-gtk
+  插件安装参考.vimrc
+安装google浏览器
+  自带浏览器确实漂亮，但是没有调试器，忍痛换chrome吧
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo dpkg -i google-chrome*
+  sudo apt-get -f install
+  comand+space 可以看到google-chrome了，如果没有，自己手动输入google-chrome回车
+安装flash
+  apt-cache search flashplugin #查看可以安装那些flash插件
+  sudo apt-get install flashplugin-installer
+  但是chrome浏览器不再支持flash，所以看flash的时候还需要启动Epiphany
+安装各种压缩解压缩
+sudo apt-get install unace rar unrar p7zip-rar p7zip sharutils uudeview mpack arj cabextract lzip lunzip
+
+配置github
+  ssh-keygen -t rsa -C "2793058118@qq.com" #生成ssh key
+  复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh 中创建或者重置ssh key
+  ssh -T git@github.com #测试ssh key 是否设置成功

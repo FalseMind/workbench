@@ -102,7 +102,7 @@ set backspace=2 " 使回格键（backspace）正常处理indent, eol, start等
 set mouse=a " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set formatoptions=tcrqn " 自动格式化
 set expandtab " 设定取消tab符，改为空格代替
-set shiftwidth=2 " 设定 << 和 >> 命令移动时的宽度为 2
+set shiftwidth=2 " 设定 < 和 > 命令移动时的宽度为 2
 set tabstop=2 "设定tab的空格数
 set autochdir " 自动切换当前目录为当前文件所在的目录
 set ignorecase smartcase " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感

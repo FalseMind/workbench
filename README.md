@@ -1,3 +1,3 @@
 workbench
 =========
-ubuntu的下的工作环境
+Linux的下的工作环境以及各种tips
