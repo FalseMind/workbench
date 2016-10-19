@@ -1,3 +1,14 @@
+github使用
+每次提交都需要帐号密码
+  因为clone的时候使用了https地址，则提交也使用https方式，如此则需要帐号密码
+  git remote -v  #该命令可以验证使用何种方式clone的项目
+  git remote rm origin  #如果是http方式，则删除之
+  git remote add origin git@github.com:mantak/workbench.git  #重新添加git模式的origin
+  git remote -v  #验证一下。如果是git模式，则后续提交不再需要帐号密码
+
+
+
+
 git 文件的几种状态
 未跟踪 git add> 未修改 edit> 修改过的 git add> 暂存的 git commit> 未修改
 git clone
