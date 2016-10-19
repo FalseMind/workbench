@@ -5,6 +5,7 @@ github使用
   git remote rm origin  #如果是http方式，则删除之
   git remote add origin git@github.com:mantak/workbench.git  #重新添加git模式的origin
   git remote -v  #验证一下。如果是git模式，则后续提交不再需要帐号密码
+  git push origin master #第一次提交需要指定一下，后续提交直接git push
 
 
 
