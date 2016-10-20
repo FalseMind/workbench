@@ -23,7 +23,6 @@ Plugin 'Valloric/YouCompleteMe'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'molokai'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'sickill/vim-monokai'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -59,14 +58,12 @@ set linebreak
 set textwidth=100 fo+=Mm "100 break line
 set colorcolumn=+1 "101 highlight column
 syntax on " 语法高亮
-let day = strftime("%d")
-if 1 <= day && day <= 10
+if (strftime("%d"))%2 == 0
   colorscheme molokai
-elseif 11 <= day && day <=20
+else
+  let g:solarized_termcolors=256 "vim模式颜色配置
   set background=dark
   colorscheme solarized
-else
-  colorscheme monokai
 endif
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
