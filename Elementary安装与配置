@@ -2,42 +2,43 @@
   准备U盘，iso文件，Universal USB Installer，做好启动盘，重启ESC键，从U盘启动
   安装参考http://www.linuxidc.com/Linux/2016-04/130520.htm
 软件安装记录
-  安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包
-  更改/etc/hosts文件 https://github.com/racaljk/hosts/
-  安装中文输入法
+  0,安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包
+  1,安装中文输入法
     sudo apt-get remove ibus
     sudo apt-get install fcitx fcitx-config-gtk  fcitx-googlepinyin
     sudo apt-get install fcitx-table-all #同时安装其他码表
     注销即可使用输入法
-  安装git
+  2,安装git
     sudo apt-get install git
     git config --global user.name "Mantak"
     git config --global user.email "2793058118@qq.com"
-  安装nvm
+  3,安装nvm
     git clone https://github.com/creationix/nvm.git  ~/.nvm
     echo "source ~/.nvm/nvm.sh" >>  ~/.bashrc  #配置终端启动时自动执行nvm.sh
-  安装node
+  4,安装node
     nvm ls-remote
     nvm install 6.9  #安装某个版本
-  安装gvim以及插件
+  5,安装gvim以及插件
     sudo apt-get install python-software-properties software-properties-common
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt update
     sudo apt install vim-gtk
     插件安装参考vimTips
-  安装google浏览器
+  6,安装google浏览器+SwitchOmega
     自带浏览器确实漂亮，但是没有调试器，忍痛换chrome吧
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i google-chrome*
     sudo apt-get -f install
     comand+space 可以看到google-chrome了，如果没有，自己手动输入google-chrome回车
-  安装flash
+    更改/etc/hosts文件 https://github.com/racaljk/hosts/
+    进入chrome网上应用店，添加SwitchOmega
+  7,安装flash
     apt-cache search flashplugin #查看可以安装那些flash插件
     sudo apt-get install flashplugin-installer
     但是chrome浏览器不再支持flash，所以看flash的时候还需要启动Epiphany
-  安装各种压缩解压缩
+  8,安装各种压缩解压缩
     sudo apt-get install unace rar unrar p7zip-rar p7zip sharutils uudeview mpack arj cabextract lzip lunzip
-  安装gitbook
+  9,安装gitbook
     wget https://www.gitbook.com/editor/linux-64-bit/download
     sudo dpkg -i gitbook-editor-X.X.X-linux-x64.deb
     gitbook-editor #启动
@@ -49,3 +50,18 @@
   curl https://install.meteor.com/ | sh
   安装mantra命令行
     npm install -g mantra-cli
+安装使用XX-net，需要6的支持
+  第一步，下载稳定版
+    https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
+  第二步，安装
+    sudo apt-get install libnss3-tools python-gtk2
+    cd XX-net-folder && ./start
+  第三部，配置SwitchOmega
+    点击浏览器上的SwitchOmega，选择：选项->导入导出->从备份文件恢复，选择XX-net解压包里的SwitchOmega/OmegaOptions.bak
+    选择：XX-NET自动切换->立即更新情景模式
+    点击浏览器上的SwitchyOmega，切换成“XX-Net自动切换”
+    至此可以访问墙外内容了
+  第四步，设置XX-net随开机后台启动
+    mv XX-net-folder ~/.XX-net-folder
+    在/etc/rc.local中添加一行：
+    sudo /home/username/.XX-net-folder/code/default/xx_net.sh start
