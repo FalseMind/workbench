@@ -1,12 +1,15 @@
+" ````````````````````````````````````````````````````````````````````
 set nocompatible "turn off vi compatibility, required for vundle
 filetype off "required!
 set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
 Plugin 'gmarik/vundle'
 " ````````````````````````````````````````````````````````````````````
+" ````````````````````````````````````````````````````````````````````
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'tpope/vim-dispatch'
 " ````````````````````````````````````````````````````````````````````
@@ -19,6 +22,8 @@ Plugin 'Valloric/YouCompleteMe'
 "Plugin 'SirVer/ultisnips'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'molokai'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'sickill/vim-monokai'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -51,10 +56,18 @@ set number "显示行号
 set ruler "打开状态栏标尺
 set wrap "自动换行
 set linebreak
-set textwidth=80 fo+=Mm "80 break line
-set colorcolumn=+1 "81 highlight column
+set textwidth=100 fo+=Mm "100 break line
+set colorcolumn=+1 "101 highlight column
 syntax on " 语法高亮
-colorscheme molokai "颜色设置
+let day = strftime("%d")
+if 1 <= day && day <= 10
+  colorscheme molokai
+elseif 11 <= day && day <=20
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme monokai
+endif
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
@@ -91,6 +104,7 @@ set scrolloff=3 "上下滚动的时候留出3行
 set sidescrolloff=8 "左右滚动的时候,留出8个字符
 "set paste 设置粘贴时不自动换行
 "set nopaste 恢复换行
+let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
 "-----------------------------------------------------------------
 "快捷键设置
 "-----------------------------------------------------------------
@@ -175,9 +189,10 @@ nmap <leader>m :Dispatch mantra<space>
 " 自定义函数
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>t :call Translate()<CR>
+"需要vim的asynchronously支持，否则，运行该命令以后，vim会暂时挂起ctrl+z fg来恢复
 fun! Translate()
   let keyword = expand("<cword>")
   let url = "http://www.iciba.com/" . keyword
   "silent exec "!firefox '".url."'"
-  exec ":Dispatch firefox '".url."'"
+  exec ":Dispatch google-chrome '".url."'"
 endfun
