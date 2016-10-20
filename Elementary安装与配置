@@ -23,6 +23,8 @@
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt update
     sudo apt install vim-gtk
+    git clone git@github.com:mantak/workbench.git ~/working/workbench
+    ln -s ~/working/workbench/_.vimrc ~/.vimrc
     插件安装参考vimTips
   6,安装google浏览器+SwitchOmega
     自带浏览器确实漂亮，但是没有调试器，忍痛换chrome吧

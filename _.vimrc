@@ -21,8 +21,11 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'SirVer/ultisnips'
 " ````````````````````````````````````````````````````````````````````
-Plugin 'molokai'
+Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'josuegaleas/jay'
+Plugin 'rakr/vim-one'
+Plugin 'MaxSt/FlatColor'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -58,14 +61,21 @@ set linebreak
 set textwidth=100 fo+=Mm "100 break line
 set colorcolumn=+1 "101 highlight column
 syntax on " 语法高亮
-if (strftime("%d"))%2 == 0
+set background=dark
+"highlight ColorColumn ctermbg=235 guibg=#2c2d27
+let modDay = (strftime("%d"))%5
+if modDay == 0
   colorscheme molokai
-else
-  let g:solarized_termcolors=256 "vim模式颜色配置
-  set background=dark
+elseif modDay == 1
+  let g:solarized_termcolors=256 "兼容vim
   colorscheme solarized
+elseif modDay == 2
+  colorscheme jay
+elseif modDay == 3
+  colorscheme one
+else
+  colorscheme flatcolor
 endif
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -77,25 +87,25 @@ nmap S <Nop>
 nmap r <Nop>
 nmap R <Nop>
 nmap . <Nop>
-set history=50 " history文件中需要记录的行数
+set history=50 "history文件中需要记录的行数
 set nobackup
 set noswapfile
 set bufhidden=hide
-set backspace=2 " 使回格键（backspace）正常处理indent, eol, start等
-set mouse=a " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-set formatoptions=tcrqn " 自动格式化
-set expandtab " 设定取消tab符，改为空格代替
-set shiftwidth=2 " 设定 < 和 > 命令移动时的宽度为 2
+set backspace=2 "使回格键（backspace）正常处理indent, eol, start等
+set mouse=a "可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
+set formatoptions=tcrqn "自动格式化
+set expandtab "设定取消tab符，改为空格代替
+set shiftwidth=2 "设定 < 和 > 命令移动时的宽度为 2
 set tabstop=2 "设定tab的空格数
-set autochdir " 自动切换当前目录为当前文件所在的目录
-set ignorecase smartcase " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
-set hlsearch " 搜索时高亮显示被找到的文本
-set smartindent " 开启新行时使用智能自动缩进
-set noerrorbells " 关闭错误信息响铃
-set cmdheight=1 " 设定命令行的行数为 1
-set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
-set foldenable " 开始折叠
-set foldmethod=indent " 设置缩进折叠
+set autochdir "自动切换当前目录为当前文件所在的目录
+set ignorecase smartcase "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set hlsearch "搜索时高亮显示被找到的文本
+set smartindent "开启新行时使用智能自动缩进
+set noerrorbells "关闭错误信息响铃
+set cmdheight=1 "设定命令行的行数为 1
+set laststatus=2 "显示状态栏 (默认值为 1, 无法显示状态栏)
+set foldenable "开始折叠
+set foldmethod=indent "设置缩进折叠
 set isk+=- "将-连接符也设置为单词
 set scrolloff=3 "上下滚动的时候留出3行
 set sidescrolloff=8 "左右滚动的时候,留出8个字符
