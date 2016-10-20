@@ -1,3 +1,4 @@
+meteor创建项目的时候已经自动创建了.gitignore文件，里面已经忽略了node_modules文件夹
 官方文档
   http://docs.meteor.com/#/full/accounts_api
 *****

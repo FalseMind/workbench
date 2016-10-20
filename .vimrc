@@ -4,7 +4,6 @@ set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
 Plugin 'gmarik/vundle'
 " ````````````````````````````````````````````````````````````````````
-" ````````````````````````````````````````````````````````````````````
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
@@ -176,7 +175,6 @@ nmap <leader>m :Dispatch mantra<space>
 " 自定义函数
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>t :call Translate()<CR>
-"需要vim的asynchronously支持，否则，运行该命令以后，vim会暂时挂起ctrl+z fg来恢复
 fun! Translate()
   let keyword = expand("<cword>")
   let url = "http://www.iciba.com/" . keyword
