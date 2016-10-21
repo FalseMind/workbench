@@ -12,12 +12,19 @@
     sudo apt-get install git
     git config --global user.name "TODO username"
     git config --global user.email "TODO email"
-  3,安装nvm
+  3,安装nvm node
     git clone https://github.com/creationix/nvm.git  ~/.nvm
     echo "source ~/.nvm/nvm.sh" >>  ~/.bashrc  #配置终端启动时自动执行nvm.sh
-  4,安装node
     nvm ls-remote
     nvm install 6.9  #安装某个版本
+  4,安装ack2
+    sudo apt-get install libfile-next-perl
+    git clone https://github.com/petdance/ack2
+    cd ack2
+    perl Makefile.PL
+    make && make test
+    sudo make install
+    cd .. && rm -rf ack2
   5,安装gvim以及插件
     sudo apt-get install python-software-properties software-properties-common
     sudo add-apt-repository ppa:jonathonf/vim
@@ -52,7 +59,7 @@
   curl https://install.meteor.com/ | sh
   安装mantra命令行
     npm install -g mantra-cli
-安装使用XX-net，需要6的支持
+安装XX-net，需要6的支持
   第一步，下载稳定版
     https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
   第二步，安装

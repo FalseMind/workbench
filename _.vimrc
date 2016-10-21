@@ -23,8 +23,6 @@ Plugin 'Valloric/YouCompleteMe'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'josuegaleas/jay'
-Plugin 'rakr/vim-one'
 Plugin 'MaxSt/FlatColor'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
@@ -61,18 +59,14 @@ set linebreak
 set textwidth=100 fo+=Mm "100 break line
 set colorcolumn=+1 "101 highlight column
 syntax on " 语法高亮
-set background=dark
+"set background=dark
 "highlight ColorColumn ctermbg=235 guibg=#2c2d27
-let modDay = (strftime("%d"))%5
+let modDay = (strftime("%d"))%3
 if modDay == 0
   colorscheme molokai
+  hi ColorColumn guibg=#3D4646 ctermbg=238
 elseif modDay == 1
-  let g:solarized_termcolors=256 "兼容vim
   colorscheme solarized
-elseif modDay == 2
-  colorscheme jay
-elseif modDay == 3
-  colorscheme one
 else
   colorscheme flatcolor
 endif
