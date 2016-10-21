@@ -22,7 +22,8 @@ Plugin 'Valloric/YouCompleteMe'
 "Plugin 'SirVer/ultisnips'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'nielsmadan/harlequin'
+Plugin 'yous/vim-open-color'
 Plugin 'MaxSt/FlatColor'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'fatih/vim-go'
@@ -61,14 +62,20 @@ set colorcolumn=+1 "101 highlight column
 syntax on " 语法高亮
 "set background=dark
 "highlight ColorColumn ctermbg=235 guibg=#2c2d27
-let modDay = (strftime("%d"))%3
+let modDay = (strftime("%d"))%2
+let hour = strftime("%H")
 if modDay == 0
-  colorscheme molokai
-  hi ColorColumn guibg=#3D4646 ctermbg=238
-elseif modDay == 1
-  colorscheme solarized
+  if hour >= 8 && hour < 22
+    colorscheme harlequin
+  else
+    colorscheme molokai
+  endif
 else
-  colorscheme flatcolor
+  if hour >= 8 && hour < 22
+    colorscheme flatcolor
+  else
+    colorscheme open-color
+  endif
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 功能设置
@@ -153,8 +160,8 @@ if executable('ag')
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-F> :CtrlSF<space>
-"map  <leader>f :CtrlSF<cr>
 let g:ctrlsf_width = '40%'
+let g:ctrlsf_ignore_dir = [".meteor,node_modules"]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map  <leader>f :TernDef<cr>
 map  <leader>d :TernDoc<cr>
@@ -172,7 +179,7 @@ map  <leader>h :TernRename<cr>
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_mruf_include = '\.js$\|\.html$' "只记录.js .html文件
+let g:ctrlp_mruf_include = '\.js$\|\.css$|\.scss$|\.html$' "只记录.js .css .scss .html文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
