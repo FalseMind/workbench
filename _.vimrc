@@ -63,15 +63,15 @@ syntax on " 语法高亮
 "set background=dark
 "highlight ColorColumn ctermbg=235 guibg=#2c2d27
 let modDay = (strftime("%d"))%2
-let hour = strftime("%H")
+let currentHour = strftime("%H")
 if modDay == 0
-  if hour >= 8 && hour < 22
+  if currentHour >= 8 && currentHour < 22
     colorscheme harlequin
   else
     colorscheme molokai
   endif
 else
-  if hour >= 8 && hour < 22
+  if currentHour >= 8 && currentHour < 22
     colorscheme flatcolor
   else
     colorscheme open-color
