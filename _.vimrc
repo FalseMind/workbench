@@ -17,8 +17,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
 " ````````````````````````````````````````````````````````````````````
-Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
 "Plugin 'SirVer/ultisnips'
 " ````````````````````````````````````````````````````````````````````
 Plugin 'tomasr/molokai'
@@ -65,13 +65,13 @@ syntax on " 语法高亮
 let modDay = (strftime("%d"))%2
 let currentHour = strftime("%H")
 if modDay == 0
-  if currentHour >= 8 && currentHour < 22
+  if currentHour >= 8 && currentHour < 20
     colorscheme harlequin
   else
     colorscheme molokai
   endif
 else
-  if currentHour >= 8 && currentHour < 22
+  if currentHour >= 8 && currentHour < 20
     colorscheme flatcolor
   else
     colorscheme open-color
@@ -145,8 +145,6 @@ nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改�
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let b:javascript_fold=1 " 设置javascript折叠为1层
 let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支持
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nnoremap <silent><leader>d :TernRefs<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <silent><F4> :NERDTreeToggle<CR>
 imap <silent><F4> <ESC>:NERDTreeToggle<CR>
