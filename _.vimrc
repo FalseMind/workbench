@@ -20,7 +20,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
 "--------------------------------------------------------------------
 Plugin 'morhetz/gruvbox'
-Plugin 'nielsmadan/harlequin'
+Plugin 'zeis/vim-kolor'
 Plugin 'yous/vim-open-color'
 Plugin 'joshdick/onedark.vim'
 Plugin 'raphamorim/lucario'
@@ -93,7 +93,7 @@ if modDay == 0
   if currentHour >= 8 && currentHour < 18
     colorscheme gruvbox
   else
-    colorscheme harlequin
+    colorscheme kolor
   endif
 elseif modDay == 1
   if currentHour >= 8 && currentHour < 18
