@@ -33,14 +33,28 @@
     git clone git@github.com:mantak/workbench.git ~/working/workbench
     ln -s ~/working/workbench/_.vimrc ~/.vimrc
     插件安装参考vimTips
-  6,安装google浏览器+SwitchOmega
+  6,安装google浏览器 + SwitchOmega
     自带浏览器确实漂亮，但是没有调试器，忍痛换chrome吧
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i google-chrome*
     sudo apt-get -f install
     comand+space 可以看到google-chrome了，如果没有，自己手动输入google-chrome回车
-    更改/etc/hosts文件 https://github.com/racaljk/hosts/
-    进入chrome网上应用店，添加SwitchOmega
+    配置XX-net
+      1 更改/etc/hosts文件，在文件里添加(不是覆盖)后面链接里的内容。  #https://github.com/racaljk/hosts/
+        进入chrome网上应用店，添加SwitchOmega
+      2 下载XX.net的稳定版  #https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
+      3 sudo apt-get install libnss3-tools python-gtk2
+        cd XX-net-folder && ./start
+      4 配置SwitchOmega
+        点击浏览器上的SwitchOmega，选择：选项->导入导出->从备份文件恢复，选择XX-net解压包里的SwitchOmega/OmegaOptions.bak
+        选择：XX-NET自动切换->立即更新情景模式
+        点击浏览器上的SwitchyOmega，切换成“XX-Net自动切换”
+        至此可以访问墙外内容了
+      5 设置XX-net随开机后台启动
+        mv XX-net-folder ~/.XX-net
+        在/etc/rc.local中添加一行：
+        sudo /home/username/.XX-net/code/default/xx_net.sh start
+      6 恢复/etc/hosts文件
   7,安装flash
     apt-cache search flashplugin #查看可以安装那些flash插件
     sudo apt-get install flashplugin-installer
@@ -59,18 +73,3 @@
   curl https://install.meteor.com/ | sh
   安装mantra命令行
     npm install -g mantra-cli
-安装XX-net，需要6的支持
-  第一步，下载稳定版
-    https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
-  第二步，安装
-    sudo apt-get install libnss3-tools python-gtk2
-    cd XX-net-folder && ./start
-  第三部，配置SwitchOmega
-    点击浏览器上的SwitchOmega，选择：选项->导入导出->从备份文件恢复，选择XX-net解压包里的SwitchOmega/OmegaOptions.bak
-    选择：XX-NET自动切换->立即更新情景模式
-    点击浏览器上的SwitchyOmega，切换成“XX-Net自动切换”
-    至此可以访问墙外内容了
-  第四步，设置XX-net随开机后台启动
-    mv XX-net-folder ~/.XX-net-folder
-    在/etc/rc.local中添加一行：
-    sudo /home/username/.XX-net-folder/code/default/xx_net.sh start
