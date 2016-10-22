@@ -6,36 +6,38 @@ filetype off "required!
 set rtp+=~/.vim/bundle/vundle/ "required!
 call vundle#rc() "required!
 Plugin 'gmarik/vundle'
-"````````````````````````````````````````````````````````````````````
+"--------------------------------------------------------------------
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"````````````````````````````````````````````````````````````````````
-Plugin 'tpope/vim-dispatch'
-"````````````````````````````````````````````````````````````````````
+"--------------------------------------------------------------------
 Plugin 'kien/ctrlp.vim'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
-"````````````````````````````````````````````````````````````````````
+"--------------------------------------------------------------------
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
-"````````````````````````````````````````````````````````````````````
-Plugin 'tomasr/molokai'
+"--------------------------------------------------------------------
+Plugin 'morhetz/gruvbox'
 Plugin 'nielsmadan/harlequin'
 Plugin 'yous/vim-open-color'
-Plugin 'MaxSt/FlatColor'
-"````````````````````````````````````````````````````````````````````
+Plugin 'joshdick/onedark.vim'
+Plugin 'jdkanani/vim-material-theme'
+Plugin 'abra/vim-obsidian'
+Plugin 'tyrannicaltoucan/vim-deep-space'
+Plugin 'marcopaganini/termschool-vim-theme'
+"--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
-"````````````````````````````````````````````````````````````````````
+"--------------------------------------------------------------------
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-"````````````````````````````````````````````````````````````````````
+"--------------------------------------------------------------------
 filetype plugin indent on "required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM设置
@@ -84,38 +86,45 @@ nnoremap j gj
 nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
-let modDay = (strftime("%d"))%2
+set background=dark
+let modDay = (strftime("%d"))%4
 let currentHour = strftime("%H")
 if modDay == 0
-  if currentHour >= 8 && currentHour < 20
-    colorscheme harlequin
+  if currentHour >= 8 && currentHour < 18
+    colorscheme gruvbox
   else
-    colorscheme molokai
+    colorscheme harlequin
+  endif
+elseif modDay == 1
+  if currentHour >= 8 && currentHour < 18
+    colorscheme open-color
+  else
+    colorscheme onedark
+  endif
+elseif modDay == 2
+  if currentHour >= 8 && currentHour < 18
+    colorscheme lucario
+  else
+    colorscheme deep-space
   endif
 else
-  if currentHour >= 8 && currentHour < 20
-    colorscheme flatcolor
+  if currentHour >= 8 && currentHour < 18
+    colorscheme material-theme
   else
-    colorscheme open-color
+    colorscheme termschool
   endif
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F1> <Nop>
+nmap . <Nop>
+nmap r <Nop>
 nmap q <Nop>
 nmap Q <Nop>
 nmap S <Nop>
-nmap r <Nop>
 nmap R <Nop>
-nmap . <Nop>
-let mapleader = ","
-nmap <leader>o :tabe<space>
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
-vmap <Leader>c "+y
-map  <Leader>v "+p
-nmap <silent><leader>/ :nohlsearch<CR> ",/来清空搜索高亮
+nmap K <Nop>
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
 map  <C-h> <C-w>h
@@ -124,20 +133,27 @@ map  <C-k> <C-w>k
 map  <C-l> <C-w>l
 map  <silent><F5> :tabnew<CR>
 map  <silent><F2> :tabclose<CR>
-nmap <silent><A-1> :tabn 1<cr>
-nmap <silent><A-2> :tabn 2<cr>
-nmap <silent><A-3> :tabn 3<cr>
-nmap <silent><A-4> :tabn 4<cr>
-nmap <silent><A-5> :tabn 5<cr>
-nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR> ",8来更改文件编码
+nmap <silent><A-1> :tabn 1<CR>
+nmap <silent><A-2> :tabn 2<CR>
+nmap <silent><A-3> :tabn 3<CR>
+nmap <silent><A-4> :tabn 4<CR>
+nmap <silent><A-5> :tabn 5<CR>
 "---------------插件快捷键设置---------------------------------------
-map  <leader>f :TernDef<cr>
-map  <leader>d :TernDoc<cr>
-map  <leader>r :TernRefs<cr>
-map  <leader>h :TernRename<cr>
-nmap <leader>m :Dispatch mantra<space>
 map  <silent><F4> :NERDTreeToggle<CR>
 imap <silent><F4> <ESC>:NERDTreeToggle<CR>
+"---------------leader快捷键设置-------------------------------------
+let mapleader = ","
+vmap <Leader>c "+y
+map  <Leader>v "+p
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+nmap <leader>o :tabe<space>
+nmap <leader>/ :nohlsearch<CR>
+nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
+nmap <leader>r :TernRename<cr>
+vmap <Leader>t :Tab<space>/
+nmap <leader>s :call Search()<CR>
+nmap <leader>m :Dispatch mantra<space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -153,10 +169,14 @@ endif
 "---------------CtrlSF-----------------------------------------------
 map <C-F> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
-let g:ctrlsf_ignore_dir = [".meteor,node_modules"]
+let g:ctrlsf_ignore_dir = [".meteor","node_modules"]
 "---------------AirLine----------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
+"---------------vim-jsx----------------------------------------------
+let g:jsx_ext_required = 0
+"---------------vim-javascript---------------------------------------
+let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支持
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,35 +187,9 @@ autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>t :call Translate()<CR>
-fun! Translate()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+fun! Search()
   let keyword = expand("<cword>")
-  let url = "http://www.iciba.com/" . keyword
-  "silent exec "!firefox '".url."'"
-  exec ":Dispatch google-chrome '".url."'"  "需要vim的asynchronously支持，否则，运行该命令以后，gvim会暂时挂起ctrl+z fg来恢复
+  let url = "https://www.baidu.com/s?wd=" . keyword
+  silent exec "!google-chrome '".url."'"
 endfun
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 废弃的设置
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"map <C-B> :CtrlPBuffer<CR>
-"nmap <space> za
-"set paste 设置粘贴时不自动换行
-"set nopaste 恢复换行
-"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 11
-"set showmatch "匹配到的高亮
-"set background=dark
-"highlight ColorColumn ctermbg=235 guibg=#2c2d27
-"set linespace=5 "字符间插入的像素行数目
-"set nocursorline "不高亮光标所在行
-"let b:javascript_fold=1 " 设置javascript折叠为1层
-"let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支持
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"UltiSnips设置
-"Plugin 'SirVer/ultisnips'
-"let g:UltiSnipsEditSplit="horizontal"
-"let g:UltiSnipsSnippetDirectories=['Ultisnips']
-"let g:UltiSnipsSnippetsDir = '~/.vim/Ultisnips'
-"let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-"let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-"let g:UltiSnipsExpandTrigger = "<C-o>"
