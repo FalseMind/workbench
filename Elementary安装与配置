@@ -26,12 +26,13 @@
     sudo make install
     cd .. && rm -rf ack2
   5,安装gvim以及插件
-    sudo apt-get install python-software-properties software-properties-common
+    sudo apt-get install python-software-properties software-properties-common wmctrl
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt update
     sudo apt install vim-gtk
     git clone git@github.com:mantak/workbench.git ~/working/workbench
     ln -s ~/working/workbench/_.vimrc ~/.vimrc
+    系统设置->键盘->自定义-> gvim -c "call Maximize_Window()"
     插件安装参考vimTips
   6,安装google浏览器 + SwitchOmega
     自带浏览器确实漂亮，但是没有调试器，忍痛换chrome吧
@@ -56,9 +57,12 @@
         sudo /home/username/.XX-net/code/default/xx_net.sh start
       6 恢复/etc/hosts文件
   7,安装flash
-    apt-cache search flashplugin #查看可以安装那些flash插件
-    sudo apt-get install flashplugin-installer
-    但是chrome浏览器不再支持flash，所以看flash的时候还需要启动Epiphany
+    #54版本以上的chrome不再预安装flash。安装两种方法，先实验第一种，第二种已验证可行
+    1, chrome://components/ 自己更新flash
+    2, apt-cache search flashplugin #查看可以安装那些flash插件
+       sudo apt-get install flashplugin-installer
+       chrome://plugins/    确认flash 已经始终允许运行
+       chrome://components/ 找到flash 点检查是否有更新
   8,安装各种压缩解压缩
     sudo apt-get install unace rar unrar p7zip-rar p7zip sharutils uudeview mpack arj cabextract lzip lunzip
   9,安装gitbook
