@@ -49,6 +49,7 @@ set laststatus=2 "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number "显示行号
 set ruler "打开状态栏标尺
 set guifont=Liberation\ Mono\ for\ Powerline\ 11
+set guitablabel=%N/\ %t\ %M  "设置tab页显示编号
 "---------------基本设置---------------------------------------------
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set nobackup
@@ -119,11 +120,17 @@ map  <C-k> <C-w>k
 map  <C-l> <C-w>l
 "---------------tab快捷键设置----------------------------------------
 map  <silent><A-t> :tabnew<CR>
-nmap <silent><A-1> :tabn 1<CR>
-nmap <silent><A-2> :tabn 2<CR>
-nmap <silent><A-3> :tabn 3<CR>
-nmap <silent><A-4> :tabn 4<CR>
-nmap <silent><A-5> :tabn 5<CR>
+nmap <silent><A-1> :tabn 1<cr>
+nmap <silent><A-2> :tabn 2<cr>
+nmap <silent><A-3> :tabn 3<cr>
+nmap <silent><A-4> :tabn 4<cr>
+nmap <silent><A-5> :tabn 5<cr>
+nmap <silent><A-6> :tabn 6<cr>
+nmap <silent><A-7> :tabn 7<cr>
+nmap <silent><A-8> :tabn 8<cr>
+nmap <silent><A-9> :tabn 9<cr>
+map <A-h> :call TabMove(-1) <CR>
+map <A-l> :call TabMove(1)<CR>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
 vmap <Leader>c "+y
@@ -174,6 +181,14 @@ fun! Search()
   let url = "https://www.baidu.com/s?wd=" . keyword
   silent exec "!google-chrome '".url."'"
 endfun
+function! TabMove(direction)
+  let ctpn=tabpagenr()
+  if a:direction < 0
+    execute "tabmove ".(ctpn - 2)
+  else
+    execute "tabmove ".(ctpn + 1)
+  endif
+endfunction
 fun! Maximize_Window()
   silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 endfunction
