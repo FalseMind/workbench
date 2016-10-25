@@ -42,14 +42,14 @@ filetype plugin indent on "required!
 "---------------界面设置---------------------------------------------
 set guioptions-=m "去掉菜单
 set guioptions-=T "不显示工具栏
-set guioptions-=L "把gui右边的滑动条去掉
+set guioptions-=L "把gui左边的滑动条去掉
 set shortmess=atI "启动的时候不显示援助乌干达儿童的提示
 set cmdheight=1 "设定命令行的行数为 1
 set laststatus=2 "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number "显示行号
 set ruler "打开状态栏标尺
 set guifont=Liberation\ Mono\ for\ Powerline\ 11
-set guitablabel=%N/\ %t\ %M  "设置tab页显示编号
+set guitablabel=%N#\%t\ %M  "设置tab页显示编号
 "---------------基本设置---------------------------------------------
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set nobackup
@@ -89,13 +89,13 @@ set background=dark
 let modDay = (strftime("%d"))%3
 let currentHour = strftime("%H")
 if modDay == 0
-  if currentHour >= 8 && currentHour < 18
+  if currentHour >= 8 && currentHour < 16
     colorscheme gruvbox
   else
     colorscheme kolor
   endif
 else
-  if currentHour >= 8 && currentHour < 18
+  if currentHour >= 8 && currentHour < 16
     colorscheme termschool
   else
     colorscheme onedark
@@ -125,18 +125,16 @@ nmap <silent><A-2> :tabn 2<cr>
 nmap <silent><A-3> :tabn 3<cr>
 nmap <silent><A-4> :tabn 4<cr>
 nmap <silent><A-5> :tabn 5<cr>
-nmap <silent><A-6> :tabn 6<cr>
-nmap <silent><A-7> :tabn 7<cr>
-nmap <silent><A-8> :tabn 8<cr>
-nmap <silent><A-9> :tabn 9<cr>
-map <A-h> :call TabMove(-1) <CR>
-map <A-l> :call TabMove(1)<CR>
+nmap <silent><A-j> :tabp<cr>
+nmap <silent><A-k> :tabn<cr>
+nmap <silent><A-h> :call TabMove(-1) <CR>
+nmap <silent><A-l> :call TabMove(1)<CR>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
 vmap <Leader>c "+y
 map  <Leader>v "+p
 nmap <leader>w :w<CR>
-nmap <leader>q :NERDTreeClose<CR>:q<CR>
+nmap <leader>q :q<CR>
 nmap <leader>g gg=G
 nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
@@ -150,6 +148,9 @@ imap <silent><A-n> <ESC>:NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"---------------NerdTreeTab------------------------------------------
+let g:nerdtree_tabs_synchronize_view = 0
+"let g:nerdtree_tabs_autofind = 1 "自动找到新tab所在的tree位置
 "---------------CtrlP------------------------------------------------
 let g:ctrlp_mruf_include = '\.js$\|\.css$|\.scss$|\.html$' "只记录.js .css .scss .html文件
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
@@ -192,3 +193,6 @@ endfunction
 fun! Maximize_Window()
   silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 endfunction
+
+"TODO nerdtree t 目录以后，新tab页里目录需要刷新
+"TODO 高亮当前标签页
