@@ -20,10 +20,10 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
 "--------------------------------------------------------------------
+Plugin 'sjl/badwolf'
 Plugin 'morhetz/gruvbox'
-Plugin 'zeis/vim-kolor'
-Plugin 'joshdick/onedark.vim'
-Plugin 'marcopaganini/termschool-vim-theme'
+Plugin 'tomasr/molokai'
+Plugin 'antlypls/vim-colors-codeschool'
 "--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -92,13 +92,13 @@ if modDay == 0
   if currentHour >= 8 && currentHour < 16
     colorscheme gruvbox
   else
-    colorscheme kolor
+    colorscheme badwolf
   endif
 else
   if currentHour >= 8 && currentHour < 16
-    colorscheme termschool
+    colorscheme codeschool
   else
-    colorscheme onedark
+    colorscheme molokai
   endif
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -119,12 +119,18 @@ map  <C-j> <C-w>j
 map  <C-k> <C-w>k
 map  <C-l> <C-w>l
 "---------------tab快捷键设置----------------------------------------
-map  <silent><A-t> :tabnew<CR>
+map  <silent><A-n> :tabnew<CR>
+map  <silent><A-q> :tabc<CR>
 nmap <silent><A-1> :tabn 1<cr>
 nmap <silent><A-2> :tabn 2<cr>
 nmap <silent><A-3> :tabn 3<cr>
 nmap <silent><A-4> :tabn 4<cr>
 nmap <silent><A-5> :tabn 5<cr>
+nmap <silent><A-6> :tabn 6<cr>
+nmap <silent><A-7> :tabn 7<cr>
+nmap <silent><A-8> :tabn 8<cr>
+nmap <silent><A-9> :tabn 9<cr>
+nmap <silent><A-0> :tabn 10<cr>
 nmap <silent><A-j> :tabp<cr>
 nmap <silent><A-k> :tabn<cr>
 nmap <silent><A-h> :call TabMove(-1) <CR>
@@ -143,8 +149,8 @@ nmap <leader>r :TernRename<cr>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
 "---------------插件快捷键设置---------------------------------------
-map  <silent><A-n> :NERDTreeToggle<CR>
-imap <silent><A-n> <ESC>:NERDTreeToggle<CR>
+map  <silent><A-t> :NERDTreeToggle<CR>
+imap <silent><A-t> <ESC>:NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -152,13 +158,14 @@ imap <silent><A-n> <ESC>:NERDTreeToggle<CR>
 let g:nerdtree_tabs_synchronize_view = 0
 "let g:nerdtree_tabs_autofind = 1 "自动找到新tab所在的tree位置
 "---------------CtrlP------------------------------------------------
+map <C-b> :CtrlPBuffer<CR>
 let g:ctrlp_mruf_include = '\.js$\|\.css$|\.scss$|\.html$' "只记录.js .css .scss .html文件
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 "---------------CtrlSF-----------------------------------------------
-map <C-F> :CtrlSF<space>
+map <C-f> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
 let g:ctrlsf_ignore_dir = [".meteor","node_modules"]
 "---------------AirLine----------------------------------------------

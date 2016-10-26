@@ -1,7 +1,7 @@
 安装 Elementary OS
   准备U盘，iso文件，Universal USB Installer，做好启动盘，重启ESC键，从U盘启动
   安装参考http://www.linuxidc.com/Linux/2016-04/130520.htm
-软件安装记录
+基本软件安装
   0,安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包
   1,安装中文输入法
     sudo apt-get remove ibus
@@ -9,7 +9,7 @@
     sudo apt-get install fcitx-table-all #同时安装其他码表
     注销即可使用输入法
   2,安装git
-    sudo apt-get install git
+    sudo apt-get install git giggle
     git config --global user.name "TODO username"
     git config --global user.email "TODO email"
   3,安装nvm node
@@ -72,6 +72,7 @@
     npm run build:linux
     cp assets/icon.png dist/electronic-wechat-linux-x64
     sudo mv dist/electronic-wechat-linux-x64 /opt/wechat
+    cd .. && rm -rf  electronic-wechat
     sudo gvim /usr/share/applications/wechat.desktop
     粘贴下面内容
       [Desktop Entry]
@@ -83,16 +84,31 @@
       StartupNotify=true
       Type=Application
       Categories=Application;
-    注销，command+space  系统设置->应用程序->启动项->选择wechat
-配置github
-  ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
-  复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
-  ssh -T git@github.com #测试ssh key 是否设置成功
-安装meteor
-  curl https://install.meteor.com/ | sh
-  安装mantra命令行
-    npm install -g mantra-cli
-安装gitbook
-  wget https://www.gitbook.com/editor/linux-64-bit/download
-  sudo dpkg -i gitbook-editor-X.X.X-linux-x64.deb
-  gitbook-editor #启动
+编程环境搭建
+  0,配置github
+    ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
+    复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
+    ssh -T git@github.com #测试ssh key 是否设置成功
+  1,安装meteor
+    curl https://install.meteor.com/ | sh
+    安装mantra命令行
+      npm install -g mantra-cli
+  2,安装robomongo
+    下载并解压 https://robomongo.org/download
+    找一张自己喜欢的透明背景的icon.png
+    sudo mv youDownLoad /opt/robomongo
+    sudo gvim /usr/share/applications/robomongo.desktop
+    粘贴下面内容
+      [Desktop Entry]
+      Name=Robomongo
+      Comment=robomongo
+      Exec=/opt/robomongo/bin/robomongo
+      Icon=/opt/robomongo/icon.png
+      Terminal=false
+      StartupNotify=true
+      Type=Application
+      Categories=Application;
+  3,安装gitbook
+    wget https://www.gitbook.com/editor/linux-64-bit/download
+    sudo dpkg -i gitbook-editor-X.X.X-linux-x64.deb
+    gitbook-editor #启动
