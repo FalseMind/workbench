@@ -9,7 +9,6 @@ Plugin 'gmarik/vundle'
 "--------------------------------------------------------------------
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "--------------------------------------------------------------------
@@ -149,21 +148,18 @@ nmap <leader>r :TernRename<cr>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
 "---------------插件快捷键设置---------------------------------------
-map  <silent><A-t> :NERDTreeToggle<CR>
-imap <silent><A-t> <ESC>:NERDTreeToggle<CR>
+map  <silent><A-f> :NERDTreeToggle<CR>
+imap <silent><A-f> <ESC>:NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "---------------NerdTreeTab------------------------------------------
-let g:nerdtree_tabs_synchronize_view = 0
+"let g:nerdtree_tabs_synchronize_view = 0
 "let g:nerdtree_tabs_autofind = 1 "自动找到新tab所在的tree位置
 "---------------CtrlP------------------------------------------------
 map <C-b> :CtrlPBuffer<CR>
-let g:ctrlp_mruf_include = '\.js$\|\.css$|\.scss$|\.html$' "只记录.js .css .scss .html文件
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+let g:ctrlp_working_path_mode = '~/working'
+let g:ctrlp_user_command = 'find %s -type f'
 "---------------CtrlSF-----------------------------------------------
 map <C-f> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
@@ -173,8 +169,6 @@ let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 "---------------vim-jsx----------------------------------------------
 let g:jsx_ext_required = 0
-"---------------vim-javascript---------------------------------------
-let javascript_enable_domhtmlcss=1 " 打开javascript对dom、html和css的支持
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -200,6 +194,4 @@ endfunction
 fun! Maximize_Window()
   silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 endfunction
-
-"TODO nerdtree t 目录以后，新tab页里目录需要刷新
 "TODO 高亮当前标签页

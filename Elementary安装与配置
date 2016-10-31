@@ -17,6 +17,7 @@
     echo "source ~/.nvm/nvm.sh" >>  ~/.bashrc  #配置终端启动时自动执行nvm.sh
     nvm ls-remote
     nvm install 6.9  #安装某个版本
+    npm install -g cnpm --registry=https://registry.npm.taobao.org    #安装cnpm
   4,安装ack2
     sudo apt-get install libfile-next-perl
     git clone https://github.com/petdance/ack2
@@ -40,9 +41,10 @@
     sudo dpkg -i google-chrome*
     sudo apt-get -f install
     comand+space 可以看到google-chrome了，如果没有，自己手动输入google-chrome回车
+    在chrome设置里，选择使用系统标题栏和边框
     配置XX-net
       1 更改/etc/hosts文件，在文件里添加(不是覆盖)后面链接里的内容。  #https://github.com/racaljk/hosts/
-        进入chrome网上应用店，添加SwitchOmega
+        进入chrome网上应用店，添加SwitchOmega MindMap OneTab
       2 下载XX.net的稳定版  #https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
       3 sudo apt-get install libnss3-tools python-gtk2
         cd XX-net-folder && ./start
@@ -85,7 +87,7 @@
       Type=Application
       Categories=Application;
 编程环境搭建
-  0,配置github
+  0,配 tab置github
     ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
     复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
     ssh -T git@github.com #测试ssh key 是否设置成功
