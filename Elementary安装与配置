@@ -12,12 +12,15 @@
     sudo apt-get install git giggle
     git config --global user.name "TODO username"
     git config --global user.email "TODO email"
+    git config -l  #确认一下
   3,安装nvm node
     git clone https://github.com/creationix/nvm.git  ~/.nvm
     echo "source ~/.nvm/nvm.sh" >>  ~/.bashrc  #配置终端启动时自动执行nvm.sh
     nvm ls-remote
     nvm install 6.9  #安装某个版本
-    npm install -g cnpm --registry=https://registry.npm.taobao.org    #安装cnpm
+    vim ~/.npmrc 把下面两行copy进去
+      loglevel=info
+      registry=https://registry.npm.taobao.org
   4,安装ack2
     sudo apt-get install libfile-next-perl
     git clone https://github.com/petdance/ack2
@@ -42,12 +45,13 @@
     sudo apt-get -f install
     comand+space 可以看到google-chrome了，如果没有，自己手动输入google-chrome回车
     在chrome设置里，选择使用系统标题栏和边框
-    配置XX-net
+    添加常用chrome差价，并且配置XX-net
       1 更改/etc/hosts文件，在文件里添加(不是覆盖)后面链接里的内容。  #https://github.com/racaljk/hosts/
-        进入chrome网上应用店，添加SwitchOmega MindMap OneTab
+        进入chrome网上应用店，添加SwitchOmega MindMap OneTab google翻译
       2 下载XX.net的稳定版  #https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
       3 sudo apt-get install libnss3-tools python-gtk2
         cd XX-net-folder && ./start
+        系统-配置 选择开机启动
       4 配置SwitchOmega
         点击浏览器上的SwitchOmega，选择：选项->导入导出->从备份文件恢复，选择XX-net解压包里的SwitchOmega/OmegaOptions.bak
         选择：XX-NET自动切换->立即更新情景模式
@@ -93,8 +97,13 @@
     ssh -T git@github.com #测试ssh key 是否设置成功
   1,安装meteor
     curl https://install.meteor.com/ | sh
-    安装mantra命令行
-      npm install -g mantra-cli
+
+    meteor npm config list  #查看meteor npm的配置
+
+    关于代理，有各种方案，都解决不了我的问题
+    https://github.com/meteor/meteor/issues/7559
+    https://github.com/npm/npm/issues/8872
+    https://github.com/meteor/meteor/wiki/Using-Meteor-behind-a-proxy
   2,安装robomongo
     下载并解压 https://robomongo.org/download
     找一张自己喜欢的透明背景的icon.png
