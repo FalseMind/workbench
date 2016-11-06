@@ -1,0 +1,38 @@
+github使用
+  上传本地项目到github上。先要到github上开通 new respository，然后根据提示来创建
+  记得吧https地址改为git地址，大体是 git@github.com:mantak/respository.git
+git config --list  查看当前项目的git配置
+每次提交都需要帐号密码
+  因为clone的时候使用了https地址，则提交也使用https方式，如此则需要帐号密码
+  git remote -v  #该命令可以验证使用何种方式clone的项目
+  git remote rm origin  #如果是http方式，则删除之
+  git remote add origin git@github.com:mantak/workbench.git  #重新添加git模式的origin
+  git remote -v  #验证一下。如果是git模式，则后续提交不再需要帐号密码
+  git push origin master #提交当前分支到远程master分支
+git log -p -2 显示最近2次提交的内容差异
+
+在包含子模块的项目上工作
+ 参考 https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97
+ clone两种方法，
+   第一种，克隆的时候直接克隆下子模块
+   git clone --recursive
+   第二种，克隆完毕，init一下子模块，然后更新，也会下载子模块到当前目录
+   git submodule init
+   git submodule update
+ push 如果没改动sumodule则提交和普通项目没有区别
+  git remote -v  #验证一下远端分支是否是自己想要提交的分支
+  git push origin master #提交当前分支到远程master分支
+
+删除submodules的方法
+1,编辑.gitmodules,删除对应要删除的submodule的行．
+2,编辑.git/config,删除有对应要删除的submodule的行．
+3,git rm --cached {submodule_path}  (注意，路径不要加后面的“/”。例如：你的submodule保存在 supports/libs/websocket/ 目录。执行命令为： git rm --cached supports/libs/websocket)
+4,根据需求，ABC 可选
+  A 如果不用submodule了就 删除对应的目录
+  B 如果想一起打包提交就 git add
+  C 如果要重新下载就
+    1.更新 .gitsubmodule中对应submodule的条目URL
+    2.更新 .git/config 中对应submodule的条目的URL
+    3.执行 git submodule sync
+
+https://github.com/geeeeeeeeek/git-recipes/wiki

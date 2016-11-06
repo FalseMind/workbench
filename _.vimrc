@@ -48,7 +48,10 @@ set laststatus=2 "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number "显示行号
 set ruler "打开状态栏标尺
 set guifont=Liberation\ Mono\ for\ Powerline\ 11
-set guitablabel=%N#\%t\ %M  "设置tab页显示编号
+au TabEnter * let t:current = 1
+au TabLeave * let t:current = 0
+set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
+"set guitablabel=%N%{exists('t:current')&&t:current?'@':'#'}\%t\ %M  "设置tab页显示编号
 "---------------基本设置---------------------------------------------
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set nobackup
@@ -70,8 +73,9 @@ set noerrorbells "关闭错误信息响铃
 set isk+=- "将-连接符也设置为单词
 set scrolloff=3 "上下滚动的时候留出3行
 set sidescrolloff=8 "左右滚动的时候,留出8个字符
-autocmd BufWritePre * :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
+autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
+autocmd BufWritePre * silent! :v/\_s*\S/d "删除末尾空行
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 "---------------换行设置---------------------------------------------
 set wrap "自动换行
@@ -159,11 +163,14 @@ imap <silent><A-f> <ESC>:NERDTreeToggle<CR>
 "---------------CtrlP------------------------------------------------
 map <C-b> :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = '~/working'
-let g:ctrlp_user_command = 'find %s -type f'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+endif
 "---------------CtrlSF-----------------------------------------------
 map <C-f> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
-let g:ctrlsf_ignore_dir = [".meteor","node_modules"]
+"let g:ctrlsf_ignore_dir = [".meteor","node_modules"]
+let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 "---------------AirLine----------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
@@ -194,4 +201,6 @@ endfunction
 fun! Maximize_Window()
   silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 endfunction
+
 "TODO 高亮当前标签页
+"set guitablabel=%N#\%t\ %M  "设置tab页显示编号
