@@ -92,16 +92,14 @@
       Type=Application
       Categories=Application;
 编程环境搭建
-  0,配 tab置github
+  0,配置github
     ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
     复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
     ssh -T git@github.com #测试ssh key 是否设置成功
   1,安装meteor
     curl https://install.meteor.com/ | sh
-
     meteor npm config list  #查看meteor npm的配置
-
-    关于代理，有各种方案，都解决不了我的问题
+    TODO 关于代理，有各种方案，都解决不了我的问题
     https://github.com/meteor/meteor/issues/7559
     https://github.com/npm/npm/issues/8872
     https://github.com/meteor/meteor/wiki/Using-Meteor-behind-a-proxy

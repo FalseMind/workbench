@@ -51,7 +51,6 @@ set guifont=Liberation\ Mono\ for\ Powerline\ 11
 au TabEnter * let t:current = 1
 au TabLeave * let t:current = 0
 set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
-"set guitablabel=%N%{exists('t:current')&&t:current?'@':'#'}\%t\ %M  "设置tab页显示编号
 "---------------基本设置---------------------------------------------
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set nobackup
@@ -145,6 +144,7 @@ map  <Leader>v "+p
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 nmap <leader>g gg=G
+nmap <leader>f <c-w>gf
 nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
@@ -201,6 +201,3 @@ endfunction
 fun! Maximize_Window()
   silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
 endfunction
-
-"TODO 高亮当前标签页
-"set guitablabel=%N#\%t\ %M  "设置tab页显示编号
