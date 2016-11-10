@@ -41,6 +41,7 @@
     git clone git@github.com:mantak/workbench.git ~/working/workbench
     ln -s ~/working/workbench/_.vimrc ~/.vimrc
     ln -s ~/working/workbench/_.agignore ~/.agignore
+    ln -s ~/working/workbench/_.jshintrc ~/.jshintrc
     系统设置->键盘->自定义-> gvim -c "call Maximize_Window()"
     插件安装参考vimTips
   6,安装google浏览器 + SwitchOmega
