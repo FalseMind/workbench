@@ -17,7 +17,7 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
 "--------------------------------------------------------------------
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'marijnh/tern_for_vim'
+"Plugin 'marijnh/tern_for_vim'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
 Plugin 'sjl/badwolf'
@@ -89,20 +89,11 @@ nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
 set background=dark
-let modDay = (strftime("%d"))%3
-let currentHour = strftime("%H")
+let modDay = (strftime("%d"))%2
 if modDay == 0
-  if currentHour >= 8 && currentHour < 16
-    colorscheme gruvbox
-  else
-    colorscheme badwolf
-  endif
+  colorscheme gruvbox
 else
-  if currentHour >= 8 && currentHour < 16
-    colorscheme codeschool
-  else
-    colorscheme molokai
-  endif
+  colorscheme badwolf
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
@@ -150,7 +141,7 @@ nmap <leader>gf <c-w>gf
 nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
-nmap <leader>r :TernRename<cr>
+"nmap <leader>r :TernRename<cr>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
 "---------------插件快捷键设置---------------------------------------
@@ -173,10 +164,23 @@ let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 "---------------AirLine----------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
-"---------------syntastic--------------------------------------------
+"-------------- syntastic -------------------------------------------
 let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_jshint_exec='/home/mantak/.nvm/versions/node/v6.9.0/bin/jshint'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec='/home/mantak/.nvm/versions/node/v6.9.0/bin/eslint'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_warning_symbol = '❎'
+"let g:syntastic_style_error_symbol = '⚪'
+"let g:syntastic_style_warning_symbol = '⚫'
 "---------------vim-jsx----------------------------------------------
 let g:jsx_ext_required = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

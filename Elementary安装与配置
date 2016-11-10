@@ -21,31 +21,30 @@
     vim ~/.npmrc 把下面两行copy进去
       loglevel=info
       registry=https://registry.npm.taobao.org
-  4,安装vim插件支持 jshint、ack2、silversearcher-ag
-    npm install -g jshint
-    which node 获得node的地址 /home/xx/node
-    sudo ln -s /home/xx/node /usr/bin/node
-    sudo apt-get install libfile-next-perl
-    git clone https://github.com/petdance/ack2
-    cd ack2
-    perl Makefile.PL
-    make && make test
-    sudo make install
-    cd .. && rm -rf ack2
-    sudo apt install silversearcher-ag
+  4,安装vim插件支持silversearcher-ag、wmctrl、eslint、ack2
+    1,sudo apt install silversearcher-ag wmctrl
+    2,npm install -g eslint  eslint-plugin-react babel-eslint
+      which node 获得node的地址 /home/xx/node
+      sudo ln -s /home/xx/node /usr/bin/node
+    3,sudo apt-get install libfile-next-perl
+      git clone https://github.com/petdance/ack2
+      cd ack2
+      perl Makefile.PL
+      make && make test
+      sudo make install
+      cd .. && rm -rf ack2
   5,安装gvim以及插件
-    sudo apt-get install python-software-properties software-properties-common wmctrl
+    sudo apt-get install python-software-properties software-properties-common
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt update
     sudo apt install vim-gtk
     git clone git@github.com:mantak/workbench.git ~/working/workbench
     ln -s ~/working/workbench/_.vimrc ~/.vimrc
     ln -s ~/working/workbench/_.agignore ~/.agignore
-    ln -s ~/working/workbench/_.jshintrc ~/.jshintrc
+    ln -s ~/working/workbench/_.eslintrc ~/.eslintrc
     系统设置->键盘->自定义-> gvim -c "call Maximize_Window()"
     插件安装参考vimTips
   6,安装google浏览器 + SwitchOmega
-    自带浏览器确实漂亮，但是没有调试器，忍痛换chrome吧
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i google-chrome*
     sudo apt-get -f install

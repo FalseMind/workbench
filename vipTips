@@ -39,3 +39,6 @@ ln -s ~/.vimrc ~/.config/nvim/init.vim
 mac下vim全屏
 :set fu
 :set nofu
+
+eslint插件安装
+http://usevim.com/2016/03/07/linting/
