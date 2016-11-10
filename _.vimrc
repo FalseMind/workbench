@@ -18,6 +18,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "--------------------------------------------------------------------
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
 Plugin 'sjl/badwolf'
 Plugin 'morhetz/gruvbox'
@@ -144,7 +145,8 @@ map  <Leader>v "+p
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 nmap <leader>g gg=G
-nmap <leader>f <c-w>gf
+nmap <leader>f <c-w>F
+nmap <leader>gf <c-w>gf
 nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
@@ -157,9 +159,6 @@ imap <silent><A-f> <ESC>:NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"---------------NerdTreeTab------------------------------------------
-"let g:nerdtree_tabs_synchronize_view = 0
-"let g:nerdtree_tabs_autofind = 1 "自动找到新tab所在的tree位置
 "---------------CtrlP------------------------------------------------
 map <C-b> :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = '~/working'
@@ -174,6 +173,10 @@ let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 "---------------AirLine----------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
+"---------------syntastic--------------------------------------------
+let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_jshint_exec='/home/mantak/.nvm/versions/node/v6.9.0/bin/jshint'
 "---------------vim-jsx----------------------------------------------
 let g:jsx_ext_required = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
