@@ -86,28 +86,18 @@ nnoremap j gj
 nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
-let modDay = (strftime("%d"))%3
 let currentHour = strftime("%H")
+if currentHour >= 8 && currentHour < 17
+  set background=light
+else
+  set background=dark
+endif
+let modDay = (strftime("%d"))%3
 if modDay == 0
-  if currentHour >= 8 && currentHour < 17
-    set background=light
-  else
-    set background=dark
-  endif
   colorscheme gruvbox
 elseif modDay == 1
-  if currentHour >= 8 && currentHour < 17
-    set background=light
-  else
-    set background=dark
-  endif
   colorscheme one
 else
-  if currentHour >= 8 && currentHour < 17
-    set background=light
-  else
-    set background=dark
-  endif
   colorscheme solarized
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,10 +155,10 @@ imap <silent><A-f> <ESC>:NERDTreeToggle<CR>
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------- CtrlP -----------------------------------------------
-let g:ctrlp_working_path_mode = '~/working'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
+let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
       \ 'AcceptSelection("h")': ['<c-i>'],
@@ -177,8 +167,6 @@ let g:ctrlp_prompt_mappings = {
 "-------------- CtrlSF ----------------------------------------------
 map <C-f> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
-"let g:ctrlsf_ignore_dir = [".meteor","node_modules"]
-let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 "-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
