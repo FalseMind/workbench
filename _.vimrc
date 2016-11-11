@@ -17,13 +17,11 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
 "--------------------------------------------------------------------
 Plugin 'Valloric/YouCompleteMe'
-"Plugin 'marijnh/tern_for_vim'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
-Plugin 'sjl/badwolf'
 Plugin 'morhetz/gruvbox'
-Plugin 'tomasr/molokai'
-Plugin 'antlypls/vim-colors-codeschool'
+Plugin 'rakr/vim-one'
+Plugin 'altercation/vim-colors-solarized'
 "--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -78,7 +76,7 @@ autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾�
 autocmd BufWritePre * silent! :v/\_s*\S/d "删除末尾空行
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 "---------------换行设置---------------------------------------------
-set wrap "自动换行
+set nowrap "自动换行
 set linebreak
 set textwidth=100 fo+=Mm "100字符换行
 set colorcolumn=+1 "101字符提示
@@ -88,12 +86,29 @@ nnoremap j gj
 nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
-set background=dark
-let modDay = (strftime("%d"))%2
+let modDay = (strftime("%d"))%3
+let currentHour = strftime("%H")
 if modDay == 0
+  if currentHour >= 8 && currentHour < 17
+    set background=light
+  else
+    set background=dark
+  endif
   colorscheme gruvbox
+elseif modDay == 1
+  if currentHour >= 8 && currentHour < 17
+    set background=light
+  else
+    set background=dark
+  endif
+  colorscheme one
 else
-  colorscheme badwolf
+  if currentHour >= 8 && currentHour < 17
+    set background=light
+  else
+    set background=dark
+  endif
+  colorscheme solarized
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
@@ -136,12 +151,11 @@ map  <Leader>v "+p
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 nmap <leader>g gg=G
-nmap <leader>f <c-w>F
-nmap <leader>gf <c-w>gf
+nmap <leader>i <c-w>F
+nmap <leader>t <c-w>gf
 nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
-"nmap <leader>r :TernRename<cr>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
 "---------------插件快捷键设置---------------------------------------
@@ -150,44 +164,37 @@ imap <silent><A-f> <ESC>:NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"---------------CtrlP------------------------------------------------
-map <C-b> :CtrlPBuffer<CR>
+"-------------- CtrlP -----------------------------------------------
 let g:ctrlp_working_path_mode = '~/working'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
-"---------------CtrlSF-----------------------------------------------
+let g:ctrlp_prompt_mappings = {
+      \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
+      \ 'AcceptSelection("h")': ['<c-i>'],
+      \ 'AcceptSelection("t")': ['<c-t>'],
+      \ }
+"-------------- CtrlSF ----------------------------------------------
 map <C-f> :CtrlSF<space>
 let g:ctrlsf_width = '40%'
 "let g:ctrlsf_ignore_dir = [".meteor","node_modules"]
 let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
-"---------------AirLine----------------------------------------------
+"-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
-"-------------- syntastic -------------------------------------------
-let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec='/home/mantak/.nvm/versions/node/v6.9.0/bin/eslint'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_warning_symbol = '❎'
-"let g:syntastic_style_error_symbol = '⚪'
-"let g:syntastic_style_warning_symbol = '⚫'
-"---------------vim-jsx----------------------------------------------
+"-------------- vim-jsx ---------------------------------------------
 let g:jsx_ext_required = 0
+"-------------- syntastic -------------------------------------------
+let g:syntastic_check_on_open = 1
+let g:syntastic_javascript_eslint_exec='/home/mantak/.nvm/versions/node/v6.9.0/bin/eslint'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '⚫'
+let g:syntastic_warning_symbol = '⚫'
+"⚫⚪❌❎⛔🌿🍂🍀⛽🌕🍵🌷🌺🍁🎯👽📍📌📦🔍🔎🔘🔥🔯
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/working
-autocmd BufEnter * if &filetype == "" | setlocal ft=javascript | endif "如果未指定文件类型,文件类型为javascript
 autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline "这些文件特殊对待
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
