@@ -20,7 +20,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
 Plugin 'morhetz/gruvbox'
-Plugin 'rakr/vim-one'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'altercation/vim-colors-solarized'
 "--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
@@ -75,19 +75,20 @@ let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，�
 autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd BufWritePre * silent! :v/\_s*\S/d "删除末尾空行
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
+autocmd InsertLeave * call Fcitx2en()
 "---------------换行设置---------------------------------------------
 set nowrap "自动换行
 set linebreak
-set textwidth=100 fo+=Mm "100字符换行
-set colorcolumn=+1 "101字符提示
+set textwidth=80 fo+=Mm "80字符换行
+set colorcolumn=+1 "81字符提示
 set synmaxcol=128 "这个默认值是3000导致vim处理大行文本时卡顿"
 set display=lastline "长行不显示@
 nnoremap j gj
 nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
-let currentHour = strftime("%H")
-if currentHour >= 8 && currentHour < 17
+let hour = strftime("%H")
+if 8 <= hour &&  hour < 16
   set background=light
 else
   set background=dark
@@ -96,9 +97,9 @@ let modDay = (strftime("%d"))%3
 if modDay == 0
   colorscheme gruvbox
 elseif modDay == 1
-  colorscheme one
-else
   colorscheme solarized
+else
+  colorscheme PaperColor
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
@@ -178,6 +179,12 @@ let g:syntastic_javascript_eslint_exec='/home/mantak/.nvm/versions/node/v6.9.0/b
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '⚫'
 let g:syntastic_warning_symbol = '⚫'
+let g:syntastic_error_style_symbol = '⚪'
+let g:syntastic_warning_style_symbol = '⚪'
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 "⚫⚪❌❎⛔🌿🍂🍀⛽🌕🍵🌷🌺🍁🎯👽📍📌📦🔍🔎🔘🔥🔯
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
@@ -199,6 +206,12 @@ function! TabMove(direction)
   else
     execute "tabmove ".(ctpn + 1)
   endif
+endfunction
+fun! Fcitx2en()
+   let s:input_status = system("fcitx-remote")
+   if s:input_status == 2
+      let l:a = system("fcitx-remote -c")
+   endif
 endfunction
 fun! Maximize_Window()
   silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz

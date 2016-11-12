@@ -18,9 +18,6 @@
  cd fonts && ./install.sh
  cd .. && rm -rf fonts
 5, 启动VIM 运行 BundelInstall
-6, 到colorscheme里设置SignColumn，ErrorMsg, WarningMsg的背景颜色一致
-   solarized: exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0  .s:bg_none
-   one: call <sid>X('SignColumn',   '',              s:syntax_bg,      '')
 " ````````````````````````````````````````````````````````````````````
 " ``````````````````````VIM插件安装完毕```````````````````````````````````
 " ````````````````````````````````````````````````````````````````````
@@ -50,3 +47,10 @@ http://usevim.com/2016/03/07/linting/
 "let g:syntastic_warning_symbol = '❎'
 "let g:syntastic_style_error_symbol = '⚪'
 "let g:syntastic_style_warning_symbol = '⚫'
+"6, 到colorscheme里设置SignColumn，ErrorMsg, WarningMsg的背景颜色一致
+"   solarized: exe "hi! SignColumn"     .s:fmt_none   .''  .s:bg_none
+"              替换为
+"              exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0  .s:bg_none
+"   papercolor call s:HL("Error", s:error_fg, s:error_bg, "")
+"              替换为
+"              call s:HL("Error", s:error_fg, s:background, "")
