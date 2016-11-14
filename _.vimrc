@@ -19,6 +19,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
+Plugin 'rakr/vim-one'
 Plugin 'morhetz/gruvbox'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'altercation/vim-colors-solarized'
@@ -73,11 +74,11 @@ set scrolloff=3 "上下滚动的时候留出3行
 set sidescrolloff=8 "左右滚动的时候,留出8个字符
 let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
 autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
-autocmd BufWritePre * silent! :v/\_s*\S/d "删除末尾空行
+autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
-autocmd InsertLeave * call Fcitx2en()
+autocmd InsertLeave * call Fcitx2en() "退出输入模式,自动出中文输入,需fcitx支持
 "---------------换行设置---------------------------------------------
-set nowrap "自动换行
+set wrap "自动换行
 set linebreak
 set textwidth=80 fo+=Mm "80字符换行
 set colorcolumn=+1 "81字符提示
@@ -93,10 +94,12 @@ if 8 <= hour &&  hour < 16
 else
   set background=dark
 endif
-let modDay = (strftime("%d"))%3
+let modDay = (strftime("%d"))%4
 if modDay == 0
-  colorscheme gruvbox
+  colorscheme one
 elseif modDay == 1
+  colorscheme gruvbox
+elseif modDay == 2
   colorscheme solarized
 else
   colorscheme PaperColor
@@ -150,11 +153,15 @@ nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
 "---------------插件快捷键设置---------------------------------------
-map  <silent><A-f> :NERDTreeToggle<CR>
-imap <silent><A-f> <ESC>:NERDTreeToggle<CR>
+map  <silent><A-f> :call ToggleNERDTreeFind()<CR>
+imap <silent><A-f> <ESC>:call ToggleNERDTreeFind()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- NerdTree --------------------------------------------
+"Open NERDTree if no files specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "-------------- CtrlP -----------------------------------------------
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
@@ -215,4 +222,11 @@ fun! Fcitx2en()
 endfunction
 fun! Maximize_Window()
   silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+endfunction
+function! ToggleNERDTreeFind()
+    if g:NERDTree.IsOpen()
+        execute ':NERDTreeClose'
+    else
+        execute ':NERDTreeFind'
+    endif
 endfunction
