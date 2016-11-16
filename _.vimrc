@@ -117,10 +117,14 @@ nmap R <Nop>
 nmap K <Nop>
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
-map  <C-h> <C-w>h
-map  <C-j> <C-w>j
-map  <C-k> <C-w>k
-map  <C-l> <C-w>l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-Up> :resize +5<cr>
+map <C-Down> :resize -5<cr>
+map <C-Left> :vertical resize -5<cr>
+map <C-Right> :vertical resize +5<cr>
 "---------------tab快捷键设置----------------------------------------
 map  <silent><A-n> :tabnew<CR>
 map  <silent><A-q> :tabc<CR>
@@ -141,7 +145,8 @@ nmap <silent><A-l> :call TabMove(1)<CR>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
 vmap <Leader>c "+y
-map  <Leader>v "+p
+vmap <Leader>v "+p
+nmap <Leader>v "+p
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 nmap <leader>g gg=G
@@ -162,7 +167,6 @@ imap <silent><A-f> <ESC>:call ToggleNERDTreeFind()<CR>
 "Open NERDTree if no files specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let NERDTreeChDirMode=2
 "-------------- CtrlP -----------------------------------------------
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
