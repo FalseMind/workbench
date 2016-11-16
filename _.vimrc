@@ -117,14 +117,15 @@ nmap R <Nop>
 nmap K <Nop>
 imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
+"---------------窗口快捷键设置----------------------------------------
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <C-Up> :resize +5<cr>
 map <C-Down> :resize -5<cr>
-map <C-Left> :vertical resize -5<cr>
-map <C-Right> :vertical resize +5<cr>
+map <C-Left> :vertical resize +5<cr>
+map <C-Right> :vertical resize -5<cr>
 "---------------tab快捷键设置----------------------------------------
 map  <silent><A-n> :tabnew<CR>
 map  <silent><A-q> :tabc<CR>
