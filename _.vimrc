@@ -179,7 +179,10 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<c-t>'],
       \ }
 "-------------- CtrlSF ----------------------------------------------
-map <C-f> :CtrlSF<space>
+nmap <C-F> <Plug>CtrlSFCwordExec
+vmap <C-F> <Plug>CtrlSFVwordExec
+nmap <C-F>o :CtrlSFOpen<CR>
+nmap <C-f>i <Plug>CtrlSFPrompt
 let g:ctrlsf_width = '40%'
 "-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
