@@ -74,8 +74,9 @@
        sudo apt-get install flashplugin-installer
        chrome://plugins/    确认flash 已经始终允许运行
        chrome://components/ 找到flash 点检查是否有更新
-  8,安装各种压缩解压缩
-    sudo apt-get install unace rar unrar p7zip-rar p7zip sharutils uudeview mpack arj cabextract lzip lunzip
+  8,安装解压工具
+    sudo apt-get install  unar
+    解压gb2312的压缩文件使用:  $unar xxx.zip
   9,安装微信
     git clone https://github.com/geeeeeeeeek/electronic-wechat.git
     cd electronic-wechat

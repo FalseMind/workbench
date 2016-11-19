@@ -19,7 +19,6 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
-Plugin 'rakr/vim-one'
 Plugin 'morhetz/gruvbox'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'altercation/vim-colors-solarized'
@@ -78,8 +77,7 @@ autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 autocmd InsertLeave * call Fcitx2en() "退出输入模式,自动出中文输入,需fcitx支持
 "---------------换行设置---------------------------------------------
-set wrap "自动换行
-set linebreak
+set wrap linebreak nolist
 set textwidth=80 fo+=Mm "80字符换行
 set colorcolumn=+1 "81字符提示
 set synmaxcol=128 "这个默认值是3000导致vim处理大行文本时卡顿"
@@ -94,12 +92,10 @@ if 8 <= hour &&  hour < 16
 else
   set background=dark
 endif
-let modDay = (strftime("%d"))%4
+let modDay = (strftime("%d"))%3
 if modDay == 0
-  colorscheme one
-elseif modDay == 1
   colorscheme gruvbox
-elseif modDay == 2
+elseif modDay == 1
   colorscheme solarized
 else
   colorscheme PaperColor
@@ -124,8 +120,8 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <C-Up> :resize +5<cr>
 map <C-Down> :resize -5<cr>
-map <C-Left> :vertical resize +5<cr>
-map <C-Right> :vertical resize -5<cr>
+map <C-Left> :vertical resize -5<cr>
+map <C-Right> :vertical resize +5<cr>
 "---------------tab快捷键设置----------------------------------------
 map  <silent><A-n> :tabnew<CR>
 map  <silent><A-q> :tabc<CR>
@@ -179,10 +175,9 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<c-t>'],
       \ }
 "-------------- CtrlSF ----------------------------------------------
-nmap <C-F> <Plug>CtrlSFCwordExec
-vmap <C-F> <Plug>CtrlSFVwordExec
+nmap <C-f> <Plug>CtrlSFCwordPath
+vmap <C-F> <Plug>CtrlSFVwordPath
 nmap <C-F>o :CtrlSFOpen<CR>
-nmap <C-f>i <Plug>CtrlSFPrompt
 let g:ctrlsf_width = '40%'
 "-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
@@ -206,6 +201,7 @@ highlight link SyntasticStyleWarningSign SignColumn
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/working
+
 autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline "这些文件特殊对待
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
