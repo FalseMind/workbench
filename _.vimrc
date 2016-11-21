@@ -74,6 +74,7 @@ set sidescrolloff=8 "左右滚动的时候,留出8个字符
 let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
 autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
+autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 autocmd InsertLeave * call Fcitx2en() "退出输入模式,自动出中文输入,需fcitx支持
 "---------------换行设置---------------------------------------------
@@ -175,7 +176,7 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<c-t>'],
       \ }
 "-------------- CtrlSF ----------------------------------------------
-nmap <C-f> <Plug>CtrlSFCwordPath
+nmap <C-f> <Plug>CtrlSFPrompt
 vmap <C-F> <Plug>CtrlSFVwordPath
 nmap <C-F>o :CtrlSFOpen<CR>
 let g:ctrlsf_width = '40%'
