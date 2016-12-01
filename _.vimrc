@@ -77,6 +77,8 @@ autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空
 autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 autocmd InsertLeave * call Fcitx2en() "退出输入模式,自动出中文输入,需fcitx支持
+"au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+"au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 "---------------换行设置---------------------------------------------
 set wrap linebreak nolist
 set textwidth=80 fo+=Mm "80字符换行
@@ -202,7 +204,6 @@ highlight link SyntasticStyleWarningSign SignColumn
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/working
-
 autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline "这些文件特殊对待
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
@@ -221,8 +222,7 @@ function! TabMove(direction)
   endif
 endfunction
 fun! Fcitx2en()
-  let s:input_status = system("fcitx-remote")
-  if s:input_status == 2
+  if system("fcitx-remote") == 2
     let l:a = system("fcitx-remote -c")
   endif
 endfunction
