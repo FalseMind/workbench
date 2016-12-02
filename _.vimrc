@@ -171,6 +171,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
+map <A-p> :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
