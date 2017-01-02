@@ -15,6 +15,9 @@ git branch -a 列出所有分支，包括远端分支
 git checkout -b mantak origin/dev 在本地新建分支mantak，使之跟踪origin/dev分支
 git pull 从远端dev分支更新本地分支
 
+### 合并分支
+
+
 在包含子模块的项目上工作
  参考 https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97
  clone两种方法，

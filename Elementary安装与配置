@@ -9,7 +9,7 @@
     sudo apt-get install fcitx-table-all #同时安装其他码表
     注销即可使用输入法
   2,安装git
-    sudo apt-get install git giggle
+    sudo apt-get install git gitk
     git config --global user.name "TODO username"
     git config --global user.email "TODO email"
     git config -l  #确认一下
@@ -52,7 +52,7 @@
     在chrome设置里，选择使用系统标题栏和边框
     添加常用chrome插件，并且配置XX-net
       1 更改/etc/hosts文件，在文件里添加(不是覆盖)后面链接里的内容。  #https://github.com/racaljk/hosts/
-        进入chrome网上应用店，添加SwitchOmega MindMap Gliffy OneTab 翻译侠
+        进入chrome网上应用店，添加SwitchOmega MindMap Gliffy OneTab 翻译侠 Eyedropper
       2 下载XX.net的稳定版  #https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
       3 sudo apt-get install libnss3-tools python-gtk2
         cd XX-net-folder && ./start
@@ -127,3 +127,11 @@
     wget https://www.gitbook.com/editor/linux-64-bit/download
     sudo dpkg -i gitbook-editor-X.X.X-linux-x64.deb
     gitbook-editor #启动
+  4,安装mongodb，不是给meteor用的
+    sudo apt-get install mongodb
+    命令
+    mongo -version
+    service mongodb start
+    service mongodb stop
+    pgrep mongo -l  #查看mongo进程
+    mongo

@@ -22,6 +22,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'morhetz/gruvbox'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'rcabralc/rcabralc-colorscheme.vim'
 "--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -77,8 +78,6 @@ autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空
 autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 autocmd InsertLeave * call Fcitx2en() "退出输入模式,自动出中文输入,需fcitx支持
-"au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-"au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 "---------------换行设置---------------------------------------------
 set wrap linebreak nolist
 set textwidth=80 fo+=Mm "80字符换行
@@ -98,6 +97,7 @@ endif
 let modDay = (strftime("%d"))%3
 if modDay == 0
   colorscheme gruvbox
+  "colorscheme rcabralc
 elseif modDay == 1
   colorscheme solarized
 else
@@ -125,6 +125,7 @@ map <C-Up> :resize +5<cr>
 map <C-Down> :resize -5<cr>
 map <C-Left> :vertical resize -5<cr>
 map <C-Right> :vertical resize +5<cr>
+nmap <silent><F12> :!google-chrome % &<CR>
 "---------------tab快捷键设置----------------------------------------
 map  <silent><A-n> :tabnew<CR>
 map  <silent><A-q> :tabc<CR>
