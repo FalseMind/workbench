@@ -31,6 +31,8 @@ Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 "--------------------------------------------------------------------
+Plugin 'SirVer/ultisnips'
+Plugin 'Mantak/mantak-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 "--------------------------------------------------------------------
@@ -164,6 +166,8 @@ imap <silent><A-f> <ESC>:call ToggleNERDTreeFind()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- Ultisnips -------------------------------------------
+let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
 "Open NERDTree if no files specified
 autocmd StdinReadPre * let s:std_in=1

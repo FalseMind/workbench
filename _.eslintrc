@@ -123,7 +123,7 @@
       "eol-last": 0,                                 // http://eslint.cn/docs/rules/eol-last
       "func-names": 0,                               // http://eslint.cn/docs/rules/func-names
       "key-spacing": [2, {                            // http://eslint.cn/docs/rules/key-spacing
-        "align": "value",
+        "mode": "minimum"
       }],
       "new-cap": [2, {                               // http://eslint.cn/docs/rules/new-cap
         "newIsCap": true,
