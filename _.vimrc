@@ -166,6 +166,18 @@ imap <silent><A-f> <ESC>:call ToggleNERDTreeFind()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- Mantak ----------------------------------------------
+let $PATH=$PATH . ':/home/mantak/.nvm/versions/node/v6.9.0/bin'
+nmap <Leader>ga :!mantak g api<space>
+nmap <Leader>da :!mantak d api<space>
+nmap <Leader>gp :!mantak g page<space>
+nmap <Leader>dp :!mantak d page<space>
+nmap <Leader>gc :!mantak g container<space>
+nmap <Leader>dc :!mantak d container<space>
+nmap <Leader>gcc :!mantak g component<space>
+nmap <Leader>dcc :!mantak d component<space>
+nmap <Leader>gap :!mantak g adminPage<space>
+nmap <Leader>dap :!mantak d adminPage<space>
 "-------------- Ultisnips -------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
