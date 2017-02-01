@@ -1,0 +1,2 @@
+meteor create test --release x.y.z
+meteor update --release x.y.z
