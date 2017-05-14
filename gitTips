@@ -1,3 +1,9 @@
+将本地项目上传到github上的空项目
+下载远程项目，添加内容，添加.gitingnore
+git add .
+git commit -am ''
+git push origin master
+
 github使用
   上传本地项目到github上。先要到github上开通 new respository，然后根据提示来创建
   记得吧https地址改为git地址，大体是 git@github.com:mantak/respository.git
@@ -43,3 +49,9 @@ git pull 从远端dev分支更新本地分支
     3.执行 git submodule sync
 
 https://github.com/geeeeeeeeek/git-recipes/wiki
+
+
+丢弃未保存的修改
+git checkout .
+确保上面的命令使用之前，本地所有未提交的修改都是不想要的。如果不确定，就逐一检查
+，一旦使用，所有未修改不可逆的丢弃

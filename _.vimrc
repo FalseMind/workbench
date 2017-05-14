@@ -30,6 +30,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'leafgarland/typescript-vim'
 "--------------------------------------------------------------------
 Plugin 'SirVer/ultisnips'
 Plugin 'Mantak/mantak-vim'
@@ -76,7 +77,7 @@ set scrolloff=3 "上下滚动的时候留出3行
 set sidescrolloff=8 "左右滚动的时候,留出8个字符
 let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
 autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
-autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
+" autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
 autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 autocmd InsertLeave * call Fcitx2en() "退出输入模式,自动出中文输入,需fcitx支持
@@ -174,12 +175,15 @@ nmap <Leader><Leader>gp :!mantak g page<space>
 nmap <Leader><Leader>dp :!mantak d page<space>
 nmap <Leader><Leader>gc :!mantak g container<space>
 nmap <Leader><Leader>dc :!mantak d container<space>
+nmap <Leader><Leader>gf :!mantak g fixtures<space>
+nmap <Leader><Leader>df :!mantak d fixtures<space>
 "-------------- Ultisnips -------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
 "Open NERDTree if no files specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeWinPos=1
 "-------------- CtrlP -----------------------------------------------
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
@@ -218,7 +222,7 @@ highlight link SyntasticStyleWarningSign SignColumn
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/working
-autocmd Filetype go,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline "这些文件特殊对待
+autocmd Filetype go,typescript,coffee,javascript,json,less,scss,html,ruby setlocal nowrap|setlocal cursorline "这些文件特殊对待
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

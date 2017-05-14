@@ -24,6 +24,7 @@
     npm install -g nrm #安装npm的源管理
     nrm ls #列出可用源
     nrm use xxx 使用某个源
+    npm install -g npm-check  #安装npm包更新检查，在相关目录里运行 npm-check即可
   4,安装vim插件支持silversearcher-ag、wmctrl、eslint、ack2
     1,sudo apt install silversearcher-ag wmctrl
     2,npm install -g eslint  eslint-plugin-react babel-eslint
@@ -144,3 +145,6 @@
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt-get update
     sudo apt-get install yarn
+
+回收站位置
+~/.local/share/Trash/files/

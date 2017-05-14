@@ -13,7 +13,12 @@ endsnippet
 snippet ready
 const ready = Meteor.subscribe('${1}').ready();
 endsnippet
-
+# api
+snippet mPublish "Meteor: Publish"
+Meteor.publish('${1:name}', function(${2:argument}){
+  ${3}
+});
+endsnippet
 
 #  React snippets
 
