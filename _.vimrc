@@ -183,7 +183,7 @@ let g:UltiSnipsExpandTrigger="<c-o>"
 "Open NERDTree if no files specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let NERDTreeWinPos=1
+" let NERDTreeWinPos=1 "窗口居右
 "-------------- CtrlP -----------------------------------------------
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
