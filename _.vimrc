@@ -31,6 +31,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'fleischie/vim-styled-components'
 "--------------------------------------------------------------------
 Plugin 'SirVer/ultisnips'
 Plugin 'Mantak/mantak-vim'

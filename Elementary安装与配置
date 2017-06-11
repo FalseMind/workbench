@@ -57,7 +57,7 @@
     在chrome设置里，选择使用系统标题栏和边框
     添加常用chrome插件，并且配置XX-net
       1 更改/etc/hosts文件，在文件里添加(不是覆盖)后面链接里的内容。  #https://github.com/racaljk/hosts/
-        进入chrome网上应用店，添加SwitchOmega MindMap Gliffy OneTab Postman 翻译侠 Eyedropper
+        进入chrome网上应用店，添加SwitchOmega MindMap Gliffy OneTab Postman 翻译侠 Eyedropper Resolution
       2 下载XX.net的稳定版  #https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
       3 sudo apt-get install libnss3-tools python-gtk2
         cd XX-net-folder && ./start
@@ -141,10 +141,7 @@
     pgrep mongo -l  #查看mongo进程
     mongo
   5,安装yarn
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt-get update
-    sudo apt-get install yarn
+    npm install -g yarn
   6,安装代码统计
     sudo apt-get install cloc
     进入要统计的项目 cloc .
