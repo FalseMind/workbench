@@ -33,6 +33,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'fleischie/vim-styled-components'
 "--------------------------------------------------------------------
+Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'
 Plugin 'Mantak/mantak-vim'
 Plugin 'godlygeek/tabular'
@@ -174,8 +175,10 @@ nmap <Leader><Leader>ga :!mantak g api<space>
 nmap <Leader><Leader>da :!mantak d api<space>
 nmap <Leader><Leader>gp :!mantak g page<space>
 nmap <Leader><Leader>dp :!mantak d page<space>
-nmap <Leader><Leader>gc :!mantak g container<space>
-nmap <Leader><Leader>dc :!mantak d container<space>
+nmap <Leader><Leader>gc :!mantak g component<space>
+nmap <Leader><Leader>dc :!mantak d component<space>
+nmap <Leader><Leader>gcc :!mantak g container<space>
+nmap <Leader><Leader>dcc :!mantak d container<space>
 nmap <Leader><Leader>gf :!mantak g fixtures<space>
 nmap <Leader><Leader>df :!mantak d fixtures<space>
 "-------------- Ultisnips -------------------------------------------

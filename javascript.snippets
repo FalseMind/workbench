@@ -1,32 +1,36 @@
-# import
-snippet importMongo "Meteor.Mongo" b
-import { Mongo } from 'meteor/mongo';
-endsnippet
-snippet importLoading "载入动画" b
-import { Mongo } from 'meteor/mongo';
-endsnippet
+# 常用import
 snippet importReact "React.Component" b
 import React from 'react';
 endsnippet
-
-#  Meteor snippets
-snippet ready
-const ready = Meteor.subscribe('${1}').ready();
+snippet importBrowserHistory "browserHistory" b
+import { browserHistory } from 'react-router';
 endsnippet
-# api
+snippet importConnect "connect" b
+import { connect } from 'react-redux';
+endsnippet
+snippet importCreateContainer "createContainer" b
+import { createContainer } from 'meteor/react-meteor-data';
+endsnippet
+snippet importLoading "Loading" b
+import Loading from '/imports/ui/common/components/loading';
+endsnippet
+
+
+# 常用meteor功能
 snippet mPublish "Meteor: Publish"
 Meteor.publish('${1:name}', function(${2:argument}){
-  ${3}
+  ${3:$1}
 });
 endsnippet
 
-#  React snippets
-
-snippet Page
-endsnippet
-
-snippet Component
-endsnippet
-
-snippet Container
+snippet mData "_data"
+function _data(props) {
+  const { id } = props.params;
+  const ready = Meteor.subscribe('${1:ModelName}.${2:one}', id).ready();
+  const data = ${3:$1}Model.findOne(id);
+  return {
+    ready,
+    data,
+  };
+}
 endsnippet
