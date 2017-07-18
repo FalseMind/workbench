@@ -14,6 +14,19 @@ endsnippet
 snippet importLoading "Loading" b
 import Loading from '/imports/ui/common/components/loading';
 endsnippet
+snippet importModel "model" b
+import ${1:Name}Model from '/imports/api/${2:argument}/collection';
+endsnippet
+# 常用export
+snippet exportConnect "connect" b
+export default connect(_state)(${1:Name});
+endsnippet
+snippet exportContainer "container" b
+export default createContainer(_data, ${1:Name});
+endsnippet
+snippet exportConnectAndContainer "connectAndContainer" b
+export default connect(_state)(createContainer(_data, ${1:Name}));
+endsnippet
 
 
 # 常用meteor功能

@@ -1,2 +1,7 @@
 meteor create test --release x.y.z
-meteor update --release x.y.z
+
+meteor update --release 1.5.1-beta.4
+
+
+mongoexport --port=8001 -d meteor -c books  -o  导出文件
+mongoimport --port=8001 -d meteor -c books  导入文件

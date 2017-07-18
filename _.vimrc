@@ -32,6 +32,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'fleischie/vim-styled-components'
+Plugin 'jparise/vim-graphql'
 "--------------------------------------------------------------------
 Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'

@@ -55,3 +55,9 @@ https://github.com/geeeeeeeeek/git-recipes/wiki
 git checkout .
 确保上面的命令使用之前，本地所有未提交的修改都是不想要的。如果不确定，就逐一检查
 ，一旦使用，所有未修改不可逆的丢弃
+
+上传项目到github:
+github新建完项目，这里是graphql
+进入本地的git项目
+git remote add origin git@github.com:Mantak/graphql.git
+git push -u origin master
