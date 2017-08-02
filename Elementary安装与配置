@@ -1,6 +1,6 @@
 安装 Elementary OS
   准备U盘，iso文件，Universal USB Installer，做好启动盘，重启ESC键，从U盘启动
-  安装参考http://www.linuxidc.com/Linux/2016-04/130520.htm
+  安装参考 http://www.linuxidc.com/Linux/2016-04/130520.htm
 基本软件安装
   0,安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包
   1,安装中文输入法
@@ -112,6 +112,9 @@
       StartupNotify=true
       Type=Application
       Categories=Application;
+  10,安装WPS
+     访问网站下载最新deb，http://wps-community.org/download.html
+     sudo dpkg -i your_download.deb
 编程环境搭建
   0,配置github
     ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key

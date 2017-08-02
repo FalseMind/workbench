@@ -1,3 +1,8 @@
+" File: /home/mantak/.vimrc
+" Author: Mantak <mantak.cn@gmail.com>
+" Date: 2017-08-01
+" Last Modified Date: 2017-08-02
+" Last Modified By: Mantak <mantak.cn@gmail.com>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件安装
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -33,6 +38,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'fleischie/vim-styled-components'
 Plugin 'jparise/vim-graphql'
+Plugin 'alpertuna/vim-header'
 "--------------------------------------------------------------------
 Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'
@@ -120,7 +126,7 @@ nmap Q <Nop>
 nmap S <Nop>
 nmap R <Nop>
 nmap K <Nop>
-imap <F1> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
+imap <F2> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
 "---------------窗口快捷键设置----------------------------------------
 map <C-h> <C-w>h
@@ -223,6 +229,12 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 "⚫⚪❌❎⛔🌿🍂🍀⛽🌕🍵🌷🌺🍁🎯👽📍📌📦🔍🔎🔘🔥🔯
+"-------------- AddHeader -------------------------------------------
+let g:header_field_author = 'Mantak'
+let g:header_field_author_email = 'mantak.cn@gmail.com'
+let g:header_field_timestamp_format = '%Y-%m-%d'
+let g:header_auto_add_header = 0
+map <F1> :AddHeader<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
