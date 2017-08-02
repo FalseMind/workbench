@@ -3,6 +3,8 @@
   安装参考 http://www.linuxidc.com/Linux/2016-04/130520.htm
 基本软件安装
   0,安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包
+    sudo apt-get update
+    sudo apt-get upgrade
   1,安装中文输入法
     sudo apt-get remove ibus
     sudo apt-get install fcitx fcitx-config-gtk  fcitx-googlepinyin
