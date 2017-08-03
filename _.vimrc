@@ -102,9 +102,9 @@ nnoremap k gk
 syntax on
 let hour = strftime("%H")
 if 8 <= hour &&  hour < 16
-  set background=light
-else
   set background=dark
+else
+  set background=light
 endif
 let modDay = (strftime("%d"))%3
 if modDay == 0

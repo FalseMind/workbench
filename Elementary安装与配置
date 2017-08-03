@@ -57,9 +57,8 @@
     sudo dpkg -i google-chrome*
     sudo apt-get -f install
     comand+space 可以看到google-chrome了，如果没有，自己手动输入google-chrome回车
-    在chrome设置里，选择使用系统标题栏和边框
     添加常用chrome插件，并且配置XX-net
-      1 更改/etc/hosts文件，在文件里覆盖为后面链接里的内容。  #https://github.com/racaljk/hosts/
+      1 更改/etc/hosts文件，在文件里覆盖为后面链接里的内容。  # https://github.com/racaljk/hosts/
         然后运行: sudo /etc/init.d/networking restart
         进入chrome网上应用店，添加:
         SwitchOmega
