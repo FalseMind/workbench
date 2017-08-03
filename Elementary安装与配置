@@ -12,23 +12,25 @@
     注销即可使用输入法
   2,安装git
     sudo apt-get install git gitk
-    git config --global user.name "TODO username"
-    git config --global user.email "TODO email"
+    git config --global user.name "mantak"
+    git config --global user.email "mantak.cn@gmail.com"
     git config -l  #确认一下
   3,安装nvm node
-    git clone https://github.com/creationix/nvm.git  ~/.nvm
-    echo "source ~/.nvm/nvm.sh" >>  ~/.bashrc  #配置终端启动时自动执行nvm.sh
-    nvm ls-remote
-    nvm install 6.9  #安装某个版本
-    vim ~/.npmrc 把下面两行copy进去
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash  #记得检查一下最新版本
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  #This loads nvm 
+    nvm ls-remote   #查看node版本
+    nvm install 8.2.1 #安装某个版本    
+    sudo apt install vim #新版本，没有安装vim  
+    vim ~/.npmrc 把下面两行copy进去，这样就可以使用taobao作为npm源了
       loglevel=info
-      registry=https://registry.npm.taobao.org
-    npm install -g nrm #安装npm的源管理
+      registry=http://r.cnpmjs.org/
+    npm install -g nrm #安装npm的源管理，方便切换npm源
     nrm ls #列出可用源
-    nrm use xxx 使用某个源
+    nrm use cnpm #使用国内的源
     npm install -g npm-check  #安装npm包更新检查，在相关目录里运行 npm-check检查
-    更新， npm-check -u 安装更新，空格选择，回车安装
-  4,安装vim插件支持silversearcher-ag、wmctrl、eslint、ack2
+    更新，进入项目目录， npm-check -u 安装更新，空格选择，回车安装    
+  4安装vim插件支持  silversearcher-ag、wmctrl、eslint、ack2
     1,sudo apt install silversearcher-ag wmctrl
     2,npm install -g eslint  eslint-plugin-react babel-eslint
       which node 获得node的地址 /home/xx/node
@@ -45,12 +47,12 @@
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt update
     sudo apt install vim-gtk
-    git clone git@github.com:mantak/workbench.git ~/working/workbench
+    git clone https://github.com/Mantak/workbench  ~/working/workbench
     ln -s ~/working/workbench/_.vimrc ~/.vimrc
     ln -s ~/working/workbench/_.agignore ~/.agignore
     ln -s ~/working/workbench/_.eslintrc ~/.eslintrc
     ln -s ~/working/workbench/javascript.snippets ~/.vim/bundle/mantak-vim/UltiSnips/
-    系统设置->键盘->自定义-> gvim -c "call Maximize_Window()"
+    系统设置->键盘->自定义-> gvim -c "call Maximize_Window()"  并且按win+v快捷键，添加
     插件安装参考vimTips
   6,安装google浏览器 + SwitchOmega
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
