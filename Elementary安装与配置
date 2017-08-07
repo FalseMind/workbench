@@ -2,14 +2,14 @@
   准备U盘，iso文件，Universal USB Installer，做好启动盘，重启ESC键，从U盘启动
   安装参考 http://www.linuxidc.com/Linux/2016-04/130520.htm
 基本软件安装
-  0,安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包
-    sudo apt-get update
+  0,sudo apt-get update
     sudo apt-get upgrade
   1,安装中文输入法
     sudo apt-get remove ibus
     sudo apt-get install fcitx fcitx-config-gtk  fcitx-googlepinyin
     sudo apt-get install fcitx-table-all #同时安装其他码表
-    注销即可使用输入法
+    安装完毕，进入系统，选择设置，语言和区域，选择中国，并安装相关语言包。
+    注销即可使用输入法，点击输入法按钮，删除不用的输入法，保留google
   2,安装git
     sudo apt-get install git gitk
     git config --global user.name "mantak"
@@ -17,11 +17,12 @@
     git config -l  #确认一下
   3,安装nvm node
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash  #记得检查一下最新版本
+    vim ~/.bashrc  #在最后面，添加下列两行，这样每次启动终端的时候，就可以找到node, npm
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  #This loads nvm 
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     nvm ls-remote   #查看node版本
-    nvm install 8.2.1 #安装某个版本    
-    sudo apt install vim #新版本，没有安装vim  
+    nvm install 8.2.1 #安装某个版本
+    sudo apt install vim #新版本，没有安装vim
     vim ~/.npmrc 把下面两行copy进去，这样就可以使用taobao作为npm源了
       loglevel=info
       registry=http://r.cnpmjs.org/
@@ -29,7 +30,7 @@
     nrm ls #列出可用源
     nrm use cnpm #使用国内的源
     npm install -g npm-check  #安装npm包更新检查，在相关目录里运行 npm-check检查
-    更新，进入项目目录， npm-check -u 安装更新，空格选择，回车安装    
+    更新，进入项目目录， npm-check -u 安装更新，空格选择，回车安装
   4安装vim插件支持  silversearcher-ag、wmctrl、eslint、ack2
     1,sudo apt install silversearcher-ag wmctrl
     2,npm install -g eslint  eslint-plugin-react babel-eslint
@@ -52,7 +53,9 @@
     ln -s ~/working/workbench/_.agignore ~/.agignore
     ln -s ~/working/workbench/_.eslintrc ~/.eslintrc
     ln -s ~/working/workbench/javascript.snippets ~/.vim/bundle/mantak-vim/UltiSnips/
-    系统设置->键盘->自定义-> gvim -c "call Maximize_Window()"  并且按win+v快捷键，添加
+    系统设置->键盘->快捷键->自定义-> gvim -c "call Maximize_Window()"  并且按win+v快捷键，添加
+    系统设置->键盘->快捷键->应用程序-> 终端         并且按win+b快捷键
+    系统设置->键盘->快捷键->应用程序-> 网络浏览器   并且按win+c快捷键
     插件安装参考vimTips
   6,安装google浏览器 + SwitchOmega
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -62,20 +65,22 @@
     添加常用chrome插件，并且配置XX-net
       1 更改/etc/hosts文件，在文件里覆盖为后面链接里的内容。  # https://github.com/racaljk/hosts/
         然后运行: sudo /etc/init.d/networking restart
-        进入chrome网上应用店，添加:
-        SwitchOmega
-        MindMap
-        Gliffy
-        OneTab
-        Postman
+        添加switchOmega https://switchyomega.com/download.html
+        进入chrome网上应用店，添加下列插件，如果仍然不能访问商店，就呆会儿再试
+        Redux DevTools
+        Apollo Tools
         翻译侠
+        OneTab
+        Gliffy
+        Postman
         Eyedropper
-        Resolution
-        set character encoding
-      2 下载XX.net的稳定版  #https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
-      3 sudo apt-get install libnss3-tools python-gtk2
-        cd XX-net-folder && ./start
-        系统-配置 选择开机启动
+      2 下载XX.net的稳定版，我们假设下载到/home/yourname  # https://github.com/XX-net/XX-Net/blob/master/code/default/download.md
+        解压XX-Net，并且 mv XX-Net .XX-Net
+        sudo apt-get install libnss3-tools  python-gtk2 #安装必要的包
+        sudo ./start #可以看到服务启动了，如果暂时还不能翻墙，就等着。没有问题的。
+        sudo vim /etc/rc.local   #设置开机启动，将下面一行，添加到 exit 0 前面
+        sudo /home/mantak/.XX-Net/start
+      3 参考文档进行配置  https://github.com/XX-net/XX-Net/wiki/How-to-use
       4 配置SwitchOmega
         点击浏览器上的SwitchOmega，选择：选项->导入导出->从备份文件恢复，选择XX-net解压包里的SwitchOmega/OmegaOptions.bak
         选择：XX-NET自动切换->立即更新情景模式
@@ -86,8 +91,8 @@
         在/etc/rc.local中添加一行：
         sudo /home/username/.XX-net/code/default/xx_net.sh start
       6 恢复/etc/hosts文件
-  7,安装flash
-    #54版本以上的chrome不再预安装flash。安装两种方法，先实验第一种，第二种已验证可行
+  7,安装flash，需要先翻墙
+    # 54版本以上的chrome不再预安装flash。安装两种方法，先实验第一种，第二种已验证可行
     1, chrome://components/ 自己更新flash
     2, apt-cache search flashplugin #查看可以安装那些flash插件
        sudo apt-get install flashplugin-installer
@@ -100,21 +105,10 @@
     git clone https://github.com/geeeeeeeeek/electronic-wechat.git
     cd electronic-wechat
     npm install
-    npm run build:linux
-    cp assets/icon.png dist/electronic-wechat-linux-x64
-    sudo mv dist/electronic-wechat-linux-x64 /opt/wechat
-    cd .. && rm -rf  electronic-wechat
-    sudo gvim /usr/share/applications/wechat.desktop
-    粘贴下面内容
-      [Desktop Entry]
-      Name=Wechat
-      Comment=wechat
-      Exec=/opt/wechat/electronic-wechat
-      Icon=/opt/wechat/icon.png
-      Terminal=false
-      StartupNotify=true
-      Type=Application
-      Categories=Application;
+    mv electronic-wechat .electronic-wechat
+    sudo vim /etc/rc.local   #设置开机启动，将下面一行，添加到 exit 0 前面
+    cd /home/mantak/.electronic-wechat && npm start
+
   10,安装WPS
      访问网站下载最新deb，http://wps-community.org/download.html
      sudo dpkg -i your_download.deb
@@ -159,6 +153,7 @@
     mongo
   5,安装yarn
     npm install -g yarn
+    yarn config set registry http://r.cnpmjs.org/
   6,安装代码统计
     sudo apt-get install cloc
     进入要统计的项目 cloc .

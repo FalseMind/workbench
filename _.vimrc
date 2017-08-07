@@ -24,6 +24,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
+Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'altercation/vim-colors-solarized'
@@ -59,7 +60,7 @@ set cmdheight=1 "设定命令行的行数为 1
 set laststatus=2 "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number "显示行号
 set ruler "打开状态栏标尺
-set guifont=Liberation\ Mono\ for\ Powerline\ 11
+set guifont=Liberation\ Mono\ for\ Powerline\ 12
 au TabEnter * let t:current = 1
 au TabLeave * let t:current = 0
 set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
@@ -104,7 +105,8 @@ let hour = strftime("%H")
 if 8 <= hour &&  hour < 16
   set background=dark
 else
-  set background=light
+  set background=dark
+  " set background=light
 endif
 let modDay = (strftime("%d"))%3
 if modDay == 0
@@ -115,6 +117,7 @@ elseif modDay == 1
 else
   colorscheme PaperColor
 endif
+colorscheme molokai
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
