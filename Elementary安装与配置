@@ -108,10 +108,15 @@
     mv electronic-wechat .electronic-wechat
     sudo vim /etc/rc.local   #设置开机启动，将下面一行，添加到 exit 0 前面
     cd /home/mantak/.electronic-wechat && npm start
-
   10,安装WPS
      访问网站下载最新deb，http://wps-community.org/download.html
      sudo dpkg -i your_download.deb
+  11,安装mail
+     sudo apt install geary
+     启动以后
+     添加帐号 -> 其他
+     添加自己的帐号，还有IMAP SMTP 的服务器地址即可
+
 编程环境搭建
   0,配置github
     ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key

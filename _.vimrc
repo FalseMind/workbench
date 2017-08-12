@@ -95,7 +95,7 @@ autocmd InsertLeave * call Fcitx2en() "退出输入模式,自动出中文输入,
 set wrap linebreak nolist
 set textwidth=80 fo+=Mm "80字符换行
 set colorcolumn=+1 "81字符提示
-set synmaxcol=128 "这个默认值是3000导致vim处理大行文本时卡顿"
+set synmaxcol=255 "每行高亮显示的最大字符数，超过了，就不会高亮渲染了。默认是3000
 set display=lastline "长行不显示@
 nnoremap j gj
 nnoremap k gk
