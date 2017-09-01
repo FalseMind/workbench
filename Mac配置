@@ -1,0 +1,35 @@
+第一步安装brew   地址: https://brew.sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install git           #安装git
+brew install macvim        #安装macvim. 运行 mvim
+brew install ack           #为ctrlF安装ack
+brew install cmake         #安装cmake
+brew install node          #安装 nodejs
+npm config set registry http://r.cnpmjs.org/
+npm config get registry
+npm install -g yarn
+yarn config set registry  http://r.cnpmjs.org/
+yarn config get registry
+yarn global add react-native-cli   #安装react native
+
+配置vim
+1. https://github.com/Mantak/workbench  #下载项目
+2. 把Mac.vimrc复制到 ~/.vimr
+3. 启动macvim 运行PluginInstall
+4. 为vim安装字体
+   git clone https://github.com/powerline/fonts
+   cd fonts && ./install.sh
+   cd .. && rm -rf fonts
+5. 安装tern
+   cd ~/.vim/bundle/tern_for_vim && npm i
+6. 安装ycm运行环境
+   cd ~/.vim/bundle/tern_for_vim && npm i
+   cd ~/.vim/bundle/YouCompleteMe
+   ./install.py --all
+7. 安装eslint
+//////////////////////////////////////////////////////////////
+
+https://pqrs.org/osx/karabiner/index.html.en  Mac键盘映射
+ls /usr/local/bin/   显示用户的命令
+Rn安装环境
+http://reactnative.cn/docs/0.47/getting-started.html
