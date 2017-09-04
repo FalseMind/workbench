@@ -4,7 +4,9 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install git            安装git
 brew install imagemagick    图片处理
-brew install macvim         安装macvim. 运行 mvim
+brew install macvim         安装macvim. 运行 mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
+  mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
+  ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
 brew install ack            为ctrlF安装ack
 brew install cmake          安装cmake
 brew install node           安装 nodejs
@@ -21,7 +23,8 @@ ls /usr/local/bin/                 #显示用户的命令
 
 
 安装chrome 貌似brew cask 集成到brew里了？
-brew cask install google-chrome // 安装 Google 浏览器
+brew cask install iterm2         #安装这个终端吧
+brew cask install google-chrome  #安装 Google 浏览器
 brew update &&  brew cleanup // 更新
 下载最新的hots文件 https://github.com/racaljk/hosts
 vim /private/etc/hosts   将最新的hosts文件复制过来
@@ -55,7 +58,10 @@ git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
    ./install.py --all
 
 //////////////////////////////////////////////////////////////
+brew cask install alfred
+brew cask install java
 
+//////////////////////////////////////////////////////////////
 
 
 https://pqrs.org/osx/karabiner/index.html.en  Mac键盘映射

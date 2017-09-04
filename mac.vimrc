@@ -1,4 +1,4 @@
-" File              : /Users/mantak/.vimrc
+" File              : mac.vimrc
 " Author            : Mantak <mantak.cn@gmail.com>
 " Date              : 2017-09-04
 " Last Modified Date: 2017-09-04
@@ -177,9 +177,9 @@ nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
 "---------------插件快捷键设置---------------------------------------
-" map  <silent><M-f> :call NERDTreeFindToggle()<CR>
-" imap <silent><A-f> <ESC>:call NERDTreeFindToggle()<CR>
-map  <f4> :call NERDTreeFindToggle()<CR>
+map  <silent><D-e> :call NERDTreeFindToggle()<CR>
+imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
+" map  <fg> :call NERDTreeFindToggle()<CR>
 
 map  <f12> :call FullScreenToggle()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -219,10 +219,10 @@ let g:jsx_ext_required = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_eslint_exec='/usr/local/Cellar/node/8.4.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '⚫'
-let g:syntastic_warning_symbol = '⚫'
-let g:syntastic_error_style_symbol = '⚪'
-let g:syntastic_warning_style_symbol = '⚪'
+let g:syntastic_error_symbol = '⛔'
+let g:syntastic_warning_symbol = '⛔'
+let g:syntastic_error_style_symbol = '❎'
+let g:syntastic_warning_style_symbol = '❎'
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
