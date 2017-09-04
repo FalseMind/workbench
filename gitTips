@@ -4,6 +4,12 @@ git add .
 git commit -am ''
 git push origin master
 
+生成rsa type的ssh
+  ssh-keygen -t rsa
+将 .ssh/id_rsa.pub  复制到github上的ssh key里
+运行下面命令，如果能看到自己的用户名，则配置正确
+  ssh -T git@github.com
+
 github使用
   上传本地项目到github上。先要到github上开通 new respository，然后根据提示来创建
   记得吧https地址改为git地址，大体是 git@github.com:mantak/respository.git
