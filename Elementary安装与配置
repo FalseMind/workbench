@@ -33,7 +33,7 @@
     更新，进入项目目录， npm-check -u 安装更新，空格选择，回车安装
   4安装vim插件支持  silversearcher-ag、wmctrl、eslint、ack2
     1,sudo apt install silversearcher-ag wmctrl
-    2,npm install -g eslint  eslint-plugin-react babel-eslint
+    2,npm install -g eslint eslint-plugin-react babel-eslint
       which node 获得node的地址 /home/xx/node
       sudo ln -s /home/xx/node /usr/bin/node
     3,sudo apt-get install libfile-next-perl

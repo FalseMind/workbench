@@ -13,6 +13,9 @@ npm config get registry
 npm install -g yarn
 yarn config set registry  http://r.cnpmjs.org/
 yarn config get registry
+yarn global bin #获得yarn bin的目录，并复制
+sudo mvim/usr/local/Cellar/node/8.4.0/bin  #将上一行的目录，添加到最后一行
+yarn global add eslint eslint-plugin-react babel-eslint   #安装eslint代码检测支持
 yarn global add react-native-cli   #安装react native
 ls /usr/local/bin/                 #显示用户的命令
 
@@ -33,7 +36,9 @@ git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
 0. 首先安装vim的包管理工具:
    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 1. https://github.com/Mantak/workbench。下载并配置vim
-2. 把Mac.vimrc复制到 ~/.vimr
+2. ln -s ~/Company/workbench/mac.vimrc ~/.vimrc
+   ln -s ~/Company/workbench/_.agignore ~/.agignore
+   ln -s ~/Company/workbench/_.eslintrc ~/.eslintrc
 3. 启动macvim 运行PluginInstall
 4. 安装字体
    git clone https://github.com/powerline/fonts
@@ -42,7 +47,10 @@ git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
 5. 安装tern
    cd ~/.vim/bundle/tern_for_vim
    npm i
-6. 安装ycm
+6. 启动eslint
+   which eslint
+   复制，并更新vimrc里的eslint的地址
+7. 安装ycm
    cd ~/.vim/bundle/YouCompleteMe
    ./install.py --all
 

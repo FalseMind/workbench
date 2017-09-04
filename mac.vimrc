@@ -1,4 +1,4 @@
-" File              : mac.vim
+" File              : /Users/mantak/.vimrc
 " Author            : Mantak <mantak.cn@gmail.com>
 " Date              : 2017-09-04
 " Last Modified Date: 2017-09-04
@@ -186,7 +186,7 @@ map  <f12> :call FullScreenToggle()<CR>
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------- wxapp.vim -------------------------------------------
-autocmd Filetype wxml setlocal foldmethod=indent
+autocmd File              : /Users/mantak/.vimrc
 "-------------- Ultisnips -------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
@@ -217,7 +217,7 @@ let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:jsx_ext_required = 0
 "-------------- syntastic -------------------------------------------
 let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_eslint_exec='/home/mantak/.nvm/versions/node/v6.9.0/bin/eslint'
+let g:syntastic_javascript_eslint_exec='/usr/local/Cellar/node/8.4.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '⚫'
 let g:syntastic_warning_symbol = '⚫'
