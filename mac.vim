@@ -1,7 +1,7 @@
 " File              : mac.vim
 " Author            : Mantak <mantak.cn@gmail.com>
-" Date              : 2017-09-01
-" Last Modified Date: 2017-09-01
+" Date              : 2017-09-04
+" Last Modified Date: 2017-09-04
 " Last Modified By  : Mantak <mantak.cn@gmail.com>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件安装
@@ -44,6 +44,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'fleischie/vim-styled-components'
 Plugin 'jparise/vim-graphql'
 "--------------------------------------------------------------------
+Plugin 'chemzqm/wxapp.vim'
 Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'
 Plugin 'Mantak/mantak-vim'
@@ -69,6 +70,7 @@ au TabEnter * let t:current = 1
 au TabLeave * let t:current = 0
 set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
 "---------------基本设置---------------------------------------------
+xnoremap p pgvy  "阻止覆盖的时候复制
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set nobackup
 set noswapfile
@@ -145,22 +147,20 @@ map <C-Left> :vertical resize -5<cr>
 map <C-Right> :vertical resize +5<cr>
 nmap <silent><F12> :!google-chrome % &<CR>
 "---------------tab快捷键设置----------------------------------------
-map  <silent><A-n> :tabnew<CR>
-map  <silent><A-q> :tabc<CR>
-nmap <silent><A-1> :tabn 1<cr>
-nmap <silent><A-2> :tabn 2<cr>
-nmap <silent><A-3> :tabn 3<cr>
-nmap <silent><A-4> :tabn 4<cr>
-nmap <silent><A-5> :tabn 5<cr>
-nmap <silent><A-6> :tabn 6<cr>
-nmap <silent><A-7> :tabn 7<cr>
-nmap <silent><A-8> :tabn 8<cr>
-nmap <silent><A-9> :tabn 9<cr>
-nmap <silent><A-0> :tabn 10<cr>
-nmap <silent><A-j> :tabp<cr>
-nmap <silent><A-k> :tabn<cr>
-nmap <silent><A-h> :call TabMove(-1) <CR>
-nmap <silent><A-l> :call TabMove(1)<CR>
+" map  <silent><D-t> :tabnew<CR>
+" map  <silent><D-w> :tabc<CR>
+nmap <silent><D-1> :tabn 1<cr>
+nmap <silent><D-2> :tabn 2<cr>
+nmap <silent><D-3> :tabn 3<cr>
+nmap <silent><D-4> :tabn 4<cr>
+nmap <silent><D-5> :tabn 5<cr>
+nmap <silent><D-6> :tabn 6<cr>
+nmap <silent><D-7> :tabn 7<cr>
+nmap <silent><D-8> :tabn 8<cr>
+nmap <silent><D-9> :tabn 9<cr>
+nmap <silent><D-0> :tabn 10<cr>
+nmap <silent><M-j> :tabp<cr>
+nmap <silent><M-k> :tabn<cr>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
 vmap <Leader>c "+y
@@ -177,24 +177,16 @@ nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
 "---------------插件快捷键设置---------------------------------------
-" map  <silent><A-f> :call ToggleNERDTreeFind()<CR>
-map  <f4> :call ToggleNERDTreeFind()<CR>
-imap <silent><A-f> <ESC>:call ToggleNERDTreeFind()<CR>
+" map  <silent><M-f> :call NERDTreeFindToggle()<CR>
+" imap <silent><A-f> <ESC>:call NERDTreeFindToggle()<CR>
+map  <f4> :call NERDTreeFindToggle()<CR>
+
+map  <f12> :call FullScreenToggle()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"-------------- Mantak ----------------------------------------------
-let $PATH=$PATH . ':/home/mantak/.nvm/versions/node/v6.9.0/bin'
-nmap <Leader><Leader>ga :!mantak g api<space>
-nmap <Leader><Leader>da :!mantak d api<space>
-nmap <Leader><Leader>gp :!mantak g page<space>
-nmap <Leader><Leader>dp :!mantak d page<space>
-nmap <Leader><Leader>gc :!mantak g component<space>
-nmap <Leader><Leader>dc :!mantak d component<space>
-nmap <Leader><Leader>gcc :!mantak g container<space>
-nmap <Leader><Leader>dcc :!mantak d container<space>
-nmap <Leader><Leader>gf :!mantak g fixtures<space>
-nmap <Leader><Leader>df :!mantak d fixtures<space>
+"-------------- wxapp.vim -------------------------------------------
+autocmd Filetype wxml setlocal foldmethod=indent
 "-------------- Ultisnips -------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
@@ -246,32 +238,25 @@ map <F1> :AddHeader<CR>
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cd ~/Company
-autocmd File              : mac.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-fun! Search()
+func! Search()
   let keyword = expand("<cword>")
   let url = "https://www.baidu.com/s?wd=" . keyword
-  silent exec "!google-chrome '".url."'"
+  silent exec "!open '".url."'"
 endfun
-function! TabMove(direction)
-  let ctpn=tabpagenr()
-  if a:direction < 0
-    execute "tabmove ".(ctpn - 2)
-  else
-    execute "tabmove ".(ctpn + 1)
-  endif
-endfunction
-
-fun! Maximize_Window()
-  silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
-endfunction
-
-function! ToggleNERDTreeFind()
+func! NERDTreeFindToggle()
   if g:NERDTree.IsOpen()
     execute ':NERDTreeClose'
   else
     execute ':NERDTreeFind'
   endif
 endfunction
+func! FullScreenToggle()
+  if &fullscreen
+    set nofu
+  else
+    set fu
+  endif
+endf
