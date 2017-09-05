@@ -1,7 +1,7 @@
-" File              : mac.vimrc
+" File              : /Users/mantak/.vimrc
 " Author            : Mantak <mantak.cn@gmail.com>
-" Date              : 2017-09-04
-" Last Modified Date: 2017-09-04
+" Date              : 2017-09-05
+" Last Modified Date: 2017-09-05
 " Last Modified By  : Mantak <mantak.cn@gmail.com>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件安装
@@ -14,7 +14,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "--------------------------------------------------------------------
 Plugin 'airblade/vim-rooter'
-Plugin 'Mantak/vim-header'
+Plugin 'alpertuna/vim-header'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -180,13 +180,12 @@ nmap <leader>s :call Search()<CR>
 map  <silent><D-e> :call NERDTreeFindToggle()<CR>
 imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
 " map  <fg> :call NERDTreeFindToggle()<CR>
-
-map  <f12> :call FullScreenToggle()<CR>
+map <f2> :call FullScreenToggle()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------- wxapp.vim -------------------------------------------
-autocmd File              : /Users/mantak/.vimrc
+autocmd Filetype wxml setlocal foldmethod=indent
 "-------------- Ultisnips -------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
@@ -198,7 +197,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
-map <A-p> :CtrlPBuffer<CR>
+map <C-S-p> :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
@@ -219,10 +218,10 @@ let g:jsx_ext_required = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_eslint_exec='/usr/local/Cellar/node/8.4.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '⛔'
-let g:syntastic_warning_symbol = '⛔'
-let g:syntastic_error_style_symbol = '❎'
-let g:syntastic_warning_style_symbol = '❎'
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_warning_symbol = '❌'
+let g:syntastic_error_style_symbol = '❌'
+let g:syntastic_warning_style_symbol = '❌'
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
@@ -232,7 +231,7 @@ highlight link SyntasticStyleWarningSign SignColumn
 let g:header_field_author = 'Mantak'
 let g:header_field_author_email = 'mantak.cn@gmail.com'
 let g:header_field_timestamp_format = '%Y-%m-%d'
-" let g:header_auto_add_header = 0
+let g:header_auto_add_header = 0
 map <F1> :AddHeader<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置

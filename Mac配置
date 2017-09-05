@@ -1,65 +1,75 @@
 安装手记
 
 第一步安装brew  参考：https://brew.sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install git            安装git
-brew install imagemagick    图片处理
-brew install macvim         安装macvim. 运行 mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
-  mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
-  ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
-brew install ack            为ctrlF安装ack
-brew install cmake          安装cmake
-brew install node           安装 nodejs
-npm config set registry http://r.cnpmjs.org/
-npm config get registry
-npm install -g yarn
-yarn config set registry  http://r.cnpmjs.org/
-yarn config get registry
-yarn global bin #获得yarn bin的目录，并复制
-sudo mvim/usr/local/Cellar/node/8.4.0/bin  #将上一行的目录，添加到最后一行
-yarn global add eslint eslint-plugin-react babel-eslint   #安装eslint代码检测支持
-yarn global add react-native-cli   #安装react native
-ls /usr/local/bin/                 #显示用户的命令
-
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+安装必用软件
+  brew install git            安装git
+  brew install imagemagick    图片处理
+  brew install macvim         安装macvim. 运行 mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
+    mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
+    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
+  brew install ack            为ctrlF安装ack
+  brew install cmake          安装cmake
+  brew install node           安装 nodejs
+  npm config set registry http://r.cnpmjs.org/
+  npm config get registry
+  npm install -g yarn
+  yarn config set registry  http://r.cnpmjs.org/
+  yarn config get registry
+  yarn global bin       #获得yarn bin的目录，并复制
+  sudo mvim /etc/paths  #将上一行的目录，添加到最后一行
+  yarn global add eslint eslint-plugin-react babel-eslint   #安装eslint代码检测支持
+  yarn global add react-native-cli   #安装react native
+  ls /usr/local/bin/                 #显示用户的命令
 
 安装chrome 貌似brew cask 集成到brew里了？
-brew cask install iterm2         #安装这个终端吧
-brew cask install google-chrome  #安装 Google 浏览器
-brew update &&  brew cleanup // 更新
-下载最新的hots文件 https://github.com/racaljk/hosts
-vim /private/etc/hosts   将最新的hosts文件复制过来
-访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
+  brew cask install google-chrome  #安装 Google 浏览器
+  brew update &&  brew cleanup // 更新
+  下载最新的hots文件 https://github.com/racaljk/hosts
+  vim /private/etc/hosts   将最新的hosts文件复制过来
+  访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
 
-git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
-~/.XX-net/start
-在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
-可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
+  git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
+  ~/.XX-net/start
+  在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
+  可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
 
+安装Macvim插件
+  0. 首先安装vim的包管理工具:
+     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  1. https://github.com/Mantak/workbench。下载并配置vim
+  2. ln -s ~/Company/workbench/mac.vimrc ~/.vimrc
+     ln -s ~/Company/workbench/_.agignore ~/.agignore
+     ln -s ~/Company/workbench/_.eslintrc ~/.eslintrc
+  3. 启动macvim 运行PluginInstall
+  4. 安装字体
+     git clone https://github.com/powerline/fonts
+     cd fonts && ./install.sh
+     cd .. && rm -rf fonts
+  5. 安装tern
+     cd ~/.vim/bundle/tern_for_vim
+     npm i
+  6. 启动eslint
+     which eslint
+     复制，并更新vimrc里的eslint的地址
+  7. 安装ycm
+     cd ~/.vim/bundle/YouCompleteMe
+     ./install.py --all
 
-0. 首先安装vim的包管理工具:
-   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-1. https://github.com/Mantak/workbench。下载并配置vim
-2. ln -s ~/Company/workbench/mac.vimrc ~/.vimrc
-   ln -s ~/Company/workbench/_.agignore ~/.agignore
-   ln -s ~/Company/workbench/_.eslintrc ~/.eslintrc
-3. 启动macvim 运行PluginInstall
-4. 安装字体
-   git clone https://github.com/powerline/fonts
-   cd fonts && ./install.sh
-   cd .. && rm -rf fonts
-5. 安装tern
-   cd ~/.vim/bundle/tern_for_vim
-   npm i
-6. 启动eslint
-   which eslint
-   复制，并更新vimrc里的eslint的地址
-7. 安装ycm
-   cd ~/.vim/bundle/YouCompleteMe
-   ./install.py --all
+安装mongodb
+  brew install mongodb             #brew cask安装的版本，貌似低一点。
+  sudo mkdir -p /data/db           #mongodb默认的数据存放目录，用这个位置就挺好
+  sudo chown -R $USER /data/db     #添加当前用户的权限
+  mvim /usr/local/etc/mongod.conf  #查看mongodb的配置文件，将storage目录改为/data/db
+  mongod                           #启动mongodb
+  mongo                            #进入mongodb终端
+  brew services start mongoldb     #设置mongodb开机启动
+  brew cask install robo-3t        #安装图形客户端
+  comand + space  robo             #启动robo 3t
 
+安装java
+  brew cask install java
 //////////////////////////////////////////////////////////////
-brew cask install alfred
-brew cask install java
 
 //////////////////////////////////////////////////////////////
 
