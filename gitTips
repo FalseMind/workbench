@@ -1,5 +1,7 @@
-配置git的基本用户信息
+查看git的基本用户信息
 git config --global --edit
+
+
 
 将本地项目上传到github上的空项目
 下载远程项目，添加内容，添加.gitingnore

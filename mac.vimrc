@@ -19,7 +19,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "--------------------------------------------------------------------
-Plugin 'ybian/smartim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'dyng/ctrlsf.vim'
 Plugin 'Lokaltog/vim-easymotion'
@@ -66,6 +65,7 @@ set laststatus=2  "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number        "显示行号
 set ruler         "打开状态栏标尺
 set guifont=Source\ Code\ Pro\ for\ Powerline:h15
+" set guifont=Menlo\ for\ Powerline:h15
 au TabEnter * let t:current = 1
 au TabLeave * let t:current = 0
 set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
@@ -159,8 +159,8 @@ nmap <silent><D-7> :tabn 7<cr>
 nmap <silent><D-8> :tabn 8<cr>
 nmap <silent><D-9> :tabn 9<cr>
 nmap <silent><D-0> :tabn 10<cr>
-nmap <silent><M-j> :tabp<cr>
-nmap <silent><M-k> :tabn<cr>
+" nmap <silent><M-j> :tabp<cr>
+" nmap <silent><M-k> :tabn<cr>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
 vmap <Leader>c "+y
@@ -218,15 +218,14 @@ let g:jsx_ext_required = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_eslint_exec='/usr/local/Cellar/node/8.4.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_warning_symbol = '❌'
-let g:syntastic_error_style_symbol = '❌'
-let g:syntastic_warning_style_symbol = '❌'
+let g:syntastic_error_symbol = '>>'
+let g:syntastic_warning_symbol = '>>'
+let g:syntastic_error_style_symbol = '>>'
+let g:syntastic_warning_style_symbol = '>>'
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
-"⚫⚪❌❎⛔🌿🍂🍀⛽🌕🍵🌷🌺🍁🎯👽📍📌📦🔍🔎🔘🔥🔯
 "-------------- AddHeader -------------------------------------------
 let g:header_field_author = 'Mantak'
 let g:header_field_author_email = 'mantak.cn@gmail.com'

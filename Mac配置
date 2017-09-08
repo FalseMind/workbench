@@ -1,5 +1,15 @@
 安装手记
 
+///////////////////////必装内容////////////////////////////////
+小贴士：
+  .DS_store 的开关命令，运行第一行，禁止生成。运行第二行，恢复功能
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+    defaults delete com.apple.desktopservices DSDontWriteNetworkStores
+
+安装搜狗输入法  http://pinyin.sogou.com/mac/
+访问，下载，安装
+
+
 第一步安装brew  参考：https://brew.sh
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 安装必用软件
@@ -8,6 +18,7 @@
   brew install macvim         安装macvim. 运行 mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
     mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
     ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
+  brew install watchman       为react-native安装必要包
   brew install ack            为ctrlF安装ack
   brew install cmake          安装cmake
   brew install node           安装 nodejs
@@ -20,6 +31,7 @@
   sudo mvim /etc/paths  #将上一行的目录，添加到最后一行
   yarn global add eslint eslint-plugin-react babel-eslint   #安装eslint代码检测支持
   yarn global add react-native-cli   #安装react native
+  yarn global add create-react-app
   ls /usr/local/bin/                 #显示用户的命令
 
 安装chrome 貌似brew cask 集成到brew里了？
@@ -33,19 +45,21 @@
   ~/.XX-net/start
   在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
   可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
+  打开chrome商店，安装翻译侠、colorzilla、redux devtools、mobile tester
 
-安装Macvim插件
+配置Macvim
   0. 首先安装vim的包管理工具:
      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   1. https://github.com/Mantak/workbench。下载并配置vim
-  2. ln -s ~/Company/workbench/mac.vimrc ~/.vimrc
-     ln -s ~/Company/workbench/_.agignore ~/.agignore
-     ln -s ~/Company/workbench/_.eslintrc ~/.eslintrc
+  2. ln -s ~/Working/workbench/mac.vimrc ~/.vimrc
+     ln -s ~/Working/workbench/_.agignore ~/.agignore
+     ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
   3. 启动macvim 运行PluginInstall
   4. 安装字体
-     git clone https://github.com/powerline/fonts
-     cd fonts && ./install.sh
-     cd .. && rm -rf fonts
+     cd && git clone https://github.com/abertsch/Menlo-for-Powerline
+     cd Menlo-for-Powerline && open Menlo\ for\ Powerline.ttf
+     选择安装字体
+     cd .. && rm -rf Menlo-for-Powerline
   5. 安装tern
      cd ~/.vim/bundle/tern_for_vim
      npm i
@@ -55,6 +69,14 @@
   7. 安装ycm
      cd ~/.vim/bundle/YouCompleteMe
      ./install.py --all
+
+配置git
+   ln -s ~/Working/workbench/_.gitignore ~/.gitignore
+   git config --global user.name 'mantak'
+   git config --global user.email 'mantak.cn@gmail.com'
+   git config --global core.excludesfile '~/.gitignore'
+
+///////////////////////选装内容////////////////////////////////
 
 安装mongodb
   brew install mongodb             #brew cask安装的版本，貌似低一点。
@@ -69,11 +91,18 @@
 
 安装java
   brew cask install java
+  java -version
+安装android
+  http://www.pc6.com/mac/136546.html  去该页面下载安卓studio
+  SDK的默认安装路径应该是： SDK Folder: /Users/mantak/Library/Android/sdk
+  启动an，然后跳过代理设置，直接点下一步，选择定制安装
+  勾选Performance和Android Virtual Device
+  点下一步，安装SDK即可，时间有点久，耐心等待半天
+安装expo
+  下载expo git clone https://github.com/expo/expo
 //////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
 
 
-https://pqrs.org/osx/karabiner/index.html.en  Mac键盘映射
 Rn社区
 http://reactnative.cn/docs/0.47/getting-started.html
