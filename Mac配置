@@ -13,39 +13,44 @@
 第一步安装brew  参考：https://brew.sh
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 安装必用软件
+  brew install iTerm2         安装终端
   brew install git            安装git
   brew install imagemagick    图片处理
   brew install macvim         安装macvim. 运行 mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
     mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
     ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
-  brew install watchman       为react-native安装必要包
-  brew install ack            为ctrlF安装ack
-  brew install cmake          安装cmake
-  brew install node           安装 nodejs
+  brew install watchman            为react-native安装必要包
+  brew install ack                 为ctrlF安装ack
+  brew install cmake               安装cmake
+  brew cask install google-chrome  安装 Google 浏览器
+  brew update && brew upgrade      更新brew
+  brew cleanup                     删除brew安装包
+  ls /usr/local/bin/               显示用户的命令
+
+安装node
+  https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
+  运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
+  nvm ls-remote              #列出远程node列表
+  nvm install v8.4.0         #安装指定版本的node
+  nvm alias default v8.4.0   #设置某个版本为默认版本
   npm config set registry http://r.cnpmjs.org/
   npm config get registry
-  npm install -g yarn
+  npm -g bin     #获得npm的包目录，并复制
+  sudo mvim /etc/paths  #将上一行的目录，添加到最后一行
+  npm install -g yarn typescript create-react-app eslint eslint-plugin-react
   yarn config set registry  http://r.cnpmjs.org/
   yarn config get registry
-  yarn global bin       #获得yarn bin的目录，并复制
-  sudo mvim /etc/paths  #将上一行的目录，添加到最后一行
-  yarn global add eslint eslint-plugin-react babel-eslint   #安装eslint代码检测支持
-  yarn global add react-native-cli   #安装react native
-  yarn global add create-react-app
-  ls /usr/local/bin/                 #显示用户的命令
 
-安装chrome 貌似brew cask 集成到brew里了？
-  brew cask install google-chrome  #安装 Google 浏览器
-  brew update &&  brew cleanup // 更新
+配置chrome
   下载最新的hots文件 https://github.com/racaljk/hosts
   vim /private/etc/hosts   将最新的hosts文件复制过来
   访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
-
   git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
   ~/.XX-net/start
   在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
   可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
-  打开chrome商店，安装翻译侠、colorzilla、redux devtools、mobile tester
+  打开chrome商店，安装翻译侠、QRCode、colorzilla、redux devtools、mobile tester
 
 配置Macvim
   0. 首先安装vim的包管理工具:
@@ -77,7 +82,6 @@
    git config --global core.excludesfile '~/.gitignore'
 
 ///////////////////////选装内容////////////////////////////////
-
 安装mongodb
   brew install mongodb             #brew cask安装的版本，貌似低一点。
   sudo mkdir -p /data/db           #mongodb默认的数据存放目录，用这个位置就挺好
@@ -88,7 +92,6 @@
   brew services start mongoldb     #设置mongodb开机启动
   brew cask install robo-3t        #安装图形客户端
   comand + space  robo             #启动robo 3t
-
 安装java
   brew cask install java
   java -version
@@ -97,7 +100,8 @@
   SDK的默认安装路径应该是： SDK Folder: /Users/mantak/Library/Android/sdk
   启动an，然后跳过代理设置，直接点下一步，选择定制安装
   勾选Performance和Android Virtual Device
-  点下一步，安装SDK即可，时间有点久，耐心等待半天
+  点下一步，安装SDK，时间有点久，耐心等待半天
+  安装完毕
 安装expo
   下载expo git clone https://github.com/expo/expo
 //////////////////////////////////////////////////////////////
@@ -106,3 +110,4 @@
 
 Rn社区
 http://reactnative.cn/docs/0.47/getting-started.html
+http://osxdaily.com/2011/12/10/disable-or-enable-spotlight-in-mac-os-x-lion/

@@ -64,8 +64,8 @@ set cmdheight=1   "设定命令行的行数为 1
 set laststatus=2  "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number        "显示行号
 set ruler         "打开状态栏标尺
-set guifont=Source\ Code\ Pro\ for\ Powerline:h15
-" set guifont=Menlo\ for\ Powerline:h15
+" set guifont=Source\ Code\ Pro\ for\ Powerline:h15
+set guifont=Menlo\ for\ Powerline:h15
 au TabEnter * let t:current = 1
 au TabLeave * let t:current = 0
 set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
