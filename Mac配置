@@ -16,13 +16,15 @@
   brew install iTerm2         安装终端
   brew install git            安装git
   brew install imagemagick    图片处理
-  brew install macvim         安装macvim. 运行 mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
+  brew install vim macvim     安装vim(必须，不然git提示vim版本过低) macvim. 运行 mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
     mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
     ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
-  brew install watchman            为react-native安装必要包
+  brew install watchman flow       为react-native安装必要包
   brew install ack                 为ctrlF安装ack
   brew install cmake               安装cmake
+  brew install nginx               安装nginx
   brew cask install google-chrome  安装 Google 浏览器
+  brew cask install atom           安装 atome 编辑器
   brew update && brew upgrade      更新brew
   brew cleanup                     删除brew安装包
   ls /usr/local/bin/               显示用户的命令
@@ -34,12 +36,15 @@
   nvm ls-remote              #列出远程node列表
   nvm install v8.4.0         #安装指定版本的node
   nvm alias default v8.4.0   #设置某个版本为默认版本
-  npm config set registry http://r.cnpmjs.org/
+  npm config set registry https://registry.npm.taobao.org/
+  // npm config set registry http://r.cnpmjs.org/
   npm config get registry
   npm -g bin     #获得npm的包目录，并复制
   sudo mvim /etc/paths  #将上一行的目录，添加到最后一行
-  npm install -g yarn typescript create-react-app eslint eslint-plugin-react
-  yarn config set registry  http://r.cnpmjs.org/
+  npm install -g yarn typescript eslint babel-eslint eslint-plugin-react
+  npm install -g exp create-react-app create-react-native-app
+  yarn config set registry https://registry.npm.taobao.org/
+  // yarn config set registry  http://r.cnpmjs.org/
   yarn config get registry
 
 配置chrome
@@ -50,7 +55,7 @@
   ~/.XX-net/start
   在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
   可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
-  打开chrome商店，安装翻译侠、QRCode、colorzilla、redux devtools、mobile tester
+  打开chrome商店，安装翻译侠、QRCode、colorzilla、redux devtools、mobile tester、Direct APK Downloader
 
 配置Macvim
   0. 首先安装vim的包管理工具:
@@ -81,6 +86,13 @@
    git config --global user.email 'mantak.cn@gmail.com'
    git config --global core.excludesfile '~/.gitignore'
 
+配置nginx
+  mvim /usr/local/etc/nginx/nginx.conf  #修改配置文件啦
+  nginx -h         #查看帮助
+  nginx -s stop    #停止nginx
+  nginx -s reload  #重启nginx
+  nginx            #启动nginx
+
 ///////////////////////选装内容////////////////////////////////
 安装mongodb
   brew install mongodb             #brew cask安装的版本，貌似低一点。
@@ -96,14 +108,37 @@
   brew cask install java
   java -version
 安装android
+  序：AndroidStudio既是开发环境，又是包管理器，还是要装滴
   http://www.pc6.com/mac/136546.html  去该页面下载安卓studio
   SDK的默认安装路径应该是： SDK Folder: /Users/mantak/Library/Android/sdk
   启动an，然后跳过代理设置，直接点下一步，选择定制安装
   勾选Performance和Android Virtual Device
   点下一步，安装SDK，时间有点久，耐心等待半天
   安装完毕
+  设置SDK path，确定sdk位置，然后添加至.bash_profile，并且添加NDK、tools路径
+    mvim ~/.bash_profile
+    export ANDROID_HOME=~/Library/Android/sdk
+    export ANDROID_NDK=~/Library/Android/sdk
+    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+  开启Gradle Daemon可以极大地提升java代码的增量编译速度。
+    touch ~/.gradle/gradle.properties && echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
+  添加真机测试，不知道是否因为黑苹果，执行完了，没有效果
+    运行下列命令，获取连接的USB的Vendor ID
+    system_profiler  SPUSBDataType
+    mvim  ~/.android/adb_usb.ini
+    将上面的VendorId 注意，可能有好几个USB的VendorId，要找准Android的6位号码，开新行，添加进去
+    adb kill-server
+    adb start-server
+    成功后应该能看见提示：
+    * daemon not running. starting it now on port 5037 *
+    * daemon started successfully *
 安装expo
   下载expo git clone https://github.com/expo/expo
+  cd expo/android
+  npm install gulp
+  npm install --save-dev gulp-shell
+  npm install username xdl shelljs @ccheever/crayon @exponent/json-file
+              replace-string @exponent/spawn-async
 //////////////////////////////////////////////////////////////
 
 

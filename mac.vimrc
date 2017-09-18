@@ -27,10 +27,9 @@ Plugin 'ternjs/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
+Plugin 'rakr/vim-two-firewatch'
+Plugin 'jacoborus/tender.vim'
 Plugin 'tomasr/molokai'
-Plugin 'morhetz/gruvbox'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'rcabralc/rcabralc-colorscheme.vim'
 "--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
@@ -69,6 +68,7 @@ set guifont=Menlo\ for\ Powerline:h15
 au TabEnter * let t:current = 1
 au TabLeave * let t:current = 0
 set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
+" set ambiwidth=double  "设置Unicode字符可以正确显示
 "---------------基本设置---------------------------------------------
 xnoremap p pgvy  "阻止覆盖的时候复制
 set fileencodings=utf-8,gb2312,gbk,gb18030
@@ -106,23 +106,21 @@ nnoremap j gj
 nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
+let macvim_skip_colorscheme=1
 let hour = strftime("%H")
 if 8 <= hour &&  hour < 16
-  set background=dark
+  set background=light
 else
   set background=dark
-  " set background=light
 endif
 let modDay = (strftime("%d"))%3
 if modDay == 0
-  colorscheme gruvbox
-  "colorscheme rcabralc
+  colorscheme molokai
 elseif modDay == 1
-  colorscheme solarized
+  colorscheme tender
 else
-  colorscheme PaperColor
+  colorscheme two-firewatch
 endif
-colorscheme molokai
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,7 +165,6 @@ vmap <Leader>c "+y
 vmap <Leader>v "+p
 nmap <Leader>v "+p
 nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
 nmap <leader>g gg=G
 nmap <leader>i <c-w>F
 nmap <leader>t <c-w>gf
@@ -180,7 +177,7 @@ nmap <leader>s :call Search()<CR>
 map  <silent><D-e> :call NERDTreeFindToggle()<CR>
 imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
 " map  <fg> :call NERDTreeFindToggle()<CR>
-map <f2> :call FullScreenToggle()<CR>
+map <f4> :call FullScreenToggle()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -216,16 +213,17 @@ let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:jsx_ext_required = 0
 "-------------- syntastic -------------------------------------------
 let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_eslint_exec='/usr/local/Cellar/node/8.4.0/bin/eslint'
+let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v8.4.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '>>'
-let g:syntastic_warning_symbol = '>>'
-let g:syntastic_error_style_symbol = '>>'
-let g:syntastic_warning_style_symbol = '>>'
+let g:syntastic_error_symbol = '->'
+let g:syntastic_warning_symbol = '->'
+let g:syntastic_error_style_symbol = '->'
+let g:syntastic_warning_style_symbol = '->'
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+"ㄨ
 "-------------- AddHeader -------------------------------------------
 let g:header_field_author = 'Mantak'
 let g:header_field_author_email = 'mantak.cn@gmail.com'
@@ -258,3 +256,4 @@ func! FullScreenToggle()
     set fu
   endif
 endf
+
