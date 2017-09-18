@@ -94,6 +94,8 @@
   nginx -s reload  #重启nginx
   nginx            #启动nginx
 
+配置bash
+  ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile  #使用以前的bash配置文件
 ///////////////////////选装内容////////////////////////////////
 安装mongodb
   brew install mongodb             #brew cask安装的版本，貌似低一点。
@@ -116,7 +118,8 @@
   勾选Performance和Android Virtual Device
   点下一步，安装SDK，时间有点久，耐心等待半天
   安装完毕
-  设置SDK path，确定sdk位置，然后添加至.bash_profile，并且添加NDK、tools路径
+  设置SDK path，确定sdk位置，然后添加至.bash_profile，并且添加NDK、tools路径，配
+  置文件里已有
     mvim ~/.bash_profile
     export ANDROID_HOME=~/Library/Android/sdk
     export ANDROID_NDK=~/Library/Android/sdk
@@ -141,7 +144,6 @@
   npm install username xdl shelljs @ccheever/crayon @exponent/json-file
               replace-string @exponent/spawn-async
 //////////////////////////////////////////////////////////////
-
 
 
 Rn社区
