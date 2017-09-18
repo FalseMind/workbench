@@ -84,7 +84,8 @@
    ln -s ~/Working/workbench/_.gitignore ~/.gitignore
    git config --global user.name 'mantak'
    git config --global user.email 'mantak.cn@gmail.com'
-   git config --global core.excludesfile '~/.gitignore'
+   git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
+   git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
 
 配置nginx
   mvim /usr/local/etc/nginx/nginx.conf  #修改配置文件啦

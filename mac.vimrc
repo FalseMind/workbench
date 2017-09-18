@@ -1,3 +1,4 @@
+"
 " File              : /Users/mantak/.vimrc
 " Author            : Mantak <mantak.cn@gmail.com>
 " Date              : 2017-09-05
@@ -27,10 +28,9 @@ Plugin 'ternjs/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
-Plugin 'rakr/vim-two-firewatch'
+Plugin 'sjl/badwolf'
 Plugin 'jacoborus/tender.vim'
 Plugin 'tomasr/molokai'
-Plugin 'rcabralc/rcabralc-colorscheme.vim'
 "--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -67,7 +67,7 @@ set ruler         "打开状态栏标尺
 set guifont=Menlo\ for\ Powerline:h15
 au TabEnter * let t:current = 1
 au TabLeave * let t:current = 0
-set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
+" set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
 " set ambiwidth=double  "设置Unicode字符可以正确显示
 "---------------基本设置---------------------------------------------
 xnoremap p pgvy  "阻止覆盖的时候复制
@@ -91,10 +91,10 @@ set noerrorbells "关闭错误信息响铃
 set isk+=- "将-连接符也设置为单词
 set scrolloff=3 "上下滚动的时候留出3行
 set sidescrolloff=8 "左右滚动的时候,留出8个字符
-let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
+" let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
 autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
-" autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
 autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
+" autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
 " autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 "---------------换行设置---------------------------------------------
 set wrap linebreak nolist
@@ -115,11 +115,11 @@ else
 endif
 let modDay = (strftime("%d"))%3
 if modDay == 0
-  colorscheme molokai
+  colorscheme badwolf
 elseif modDay == 1
-  colorscheme tender
+  colorscheme molokai
 else
-  colorscheme two-firewatch
+  colorscheme tender
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
@@ -139,11 +139,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <C-Up> :resize +5<cr>
-map <C-Down> :resize -5<cr>
-map <C-Left> :vertical resize -5<cr>
-map <C-Right> :vertical resize +5<cr>
-nmap <silent><F12> :!google-chrome % &<CR>
 "---------------tab快捷键设置----------------------------------------
 " map  <silent><D-t> :tabnew<CR>
 " map  <silent><D-w> :tabc<CR>
