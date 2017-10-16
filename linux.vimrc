@@ -13,6 +13,7 @@ call vundle#rc() "required!
 Plugin 'gmarik/vundle'
 "--------------------------------------------------------------------
 Plugin 'airblade/vim-rooter'
+Plugin 'alpertuna/vim-header'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -37,9 +38,9 @@ Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'briancollins/vim-jst'
 Plugin 'fleischie/vim-styled-components'
 Plugin 'jparise/vim-graphql'
-Plugin 'alpertuna/vim-header'
 "--------------------------------------------------------------------
 Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'

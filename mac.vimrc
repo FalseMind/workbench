@@ -39,6 +39,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'briancollins/vim-jst'
 Plugin 'fleischie/vim-styled-components'
 Plugin 'jparise/vim-graphql'
 "--------------------------------------------------------------------
