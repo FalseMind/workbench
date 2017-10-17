@@ -132,19 +132,21 @@ nmap R <Nop>
 nmap K <Nop>
 imap <F2> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
+"---------------基本快捷键设置----------------------------------------
+vmap <A-c> "+y
+map  <A-v> "+p
+nmap <A-s> :w<CR>
+nmap <A-w> :q<CR>
+map  <A-t> :tabnew<CR>
+"---------------目录快捷键设置---------------------------------------
+map  <silent><A-e> :call ToggleNERDTreeFind()<CR>
+imap <silent><A-e> <ESC>:call ToggleNERDTreeFind()<CR>
 "---------------窗口快捷键设置----------------------------------------
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <C-Up> :resize +5<cr>
-map <C-Down> :resize -5<cr>
-map <C-Left> :vertical resize -5<cr>
-map <C-Right> :vertical resize +5<cr>
-nmap <silent><F12> :!google-chrome % &<CR>
 "---------------tab快捷键设置----------------------------------------
-map  <silent><A-n> :tabnew<CR>
-map  <silent><A-q> :tabc<CR>
 nmap <silent><A-1> :tabn 1<cr>
 nmap <silent><A-2> :tabn 2<cr>
 nmap <silent><A-3> :tabn 3<cr>
@@ -155,17 +157,8 @@ nmap <silent><A-7> :tabn 7<cr>
 nmap <silent><A-8> :tabn 8<cr>
 nmap <silent><A-9> :tabn 9<cr>
 nmap <silent><A-0> :tabn 10<cr>
-nmap <silent><A-j> :tabp<cr>
-nmap <silent><A-k> :tabn<cr>
-nmap <silent><A-h> :call TabMove(-1) <CR>
-nmap <silent><A-l> :call TabMove(1)<CR>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
-vmap <Leader>c "+y
-vmap <Leader>v "+p
-nmap <Leader>v "+p
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
 nmap <leader>g gg=G
 nmap <leader>i <c-w>F
 nmap <leader>t <c-w>gf
@@ -174,9 +167,6 @@ nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
 vmap <Leader>t :Tab<space>/
 nmap <leader>s :call Search()<CR>
-"---------------插件快捷键设置---------------------------------------
-map  <silent><A-f> :call ToggleNERDTreeFind()<CR>
-imap <silent><A-f> <ESC>:call ToggleNERDTreeFind()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
