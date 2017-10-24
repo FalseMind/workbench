@@ -94,6 +94,14 @@
   // yarn config set registry  http://r.cnpmjs.org/
   yarn config get registry
 
+安装Phoenix
+  brew install elixir   #安装elixir(同时安装erlang)
+  mix local.hex         #安装或者更新hex(包管理)
+  mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
+  mix phx.new hello
+  cd hello && mix ecto.create
+  mix phx.server
+
 安装nginx
   brew install nginx               安装nginx
   /usr/local/Cellar/nginx/1.4.7/html    #nginx默认访问的路径
@@ -107,6 +115,14 @@
   brew install mysql           #安装mysql
   mysql -uroot                 #免密进入mysql shell
   mysql_secure_installation    #运行命令，为root设置密码，阻止任何免密进入
+
+安装postgreSQL
+  brew install postgresql
+  pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start     #启动 PostgreSQL
+  pg_ctl -D /usr/local/var/postgres stop -s -m fast                                 #关闭 PostgreSQL
+  超级用户默认的就是当前用户的id和密码
+  简单参考:
+  http://www.cnblogs.com/shineqiujuan/p/4703304.html
 
 安装mongodb
   brew install mongodb             #brew cask安装的版本，貌似低一点。

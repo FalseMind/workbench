@@ -32,6 +32,7 @@ Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'jacoborus/tender.vim'
 "--------------------------------------------------------------------
+Plugin 'elixir-editors/vim-elixir'
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
 Plugin 'posva/vim-vue'

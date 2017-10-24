@@ -1,0 +1,8 @@
+安装elixir、hex、phoenix_new、postgreSQL
+
+mix phx.new xxx
+配置 xxx/config/dev.exs 设置合格的用户名密码和适当的数据库名，开发时，使用创建
+postgreSql的用户名密码作为超级用户即可
+
+mix ecto.create 即可初始化项目
+mix hpx.server  即可启动项目
