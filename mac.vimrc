@@ -29,11 +29,12 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
 Plugin 'sjl/badwolf'
-Plugin 'jacoborus/tender.vim'
 Plugin 'tomasr/molokai'
+Plugin 'jacoborus/tender.vim'
 "--------------------------------------------------------------------
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
+Plugin 'posva/vim-vue'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
@@ -97,7 +98,7 @@ autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 " autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
 " autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 "---------------换行设置---------------------------------------------
-set wrap linebreak nolist
+set nowrap linebreak nolist
 set textwidth=80 fo+=Mm "80字符换行
 set colorcolumn=+1 "81字符提示
 set synmaxcol=255 "每行高亮显示的最大字符数，超过了，就不会高亮渲染了。默认是3000
@@ -121,6 +122,7 @@ elseif modDay == 1
 else
   colorscheme tender
 endif
+colorscheme molokai
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,4 +253,4 @@ func! FullScreenToggle()
     set fu
   endif
 endf
-
+au BufRead,BufNewFile *.wpy setlocal filetype=vue
