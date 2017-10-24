@@ -62,10 +62,9 @@ git pull 从远端dev分支更新本地分支
 https://github.com/geeeeeeeeek/git-recipes/wiki
 
 
-丢弃未保存的修改
-git checkout .
-确保上面的命令使用之前，本地所有未提交的修改都是不想要的。如果不确定，就逐一检查
-，一旦使用，所有未修改不可逆的丢弃
+
+git checkout some.file  放弃修改某个文件，不可逆!!!!!!
+git checkout .          放弃当前所有修改，不可逆!!!!!!
 
 上传项目到github:
 github新建完项目，这里是graphql
