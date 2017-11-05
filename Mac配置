@@ -53,7 +53,7 @@
   2. ln -s ~/Working/workbench/mac.vimrc ~/.vimrc
      ln -s ~/Working/workbench/_.agignore ~/.agignore
      ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
-  3. 启动macvim 运行PluginInstall
+  3. 启动macvim 运行PluginInstall，如果youcompleteme安装很慢的话，注释掉，直接clone
   4. 安装字体
      cd && git clone https://github.com/abertsch/Menlo-for-Powerline
      cd Menlo-for-Powerline && open Menlo\ for\ Powerline.ttf
@@ -66,8 +66,13 @@
      which eslint
      复制，并更新vimrc里的eslint的地址
   7. 安装ycm
+     确保node, npm, typscript已经安装，并且可以通过命令行调用
      cd ~/.vim/bundle/YouCompleteMe
-     ./install.py --all
+     ./install.py  --js-completer
+
+
+配置Neovim
+  brew install neovim
 
 配置git
   ln -s ~/Working/workbench/_.gitignore ~/.gitignore
@@ -131,13 +136,26 @@
   mvim /usr/local/etc/mongod.conf  #查看mongodb的配置文件，将storage目录改为/data/db
   mongod                           #启动mongodb
   mongo                            #进入mongodb终端
-  brew services start mongoldb     #设置mongodb开机启动
+  brew services start mongodb      #设置mongodb开机启动
   brew cask install robo-3t        #安装图形客户端
   comand + space  robo             #启动robo 3t
 
 安装java
   brew cask install java
   java -version
+  brew install maven tomcat
+  下载安装eclips ee
+  打开eclipse，选择eclips偏好设置，选择maven，installations，添加maven的runtime下面的
+  /usr/local/Cellar/maven/3.5.2/libexec  名字为 maven
+  更改maven的配置文件 /usr/local/Cellar/maven/3.5.2/libexec/conf/settings.xml
+  将下面内容列出来，改成需要的
+  <localRepository>/Users/mantak/eclipse-workspace</localRepository>
+  <mirror>
+    <id>public</id>
+    <mirrorOf>*</mirrorOf>
+    <name>Public Repositories</name>
+    <url>http://192.168.1.244:8081/nexus/content/groups/public/</url>
+  </mirror>
 
 安装android
   序：AndroidStudio既是开发环境，又是包管理器，还是要装滴

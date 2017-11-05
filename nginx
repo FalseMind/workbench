@@ -1,0 +1,6 @@
+/usr/local/Cellar/nginx/1.4.7/html    #nginx默认访问的路径
+mvim /usr/local/etc/nginx/nginx.conf  #修改配置文件啦
+nginx -h         #查看帮助
+nginx            #启动nginx
+nginx -s stop    #停止nginx
+nginx -s reload  #重启nginx

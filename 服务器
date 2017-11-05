@@ -1,2 +1,5 @@
+lsof -i :3000  #查看mac下，3000端口占用
+
+
 ssh -p 22288 root@192.168.1.39
 scp -P 22288 -r ./xxxx root@192.1.168.39:/data   将当前目录的xxxx文件夹复制为远程的/data/xxxx

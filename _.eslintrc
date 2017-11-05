@@ -150,7 +150,7 @@
       "keyword-spacing": 2,                          // http://eslint.cn/docs/rules/keyword-spacing
       "space-before-blocks": 2,                      // http://eslint.cn/docs/rules/space-before-blocks
       "space-before-function-paren": [2, {
-        "anonymous": "never",
+        "anonymous": "always",
         "named": "never",
         "asyncArrow": "always"
        }],   // http://eslint.cn/docs/rules/space-before-function-paren

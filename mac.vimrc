@@ -81,7 +81,8 @@ set bufhidden=hide
 set history=50 "history文件中需要记录的行数
 set backspace=2 "使回格键（backspace）正常处理indent, eol, start等
 set mouse=a "可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-set formatoptions=tcrqn "自动格式化
+"set formatoptions=tcrqn "自动格式化
+"set maxmempattern=1000
 set foldenable "开始折叠
 set foldmethod=indent "设置缩进折叠
 set expandtab "设定取消tab符，改为空格代替
@@ -180,6 +181,10 @@ map <f4> :call FullScreenToggle()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- YouCompleteMe ---------------------------------------
+let g:ycm_max_num_candidates = 10
+let g:ycm_max_diagnostics_to_display = 20
+let g:ycm_disable_for_files_larger_than_kb = 100
 "-------------- wxapp.vim -------------------------------------------
 autocmd Filetype wxml setlocal foldmethod=indent
 "-------------- Ultisnips -------------------------------------------
