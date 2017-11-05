@@ -80,6 +80,9 @@
   git config --global user.email 'mantak.cn@gmail.com'
   git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
   git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
+  ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
+  复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
+  ssh -T git@github.com #测试ssh key 是否设置成功
 
 安装node
   https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
