@@ -68,8 +68,8 @@ set number        "显示行号
 set ruler         "打开状态栏标尺
 " set guifont=Source\ Code\ Pro\ for\ Powerline:h15
 set guifont=Menlo\ for\ Powerline:h15
-au TabEnter * let t:current = 1
-au TabLeave * let t:current = 0
+" au TabEnter * let t:current = 1
+" au TabLeave * let t:current = 0
 " set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
 " set ambiwidth=double  "设置Unicode字符可以正确显示
 "---------------基本设置---------------------------------------------
@@ -177,14 +177,14 @@ nmap <leader>s :call Search()<CR>
 map  <silent><D-e> :call NERDTreeFindToggle()<CR>
 imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
 " map  <fg> :call NERDTreeFindToggle()<CR>
-map <f4> :call FullScreenToggle()<CR>
+" map <f4> :call FullScreenToggle()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------- YouCompleteMe ---------------------------------------
 let g:ycm_max_num_candidates = 10
-let g:ycm_max_diagnostics_to_display = 20
-let g:ycm_disable_for_files_larger_than_kb = 100
+" let g:ycm_max_diagnostics_to_display = 20
+let g:ycm_disable_for_files_larger_than_kb = 0
 "-------------- wxapp.vim -------------------------------------------
 autocmd Filetype wxml setlocal foldmethod=indent
 "-------------- Ultisnips -------------------------------------------
@@ -198,7 +198,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
-map <C-S-p> :CtrlPBuffer<CR>
+map <Leader>p :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
 let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
@@ -237,7 +237,7 @@ map <F1> :AddHeader<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cd ~/Company
+cd ~/M11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

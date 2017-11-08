@@ -17,7 +17,8 @@
   brew install iTerm2         安装终端
   brew install git            安装git
   brew install ack            为ctrlF安装ack
-  brew install macvim --with-lua --with-python3 --with-override-system-vim   参数必须，不然git. 提示vim版本过低.运行mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
+  #参数必须，不然git. 提示vim版本过低.运行mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
+  brew install macvim --with-lua --with-python3 --with-override-system-vi --with-override-system-vim
     mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
     ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
   brew cask install google-chrome  安装 Google 浏览器
