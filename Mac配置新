@@ -1,41 +1,36 @@
 安装手记
 
 ///////////////////////必装内容////////////////////////////////
-小贴士：
-  .DS_store 的开关命令，运行第一行，禁止生成。运行第二行，恢复功能
-    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
-    defaults delete com.apple.desktopservices DSDontWriteNetworkStores
-
-安装搜狗输入法  http://pinyin.sogou.com/mac/
-访问，下载，安装
-
+第零步 到App Store里安装xcode，然后运行一下，安装基本组件
 
 第一步安装brew  参考：https://brew.sh
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+
 安装必用软件
-  brew install iTerm2         安装终端
-  brew install git            安装git
-  brew install ack            为ctrlF安装ack
-  #参数必须，不然git. 提示vim版本过低.运行mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
-  brew install macvim --with-lua --with-python3 --with-override-system-vi --with-override-system-vim
-    mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
-    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
-  brew cask install google-chrome  安装 Google 浏览器
   brew update && brew upgrade      更新brew
+  brew install git                 安装git
+  brew install macvim --with-lua --with-python3 --with-override-system-vim
+  brew cask install google-chrome  安装 Google 浏览器
   brew cleanup                     删除brew安装包
   ls /usr/local/bin/               显示用户的命令
+
+
+
+    mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
+    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
+
+
+  brew install ack            为ctrlF安装ack
+  #参数必须，不然git. 提示vim版本过低.运行mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
+  brew install macvim --with-lua --with-python3 --with-override-system-vim
+    mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
+    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
 
 安装选用软件
   brew install imagemagick         图片处理
   brew install watchman flow       为react-native安装必要包
-  brew install cmake               安装cmake
-  brew cask install atom           安装 atome 编辑器
-
-配置bash
-  ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile  #使用以前的bash配置文件
-  运行iterm comd+i 打开配置窗口，找color->presets，选择import找workbench里的Elementary.itermcolor，
-  然后选择general->copy current...覆盖当前配色为default
+  brew install watchman cmake      为react-native安装必要包
 
 配置chrome
   下载最新的hots文件 https://github.com/racaljk/hosts
