@@ -1,54 +1,52 @@
 安装手记
 
 ///////////////////////必装内容////////////////////////////////
-第零步 到App Store里安装xcode，然后运行一下，安装基本组件
-
-第一步安装brew  参考：https://brew.sh
+1, 到App Store里安装xcode，然后运行一下，以安装基本组件
+2, 安装brew  参考：https://brew.sh
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-
-安装必用软件
+3, 安装必用软件
   brew update && brew upgrade      更新brew
   brew install git                 安装git
   brew install macvim --with-lua --with-python3 --with-override-system-vim
   brew cask install google-chrome  安装 Google 浏览器
   brew cleanup                     删除brew安装包
   ls /usr/local/bin/               显示用户的命令
-
-
-
-    mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
-    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
-
-
-  brew install ack            为ctrlF安装ack
-  #参数必须，不然git. 提示vim版本过低.运行mvim，并把mvim添加到应用程序中，注意更改mac的版本文件夹
-  brew install macvim --with-lua --with-python3 --with-override-system-vim
-    mv /usr/local/Cellar/macvim/8.0-136/MacVim.app /Applications/
-    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-136/
-
-安装选用软件
-  brew install imagemagick         图片处理
-  brew install watchman flow       为react-native安装必要包
-  brew install watchman cmake      为react-native安装必要包
-
-配置chrome
-  下载最新的hots文件 https://github.com/racaljk/hosts
-  vim /private/etc/hosts   将最新的hosts文件复制过来
-  访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
-  git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
-  ~/.XX-net/start
-  在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
-  可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
-  打开chrome商店，安装 cVim、翻译侠、QRCode、colorzilla、redux devtools、mobile tester、Direct APK Downloader
-
-配置Macvim
-  0. 首先安装vim的包管理工具:
-     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  1. https://github.com/Mantak/workbench。下载并配置vim
-  2. ln -s ~/Working/workbench/mac.vimrc ~/.vimrc
-     ln -s ~/Working/workbench/_.agignore ~/.agignore
-     ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
+5, 下载基本的配置文件
+  cd && mkdir Working && cd Working
+  git clone  https://github.com/Mantak/workbench
+  ln -s ~/Working/workbench/_.vimrc ~/.vimrc
+  ln -s ~/Working/workbench/_.agignore ~/.agignore
+  ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
+  ln -s ~/Working/workbench/_.gitignore ~/.gitignore
+  ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile
+4, 安装node https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
+  运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
+  nvm ls-remote              #列出远程node列表
+  nvm install v8.4.0         #安装指定版本的node
+  nvm alias default v8.4.0   #设置某个版本为默认版本，默认的第一个安装的版本为默认版本
+  npm config set registry https://registry.npm.taobao.org/
+  // npm config set registry http://r.cnpmjs.org/
+  npm config get registry    #确认npm项目源
+  npm -g bin                 #获得npm的包目录，并复制
+  npm install -g yarn
+  yarn config set registry https://registry.npm.taobao.org/
+  npm install -g typescript eslint babel-eslint eslint-plugin-react #为vim代码提示与检查做准备
+5, 安装Phoenix, nginx, postgreSql
+  erl --version
+  elixir --version
+  brew install elixir   #安装elixir(同时安装erlang)
+  mix local.hex         #安装或者更新hex(包管理)
+  mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez     #安装phoenix
+  brew install nginx               #安装nginx
+  brew install postgresql          #安装postgresql
+  brew cask install pgadmin4       #安装postgresql图形界面
+6, 配置 macvim
+  1. brew install macvim --with-lua --with-python3 --with-override-system-vim
+    ls /Applications | grep MacVim  #查看macvim是否添加到Applications文件里里，如果没有，执行下面两行
+    mv /usr/local/Cellar/macvim/8.0-142/MacVim.app /Applications/
+    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-142/
+  2. brew install ack #安装ack支持
   3. 启动macvim 运行PluginInstall，如果youcompleteme安装很慢的话，注释掉，直接clone
   4. 安装字体
      cd && git clone https://github.com/abertsch/Menlo-for-Powerline
@@ -65,13 +63,20 @@
      确保node, npm, typscript已经安装，并且可以通过命令行调用
      cd ~/.vim/bundle/YouCompleteMe
      ./install.py  --js-completer
+7, 配置chrome
+  下载最新的hots文件 https://github.com/racaljk/hosts
+  vim /private/etc/hosts   将最新的hosts文件复制过来
+  sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder #让新hosts起作用
+  打开chrome商店，安装 cVim、翻译侠、QRCode、colorzilla、redux devtools、mobile tester、Direct APK Downloader
+  如果无法翻墙，手动打开链接，安装cvim  chrome-extension://cmjpopikpihnnfkhpgnfaimogcachjfi/pages/mappings.html
 
-
-配置Neovim
-  brew install neovim
-
-配置git
-  ln -s ~/Working/workbench/_.gitignore ~/.gitignore
+  // 翻墙方案，待定
+  访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
+  git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
+  ~/.XX-net/start
+  在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
+  可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
+8, 配置git
   git config --global user.name 'mantak'
   git config --global user.email 'mantak.cn@gmail.com'
   git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
@@ -79,132 +84,3 @@
   ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
   复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
   ssh -T git@github.com #测试ssh key 是否设置成功
-
-安装node
-  https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
-  运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
-  nvm ls-remote              #列出远程node列表
-  nvm install v8.4.0         #安装指定版本的node
-  nvm alias default v8.4.0   #设置某个版本为默认版本
-  npm config set registry https://registry.npm.taobao.org/
-  // npm config set registry http://r.cnpmjs.org/
-  npm config get registry    #确认npm项目源
-  npm -g bin                 #获得npm的包目录，并复制
-  sudo mvim /etc/paths  #将上一行的目录，添加到最后一行
-  npm install -g yarn typescript eslint babel-eslint eslint-plugin-react
-  npm install -g exp create-react-app create-react-native-app
-  yarn config set registry https://registry.npm.taobao.org/
-  // yarn config set registry  http://r.cnpmjs.org/
-  yarn config get registry
-
-安装Phoenix
-  brew install elixir   #安装elixir(同时安装erlang)
-  mix local.hex         #安装或者更新hex(包管理)
-  mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
-  mix phx.new hello
-  cd hello && mix ecto.create
-  mix phx.server
-
-安装nginx
-  brew install nginx               安装nginx
-  /usr/local/Cellar/nginx/1.4.7/html    #nginx默认访问的路径
-  mvim /usr/local/etc/nginx/nginx.conf  #修改配置文件啦
-  nginx -h         #查看帮助
-  nginx -s stop    #停止nginx
-  nginx -s reload  #重启nginx
-  nginx            #启动nginx
-
-安装mysql
-  brew install mysql           #安装mysql
-  mysql -uroot                 #免密进入mysql shell
-  mysql_secure_installation    #运行命令，为root设置密码，阻止任何免密进入
-
-安装postgreSQL
-  brew install postgresql
-  pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start     #启动 PostgreSQL
-  pg_ctl -D /usr/local/var/postgres stop -s -m fast                                 #关闭 PostgreSQL
-  超级用户默认的就是当前用户的id和密码
-  简单参考:
-  http://www.cnblogs.com/shineqiujuan/p/4703304.html
-
-安装mongodb
-  brew install mongodb             #brew cask安装的版本，貌似低一点。
-  sudo mkdir -p /data/db           #mongodb默认的数据存放目录，用这个位置就挺好
-  sudo chown -R $USER /data/db     #添加当前用户的权限
-  mvim /usr/local/etc/mongod.conf  #查看mongodb的配置文件，将storage目录改为/data/db
-  mongod                           #启动mongodb
-  mongo                            #进入mongodb终端
-  brew services start mongodb      #设置mongodb开机启动
-  brew cask install robo-3t        #安装图形客户端
-  comand + space  robo             #启动robo 3t
-
-安装java
-  brew cask install java
-  java -version
-  brew install maven tomcat
-  下载安装eclips ee
-  打开eclipse，选择eclips偏好设置，选择maven，installations，添加maven的runtime下面的
-  /usr/local/Cellar/maven/3.5.2/libexec  名字为 maven
-  更改maven的配置文件 /usr/local/Cellar/maven/3.5.2/libexec/conf/settings.xml
-  将下面内容列出来，改成需要的
-  <localRepository>/Users/mantak/eclipse-workspace</localRepository>
-  <mirror>
-    <id>public</id>
-    <mirrorOf>*</mirrorOf>
-    <name>Public Repositories</name>
-    <url>http://192.168.1.244:8081/nexus/content/groups/public/</url>
-  </mirror>
-
-安装android
-  序：AndroidStudio既是开发环境，又是包管理器，还是要装滴
-  http://www.pc6.com/mac/136546.html  去该页面下载安卓studio
-  SDK的默认安装路径应该是： SDK Folder: /Users/mantak/Library/Android/sdk
-  启动an，然后跳过代理设置，直接点下一步，选择定制安装
-  勾选Performance和Android Virtual Device
-  点下一步，安装SDK，时间有点久，耐心等待半天
-  安装完毕
-  设置SDK path，确定sdk位置，然后添加至.bash_profile，并且添加NDK、tools路径，配
-  置文件里已有
-    mvim ~/.bash_profile
-    export ANDROID_HOME=~/Library/Android/sdk
-    export ANDROID_NDK=~/Library/Android/sdk
-    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-  开启Gradle Daemon可以极大地提升java代码的增量编译速度。
-    touch ~/.gradle/gradle.properties && echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
-  添加真机测试，不知道是否因为黑苹果，执行完了，没有效果
-    运行下列命令，获取连接的USB的Vendor ID
-    system_profiler  SPUSBDataType
-    mvim  ~/.android/adb_usb.ini
-    将上面的VendorId 注意，可能有好几个USB的VendorId，要找准Android的6位号码，开新行，添加进去
-    adb kill-server
-    adb start-server
-    成功后应该能看见提示：
-    * daemon not running. starting it now on port 5037 *
-    * daemon started successfully *
-
-安装expo
-  下载expo git clone https://github.com/expo/expo
-  cd expo/android
-  npm install gulp
-  npm install --save-dev gulp-shell
-  npm install username xdl shelljs @ccheever/crayon @exponent/json-file
-              replace-string @exponent/spawn-async
-
-安装php
-  brew tap homebrew/dupes
-  brew tap josegonzalez/homebrew-php
-  brew install php72
-  curl -O https://php-school.github.io/workshop-manager/workshop-manager.phar
-  mv workshop-manager.phar /usr/local/bin/workshop-manager
-  chmod +x /usr/local/bin/workshop-manager
-  echo 'export PATH="$PATH:/Users/mantak/.php-school/bin"' >> ~/.bash_profile && source ~/.bash_profile  #添加环境变量
-  workshop-manager verify                   #确认环境是否ok
-  workshop-manager install learnyouphp      #安装基本教程
-  learnyouphp                               #运行程序
-//////////////////////////////////////////////////////////////
-
-
-Rn社区
-http://reactnative.cn/docs/0.47/getting-started.html
-http://osxdaily.com/2011/12/10/disable-or-enable-spotlight-in-mac-os-x-lion/

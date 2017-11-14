@@ -113,9 +113,9 @@ syntax on
 let macvim_skip_colorscheme=1
 let hour = strftime("%H")
 if 8 <= hour &&  hour < 16
-  set background=light
-else
   set background=dark
+else
+  set background=light
 endif
 let modDay = (strftime("%d"))%3
 if modDay == 0
@@ -125,7 +125,6 @@ elseif modDay == 1
 else
   colorscheme tender
 endif
-colorscheme molokai
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,7 +216,7 @@ let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:jsx_ext_required = 0
 "-------------- syntastic -------------------------------------------
 let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v8.4.0/bin/eslint'
+let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v9.1.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '->'
 let g:syntastic_warning_symbol = '->'
@@ -237,7 +236,7 @@ map <F1> :AddHeader<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cd ~/M11
+cd ~/Working
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
