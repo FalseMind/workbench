@@ -3,84 +3,86 @@
 ///////////////////////必装内容////////////////////////////////
 1, 到App Store里安装xcode，然后运行一下，以安装基本组件
 2, 安装brew  参考：https://brew.sh
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 3, 安装必用软件
-  brew update && brew upgrade      更新brew
-  brew install git                 安装git
-  brew install macvim --with-lua --with-python3 --with-override-system-vim
-  brew cask install google-chrome  安装 Google 浏览器
-  brew cleanup                     删除brew安装包
-  ls /usr/local/bin/               显示用户的命令
+   brew update && brew upgrade      更新brew
+   brew install git                 安装git
+   brew install macvim --with-lua --with-python3 --with-override-system-vim
+   brew cask install google-chrome  安装 Google 浏览器
+   brew cleanup                     删除brew安装包
+   ls /usr/local/bin/               显示用户的命令
 5, 下载基本的配置文件
-  cd && mkdir Working && cd Working
-  git clone  https://github.com/Mantak/workbench
-  ln -s ~/Working/workbench/_.vimrc ~/.vimrc
-  ln -s ~/Working/workbench/_.agignore ~/.agignore
-  ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
-  ln -s ~/Working/workbench/_.gitignore ~/.gitignore
-  ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile
+   cd && mkdir Working && cd Working
+   git clone  https://github.com/Mantak/workbench
+   ln -s ~/Working/workbench/_.vimrc ~/.vimrc
+   ln -s ~/Working/workbench/_.agignore ~/.agignore
+   ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
+   ln -s ~/Working/workbench/_.gitignore ~/.gitignore
+   ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile
 4, 安装node https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
-  运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
-  nvm ls-remote              #列出远程node列表
-  nvm install v8.4.0         #安装指定版本的node
-  nvm alias default v8.4.0   #设置某个版本为默认版本，默认的第一个安装的版本为默认版本
-  npm config set registry https://registry.npm.taobao.org/
-  // npm config set registry http://r.cnpmjs.org/
-  npm config get registry    #确认npm项目源
-  npm -g bin                 #获得npm的包目录，并复制
-  npm install -g yarn
-  yarn config set registry https://registry.npm.taobao.org/
-  npm install -g typescript eslint babel-eslint eslint-plugin-react #为vim代码提示与检查做准备
+   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
+   运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
+   nvm ls-remote              #列出远程node列表
+   nvm install v8.4.0         #安装指定版本的node
+   nvm alias default v8.4.0   #设置某个版本为默认版本，默认的第一个安装的版本为默认版本
+   npm config set registry https://registry.npm.taobao.org/
+   // npm config set registry http://r.cnpmjs.org/
+   npm config get registry    #确认npm项目源
+   npm -g bin                 #获得npm的包目录，并复制
+   npm install -g yarn
+   yarn config set registry https://registry.npm.taobao.org/
+   npm install -g typescript eslint babel-eslint eslint-plugin-react #为vim代码提示与检查做准备
 5, 安装Phoenix, nginx, postgreSql
-  erl --version
-  elixir --version
-  brew install elixir   #安装elixir(同时安装erlang)
-  mix local.hex         #安装或者更新hex(包管理)
-  mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez     #安装phoenix
-  brew install nginx               #安装nginx
-  brew install postgresql          #安装postgresql
-  brew cask install pgadmin4       #安装postgresql图形界面
-6, 配置 macvim
-  1. brew install macvim --with-lua --with-python3 --with-override-system-vim
-    ls /Applications | grep MacVim  #查看macvim是否添加到Applications文件里里，如果没有，执行下面两行
-    mv /usr/local/Cellar/macvim/8.0-142/MacVim.app /Applications/
-    ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-142/
-  2. brew install ack #安装ack支持
-  3. 启动macvim 运行PluginInstall，如果youcompleteme安装很慢的话，注释掉，直接clone
-  4. 安装字体
-     cd && git clone https://github.com/abertsch/Menlo-for-Powerline
-     cd Menlo-for-Powerline && open Menlo\ for\ Powerline.ttf
-     选择安装字体
-     cd .. && rm -rf Menlo-for-Powerline
-  5. 安装tern
-     cd ~/.vim/bundle/tern_for_vim
-     npm i
-  6. 启动eslint
-     which eslint
-     复制，并更新vimrc里的eslint的地址
-  7. 安装ycm
-     确保node, npm, typscript已经安装，并且可以通过命令行调用
-     cd ~/.vim/bundle/YouCompleteMe
-     ./install.py  --js-completer
+   erl --version
+   elixir --version
+   brew install elixir   #安装elixir(同时安装erlang)
+   mix local.hex         #安装或者更新hex(包管理)
+   mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez     #安装phoenix
+   brew install nginx               #安装nginx
+   brew install postgresql          #安装postgresql
+   brew cask install pgadmin4       #安装postgresql图形界面
+6, 安装并配置 macvim
+   1. brew install macvim --with-lua --with-python3 --with-override-system-vim
+      ls /Applications | grep MacVim  #查看macvim是否添加到Applications文件里里，如果没有，执行下面两行
+      mv /usr/local/Cellar/macvim/8.0-142/MacVim.app /Applications/
+      ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-142/
+   2. 安装vim包管理器
+      mkdir ~/.vim; mkdir ~/.vim/bundle
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+   3. 启动macvim 运行PluginInstall，如果youcompleteme安装很慢的话，注释掉，直接clone
+   4. 安装字体
+      cd && git clone https://github.com/abertsch/Menlo-for-Powerline
+      cd Menlo-for-Powerline && open Menlo\ for\ Powerline.ttf
+      选择安装字体
+      cd .. && rm -rf Menlo-for-Powerline
+   5. 安装tern
+      cd ~/.vim/bundle/tern_for_vim
+      npm i
+   6. 启动eslint
+      which eslint
+      复制，并更新vimrc里的eslint的地址
+   7. 安装ycm
+      确保node, npm, typscript已经安装，并且可以通过命令行调用
+      cd ~/.vim/bundle/YouCompleteMe
+      ./install.py  --js-completer
 7, 配置chrome
-  下载最新的hots文件 https://github.com/racaljk/hosts
-  vim /private/etc/hosts   将最新的hosts文件复制过来
-  sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder #让新hosts起作用
-  打开chrome商店，安装 cVim、翻译侠、QRCode、colorzilla、redux devtools、mobile tester、Direct APK Downloader
-  如果无法翻墙，手动打开链接，安装cvim  chrome-extension://cmjpopikpihnnfkhpgnfaimogcachjfi/pages/mappings.html
+   下载最新的hots文件 https://github.com/racaljk/hosts
+   vim /private/etc/hosts   将最新的hosts文件复制过来
+   sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder #让新hosts起作用
+   打开chrome商店，安装 cVim、翻译侠、QRCode、colorzilla、redux devtools、mobile tester、Direct APK Downloader
+   如果无法翻墙，手动打开链接，安装cvim  chrome-extension://cmjpopikpihnnfkhpgnfaimogcachjfi/pages/mappings.html
 
-  // 翻墙方案，待定
-  访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
-  git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
-  ~/.XX-net/start
-  在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
-  可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
+   // 翻墙方案，待定
+   访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
+   git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
+   ~/.XX-net/start
+   在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
+   可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
 8, 配置git
-  git config --global user.name 'mantak'
-  git config --global user.email 'mantak.cn@gmail.com'
-  git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
-  git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
-  ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
-  复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
-  ssh -T git@github.com #测试ssh key 是否设置成功
+   git config --global user.name 'mantak'
+   git config --global user.email 'mantak.cn@gmail.com'
+   git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
+   git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
+   ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
+   复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
+   ssh -T git@github.com #测试ssh key 是否设置成功
