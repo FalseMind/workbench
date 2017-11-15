@@ -1,0 +1,7 @@
+mix phx.new hello  #新建一个叫hello的项目
+mix phx.new hello --no-brunch 不要brunch来处理静态文件，因为我们只要输出json即可
+
+cd hello
+mix ecto.create  第一次安装，需要安装Rebar（erlang的打包工具）
+mix phx.server   启动项目
+

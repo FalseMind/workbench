@@ -65,19 +65,19 @@
       确保node, npm, typscript已经安装，并且可以通过命令行调用
       cd ~/.vim/bundle/YouCompleteMe
       ./install.py  --js-completer
-7, 配置chrome
-   下载最新的hots文件 https://github.com/racaljk/hosts
-   vim /private/etc/hosts   将最新的hosts文件复制过来
-   sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder #让新hosts起作用
-   打开chrome商店，安装 cVim、翻译侠、QRCode、colorzilla、redux devtools、mobile tester、Direct APK Downloader
-   如果无法翻墙，手动打开链接，安装cvim  chrome-extension://cmjpopikpihnnfkhpgnfaimogcachjfi/pages/mappings.html
-
-   // 翻墙方案，待定
-   访问： https://github.com/FelisCatus/SwitchyOmega  点击Chrome Web Store的链接，访问商店，安装插件
-   git  clone https://github.com/XX-net/XX-Net  ~/.XX-net
-   ~/.XX-net/start
-   在打开的页面中，等待配置完毕，然后选左面栏=》系统=》配置=》选中-开机自动启动 + 去掉-启动时弹出状态页
-   可以翻墙上网了，如果上不了，选择浏览器SO插件的系统代理
+7, 配置chrome，安装cvim，translate-man
+   如果不能翻墙，则手动安装，步骤如下：
+   mkdir ~/Library/Application\ Support/Google/Chrome/Default/Extensions
+   cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions
+   访问 https://github.com/1995eaton/chromium-vim
+   下载zip，把解压文件复制到新建到Extensions里，其他文件删除
+   git clone https://github.com/magic-FE/translate-man
+   cd translate-man && yarn
+   yarn run build
+   把build文件夹重命名为translate-man复制到Extensions里，其他文件删除
+   打开finder，command+j， 选择显示资源库文件夹
+   chrome://extensions  选择build的文件包，添加插件
+   打开finder，command+j， 关闭显示资源库文件夹
 8, 配置git
    git config --global user.name 'mantak'
    git config --global user.email 'mantak.cn@gmail.com'

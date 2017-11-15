@@ -1,5 +1,8 @@
-  pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start     #启动 PostgreSQL
-  pg_ctl -D /usr/local/var/postgres stop -s -m fast                                 #关闭 PostgreSQL
-  超级用户默认的就是当前用户的id和密码
-  简单参考:
-  http://www.cnblogs.com/shineqiujuan/p/4703304.html
+启动服务:
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+查看状态：
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log status
+停止：
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop -s -m fast
+查看进程：
+ps auxwww | grep postgres
