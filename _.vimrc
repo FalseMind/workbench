@@ -232,7 +232,7 @@ let g:header_field_author = 'Mantak'
 let g:header_field_author_email = 'mantak.cn@gmail.com'
 let g:header_field_timestamp_format = '%Y-%m-%d'
 let g:header_auto_add_header = 0
-map <F1> :AddHeader<CR>
+map <Leader>a :AddHeader<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
