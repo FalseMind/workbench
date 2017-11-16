@@ -30,7 +30,7 @@ Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
-Plugin 'jacoborus/tender.vim'
+Plugin 'LKNguyen/papercolor-theme'
 "--------------------------------------------------------------------
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'fatih/vim-go'
@@ -123,9 +123,8 @@ if modDay == 0
 elseif modDay == 1
   colorscheme molokai
 else
-  colorscheme tender
+  colorscheme PaperColor
 endif
-colorscheme badwolf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

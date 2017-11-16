@@ -8,6 +8,7 @@
 3, 安装必用软件
    brew update && brew upgrade      更新brew
    brew install git                 安装git
+   brew install wget                安装wget
    brew install macvim --with-lua --with-python3 --with-override-system-vim
    brew cask install google-chrome  安装 Google 浏览器
    brew cleanup                     删除brew安装包
@@ -68,8 +69,8 @@
       ./install.py  --js-completer
 7, 配置chrome，安装cvim，translate-man
    如果不能翻墙，则手动安装，步骤如下：
-   mkdir ~/Library/Application\ Support/Google/Chrome/Default/Extensions
-   cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions
+   mkdir ~/.chrome
+   cd ~/.chrome
    访问 https://github.com/1995eaton/chromium-vim
    下载zip，把解压文件复制到新建到Extensions里，其他文件删除
    git clone https://github.com/magic-FE/translate-man
@@ -87,3 +88,10 @@
    ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
    复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
    ssh -T git@github.com #测试ssh key 是否设置成功
+9, 安装配置zsh
+   访问并下载安装iterm2 https://www.iterm2.com/
+   运行iterm comman+,打开配置，更改字体为Menlo for Powerline 字号14
+   brew install zsh zsh-completions
+   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+   echo "source .bash_profile" >> ~/.zshrc
+   source ~/.zshrc
