@@ -2,6 +2,7 @@
 
 ///////////////////////必装内容////////////////////////////////
 1, 到App Store里安装xcode，然后运行一下，以安装基本组件
+   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 2, 安装brew  参考：https://brew.sh
    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 3, 安装必用软件
