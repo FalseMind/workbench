@@ -21,7 +21,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "--------------------------------------------------------------------
 Plugin 'kien/ctrlp.vim'
-Plugin 'dyng/ctrlsf.vim'
+" Plugin 'dyng/ctrlsf.vim'
+Plugin 'jremmen/vim-ripgrep'
 Plugin 'Lokaltog/vim-easymotion'
 "--------------------------------------------------------------------
 Plugin 'ternjs/tern_for_vim'
@@ -205,10 +206,13 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<c-t>'],
       \ }
 "-------------- CtrlSF ----------------------------------------------
-nmap <C-f> <Plug>CtrlSFPrompt
-vmap <C-F> <Plug>CtrlSFVwordPath
-nmap <C-F>o :CtrlSFOpen<CR>
-let g:ctrlsf_width = '40%'
+" nmap <C-f> <Plug>CtrlSFPrompt
+" vmap <C-F> <Plug>CtrlSFVwordPath
+" nmap <C-F>o :CtrlSFOpen<CR>
+" let g:ctrlsf_width = '40%'
+"-------------- vim-ripgrep -----------------------------------------
+map <Leader>f :Rg
+let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页

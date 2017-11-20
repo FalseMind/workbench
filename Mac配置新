@@ -8,6 +8,7 @@
 3, 安装必用软件
    brew update && brew upgrade      更新brew
    brew install git                 安装git
+   brew install ripgrep             安装ripgrep
    brew install wget                安装wget
    brew install macvim --with-lua --with-python3 --with-override-system-vim
    brew cask install google-chrome  安装 Google 浏览器
@@ -43,6 +44,7 @@
    brew install nginx               #安装nginx
    brew install postgresql          #安装postgresql
    brew cask install pgadmin4       #安装postgresql图形界面
+   进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
 6, 安装并配置 macvim
    1. brew install macvim --with-lua --with-python3 --with-override-system-vim
       ls /Applications | grep MacVim  #查看macvim是否添加到Applications文件里里，如果没有，执行下面两行
