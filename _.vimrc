@@ -118,6 +118,7 @@ if 8 <= hour &&  hour < 16
 else
   set background=light
 endif
+set background=dark
 let modDay = (strftime("%d"))%3
 if modDay == 0
   colorscheme badwolf
