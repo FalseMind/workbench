@@ -260,3 +260,4 @@ func! FullScreenToggle()
   endif
 endf
 au BufRead,BufNewFile *.wpy setlocal filetype=vue
+au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
