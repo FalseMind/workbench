@@ -78,3 +78,15 @@ github新建完项目，这里是graphql
 进入本地的git项目
 git remote add origin git@github.com:Mantak/graphql.git
 git push -u origin master
+
+
+关于原来内容丢失的问题
+场景：在A分支下对代码做了修改（起个名字叫code1），执行add + commit操作后，切换到B分支下，发现原来修改的代码丢失。
+两种解决方案（指令中的“+”号不是输入的内容）：
+方案1：
+依次执行指令 ：
+（1）git checkout A，切换到原来的A分支下。
+（2）gitk：查看本地文件变动的历史记录（仅供参考，个人觉得很好使很强大的指令，可以跳过这一步）
+（3）git log：查看commit 的历史信息（复制记录下来想要转移到B分支的code1的commit的id号）
+（4）git checkout B，切换到B分支下。
+（5）git  cherry-pick + “刚刚复制的commit的id号”：将已经commit的patch再次commit到B分支上。接下来的push代码就不说了。

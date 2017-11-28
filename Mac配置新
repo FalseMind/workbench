@@ -8,10 +8,11 @@
 3, 安装必用软件
    brew update && brew upgrade      更新brew
    brew install git                 安装git
-   brew install ripgrep             安装ripgrep
+   brew install ripgrep             安装ripgrep 本地搜索用
    brew install wget                安装wget
    brew install macvim --with-lua --with-python3 --with-override-system-vim
    brew cask install google-chrome  安装 Google 浏览器
+   brew install -v imagemagick      安装图片处理
    brew cleanup                     删除brew安装包
    ls /usr/local/bin/               显示用户的命令
 5, 下载基本的配置文件
@@ -45,9 +46,8 @@
    brew install postgresql          #安装postgresql
    brew cask install pgadmin4       #安装postgresql图形界面
    进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
-6, 安装并配置 macvim
-   1. brew install macvim --with-lua --with-python3 --with-override-system-vim
-      ls /Applications | grep MacVim  #查看macvim是否添加到Applications文件里里，如果没有，执行下面两行
+6, 配置 macvim
+   1. ls /Applications | grep MacVim  #查看macvim是否添加到Applications文件里里，如果没有，执行下面两行
       mv /usr/local/Cellar/macvim/8.0-142/MacVim.app /Applications/
       ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-142/
    2. 安装vim包管理器
@@ -69,6 +69,10 @@
       确保node, npm, typscript已经安装，并且可以通过命令行调用
       cd ~/.vim/bundle/YouCompleteMe
       ./install.py  --js-completer
+   8. 安装输入法智能切换
+      brew install fcitx-remote-for-osx
+      系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
+      系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
 7, 配置chrome，安装cvim，translate-man
    如果不能翻墙，则手动安装，步骤如下：
    mkdir ~/.chrome
