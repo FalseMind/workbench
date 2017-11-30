@@ -8,7 +8,8 @@
 3, 安装必用软件
    brew update && brew upgrade      更新brew
    brew install git                 安装git
-   brew install ripgrep             安装ripgrep 本地搜索用
+   brew install ripgrep             vim ctrlF用
+   brew install the_silver_searcher vim ctrlP用
    brew install wget                安装wget
    brew install macvim --with-lua --with-python3 --with-override-system-vim
    brew cask install google-chrome  安装 Google 浏览器

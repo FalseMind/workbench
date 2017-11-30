@@ -196,18 +196,23 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " let NERDTreeWinPos=1 "窗口居右
 "-------------- CtrlP -----------------------------------------------
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-endif
+" if executable('ag')
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" endif
 map <Leader>p :CtrlPBuffer<CR>
-let g:ctrlp_custom_ignore = { 'dir': '.meteor$\|node_modules$' }
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" let g:ctrlp_user_command = 'find %s -type f'
+" if executable('ag')
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" endif
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
       \ 'AcceptSelection("h")': ['<c-i>'],
       \ 'AcceptSelection("t")': ['<c-t>'],
       \ }
 "-------------- vim-ripgrep -----------------------------------------
-map <Leader>f :Rg '
+map <Leader>f :Rg
 let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
