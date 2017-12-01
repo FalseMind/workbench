@@ -1,8 +1,7 @@
-"
-" File              : /Users/mantak/.vimrc
+" File              : _.vimrc
 " Author            : Mantak <mantak.cn@gmail.com>
 " Date              : 2017-09-05
-" Last Modified Date: 2017-09-05
+" Last Modified Date: 2017-12-01
 " Last Modified By  : Mantak <mantak.cn@gmail.com>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件安装
@@ -178,7 +177,6 @@ nmap <leader>s :call Search()<CR>
 map  <silent><D-e> :call NERDTreeFindToggle()<CR>
 imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
 " map  <fg> :call NERDTreeFindToggle()<CR>
-" map <f4> :call FullScreenToggle()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -187,7 +185,7 @@ let g:ycm_max_num_candidates = 10
 " let g:ycm_max_diagnostics_to_display = 20
 let g:ycm_disable_for_files_larger_than_kb = 0
 "-------------- wxapp.vim -------------------------------------------
-autocmd Filetype wxml setlocal foldmethod=indent
+autocmd File              : _.vimrc
 "-------------- Ultisnips -------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
@@ -257,12 +255,5 @@ func! NERDTreeFindToggle()
     execute ':NERDTreeFind'
   endif
 endfunction
-func! FullScreenToggle()
-  if &fullscreen
-    set nofu
-  else
-    set fu
-  endif
-endf
-au BufRead,BufNewFile *.wpy setlocal filetype=vue
+au BufRead,BufNewFile              : _.vimrc
 au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
