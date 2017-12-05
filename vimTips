@@ -61,3 +61,9 @@ gi 进入第一个input框
 "   papercolor call s:HL("Error", s:error_fg, s:error_bg, "")
 "              替换为
 "              call s:HL("Error", s:error_fg, s:background, "")
+
+
+正则匹配
+问题<div className={styles.container}>
+将{styles.container} 替换为"container"
+:%s/\v\{stles\.(\w+)\}/"\1"/g

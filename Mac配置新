@@ -13,6 +13,7 @@
    brew install wget                安装wget
    brew install macvim --with-lua --with-python3 --with-override-system-vim
    brew cask install google-chrome  安装 Google 浏览器
+   brew install firefox             安装firefox
    brew install -v imagemagick      安装图片处理
    brew cleanup                     删除brew安装包
    ls /usr/local/bin/               显示用户的命令
@@ -47,10 +48,12 @@
    brew install postgresql          #安装postgresql
    brew cask install pgadmin4       #安装postgresql图形界面
    进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
+   下载并安装 psequel    http://www.psequel.com/
 6, 配置 macvim
-   1. ls /Applications | grep MacVim  #查看macvim是否添加到Applications文件里里，如果没有，执行下面两行
-      mv /usr/local/Cellar/macvim/8.0-142/MacVim.app /Applications/
-      ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-142/
+   1. 从命令行启动mvim， 这样可以带相应的环境变量
+      如果不需要eslint，可以直接从comand+空格来调用macvim
+      mv /usr/local/Cellar/macvim/8.0-142/MacVim.app ~/Applications/
+      ln -s ~/Applications/MacVim.app /usr/local/Cellar/macvim/8.0-142/
    2. 安装vim包管理器
       mkdir ~/.vim; mkdir ~/.vim/bundle
       git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -74,19 +77,9 @@
       brew install fcitx-remote-for-osx
       系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
       系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
-7, 配置chrome，安装cvim，translate-man
-   如果不能翻墙，则手动安装，步骤如下：
-   mkdir ~/.chrome
-   cd ~/.chrome
-   访问 https://github.com/1995eaton/chromium-vim
-   下载zip，把解压文件复制到新建到Extensions里，其他文件删除
-   git clone https://github.com/magic-FE/translate-man
-   cd translate-man && yarn
-   yarn run build
-   把build文件夹重命名为translate-man复制到Extensions里，其他文件删除
-   打开finder，command+j， 选择显示资源库文件夹
-   chrome://extensions  选择build的文件包，添加插件
-   打开finder，command+j， 关闭显示资源库文件夹
+7, 配置 firefox
+   chrome需要翻墙，还是用这个吧
+   安装vim 轻灵划词 redux-devtools
 8, 配置git
    git config --global user.name 'mantak'
    git config --global user.email 'mantak.cn@gmail.com'

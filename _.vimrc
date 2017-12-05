@@ -185,7 +185,7 @@ let g:ycm_max_num_candidates = 10
 " let g:ycm_max_diagnostics_to_display = 20
 let g:ycm_disable_for_files_larger_than_kb = 0
 "-------------- wxapp.vim -------------------------------------------
-autocmd File              : _.vimrc
+autocmd File              : ~/.vimrc
 "-------------- Ultisnips -------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
@@ -194,15 +194,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " let NERDTreeWinPos=1 "窗口居右
 "-------------- CtrlP -----------------------------------------------
-" if executable('ag')
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" endif
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+endif
 map <Leader>p :CtrlPBuffer<CR>
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" let g:ctrlp_user_command = 'find %s -type f'
-" if executable('ag')
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" endif
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
@@ -219,7 +214,7 @@ let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:jsx_ext_required = 0
 "-------------- syntastic -------------------------------------------
 let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v9.1.0/bin/eslint'
+let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v9.2.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '->'
 let g:syntastic_warning_symbol = '->'
