@@ -37,7 +37,7 @@
    npm -g bin                 #获得npm的包目录，并复制
    npm install -g yarn
    yarn config set registry https://registry.npm.taobao.org/
-   npm install -g typescript eslint babel-eslint eslint-plugin-react #为vim代码提示与检查做准备
+   npm install -g standard typescript eslint babel-eslint eslint-plugin-react #为vim代码提示与检查做准备
 5, 安装Phoenix, nginx, postgreSql
    erl --version
    elixir --version
@@ -50,8 +50,10 @@
    进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
    下载并剪切到 ~/Application/ 中    http://www.psequel.com/
 6, 配置 macvim
-   1. mv /usr/local/Cellar/macvim/8.0-143/MacVim.app ~/Applications/
-      ln -s ~/Applications/MacVim.app /usr/local/Cellar/macvim/8.0-143/
+   1. 只有从终端启动的mvim才会带node路径，所以，mvim以后，不要完全退出，即可
+      mv /usr/local/Cellar/macvim/8.0-143/MacVim.app /Applications/
+      ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-143/
+      系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + -> MacVim -> Quit MacVim -> ^q
    2. 安装vim包管理器
       mkdir ~/.vim; mkdir ~/.vim/bundle
       git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
