@@ -66,4 +66,4 @@ gi 进入第一个input框
 正则匹配
 问题<div className={styles.container}>
 将{styles.container} 替换为"container"
-:%s/\v\{stles\.(\w+)\}/"\1"/g
+:%s/\v\{styles\.(\w+)\}/"\1"/g

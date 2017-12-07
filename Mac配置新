@@ -48,7 +48,7 @@
    brew install postgresql          #安装postgresql
    brew cask install pgadmin4       #安装postgresql图形界面
    进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
-   下载并安装 psequel    http://www.psequel.com/
+   下载并剪切到 ~/Application/ 中    http://www.psequel.com/
 6, 配置 macvim
    1. 从命令行启动mvim， 这样可以带相应的环境变量
       如果不需要eslint，可以直接从comand+空格来调用macvim
