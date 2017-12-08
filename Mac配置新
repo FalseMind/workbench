@@ -54,8 +54,8 @@
       mv /usr/local/Cellar/macvim/8.0-143/MacVim.app /Applications/
       ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-143/
       系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + -> MacVim -> Quit MacVim -> ^q
-                                                           iTerm -> Quit iTerm2
-                                                           FireFox -> 退出FireFox
+                                                           iTerm -> Quit iTerm2 -> ^q
+                                                           FireFox -> 退出 FireFox -> ^q
    2. 安装vim包管理器
       mkdir ~/.vim; mkdir ~/.vim/bundle
       git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
