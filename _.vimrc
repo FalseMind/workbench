@@ -171,8 +171,13 @@ nmap <leader>t <c-w>gf
 nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
-vmap <Leader>t :Tab<space>/
+
 nmap <leader>s :call Search()<CR>
+map <Leader>a :AddHeader<CR>
+map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
+
+map <Leader>f :Rg
+map <Leader>p :CtrlPBuffer<CR>
 "---------------插件快捷键设置---------------------------------------
 map  <silent><D-e> :call NERDTreeFindToggle()<CR>
 imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
@@ -197,7 +202,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
-map <Leader>p :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
@@ -205,7 +209,6 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<c-t>'],
       \ }
 "-------------- vim-ripgrep -----------------------------------------
-map <Leader>f :Rg
 let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
@@ -230,7 +233,6 @@ let g:header_field_author = 'Mantak'
 let g:header_field_author_email = 'mantak.cn@gmail.com'
 let g:header_field_timestamp_format = '%Y-%m-%d'
 let g:header_auto_add_header = 0
-map <Leader>a :AddHeader<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -252,3 +254,15 @@ func! NERDTreeFindToggle()
 endfunction
 au BufRead,BufNewFile              : _.vimrc
 au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
+" 重写gx方法
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+function! HandleURL()
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  echo s:uri
+  if s:uri != ""
+    silent exec "!open '".s:uri."'"
+  else
+    echo "No URI found in line."
+  endif
+endfunction
+nnoremap gx ::call HandleURL()<CR>

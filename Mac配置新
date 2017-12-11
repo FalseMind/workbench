@@ -13,6 +13,7 @@
    brew install wget                安装wget
    brew install macvim --with-lua --with-python3 --with-override-system-vim
    brew cask install google-chrome  安装 Google 浏览器
+   brew cask install shadowsocksx   安装梯子
    brew install firefox             安装firefox
    brew install -v imagemagick      安装图片处理
    brew cleanup                     删除brew安装包
@@ -80,7 +81,6 @@
       系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
       系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
 7, 配置 firefox
-   chrome需要翻墙，还是用这个吧
    安装vim 轻灵划词 redux-devtools
 8, 配置git
    git config --global user.name 'mantak'
@@ -97,3 +97,4 @@
    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
    echo "source .bash_profile" >> ~/.zshrc
    source ~/.zshrc
+10，App store 里安装讯飞语音输入
