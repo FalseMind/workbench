@@ -80,8 +80,8 @@
       brew install fcitx-remote-for-osx
       系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
       系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
-7, 配置 firefox
-   安装vim 轻灵划词 redux-devtools
+7, 配置 chrome
+   安装vim 沙拉查词 redux-devtools
 8, 配置git
    git config --global user.name 'mantak'
    git config --global user.email 'mantak.cn@gmail.com'
@@ -98,3 +98,4 @@
    echo "source .bash_profile" >> ~/.zshrc
    source ~/.zshrc
 10，App store 里安装讯飞语音输入
+11, App store 里安装网易邮箱大师
