@@ -51,8 +51,7 @@
    进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
    下载并剪切到 ~/Application/ 中    http://www.psequel.com/
 6, 配置 macvim
-   1. 只有从终端启动的mvim才会带node路径，所以，mvim以后，不要完全退出，即可
-      mv /usr/local/Cellar/macvim/8.0-143/MacVim.app /Applications/
+   1. mv /usr/local/Cellar/macvim/8.0-143/MacVim.app /Applications/
       ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-143/
       系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + -> MacVim -> Quit MacVim -> ^q
                                                            iTerm -> Quit iTerm2 -> ^q
@@ -69,17 +68,19 @@
    5. 安装tern
       cd ~/.vim/bundle/tern_for_vim
       npm i
-   6. 启动eslint
-      which eslint
-      复制，并更新vimrc里的eslint的地址
-   7. 安装ycm
+   6. 安装ycm
       确保node, npm, typscript已经安装，并且可以通过命令行调用
       cd ~/.vim/bundle/YouCompleteMe
       ./install.py  --js-completer
-   8. 安装输入法智能切换
+   7. 安装输入法智能切换
       brew install fcitx-remote-for-osx
       系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
       系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
+   8. 将node路径添加到启动程序到path中，这样启动macvim的时候，才能找到node， eslint才能生效
+      :echo syntastic#util#system('echo "$PATH"')   #在macvim里运行，应该没有发现.nvm/..../bin的路径
+      echo $PATH   #展示现在bin路径，里面应该有.nvm/...../bin
+      sudo launchctl config user path `echo $path`  #让启动项，主要是macvim也获取相同都环境路径
+      该项需要重启才能生效
 7, 配置 chrome
    安装vim 沙拉查词 redux-devtools
 8, 配置git

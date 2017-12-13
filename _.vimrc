@@ -217,7 +217,7 @@ let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:jsx_ext_required = 0
 "-------------- syntastic -------------------------------------------
 let g:syntastic_check_on_open = 0
-let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v9.2.0/bin/eslint'
+" let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v9.2.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '->'
 let g:syntastic_warning_symbol = '->'
@@ -252,7 +252,7 @@ func! NERDTreeFindToggle()
     execute ':NERDTreeFind'
   endif
 endfunction
-au BufRead,BufNewFile              : _.vimrc
+" au BufRead,BufNewFile              : _.vimrc
 au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
 " 重写gx方法
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
