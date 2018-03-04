@@ -5,3 +5,8 @@ cd hello
 mix ecto.create  第一次安装，需要安装Rebar（erlang的打包工具）
 mix phx.server   启动项目
 
+
+phoenix项目安装流程
+mix deps.get  安装相关的包
+mix run priv/repo/seeds.exs  安装初始数据
+

@@ -43,6 +43,7 @@
    erl --version
    elixir --version
    brew install elixir   #安装elixir(同时安装erlang)
+   brew upgrade elixir   #如果需要升级，则执行这个命令
    mix local.hex         #安装或者更新hex(包管理)
    mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez     #安装phoenix
    brew install nginx               #安装nginx
@@ -100,3 +101,25 @@
    source ~/.zshrc
 10，App store 里安装讯飞语音输入
 11, App store 里安装网易邮箱大师
+12, App store 里安装iSee
+13, 去官网下载并安装迅雷 http://mac.xunlei.com/
+14, 下载并安装docker   https://download.docker.com/mac/stable/Docker.dmg
+15, 安装redis
+    wget http://download.redis.io/releases/redis-4.0.6.tar.gz
+    tar -zxvf redis-4.0.6.tar.gz
+    sudo mkdir -p /usr/local/redis/
+    sudo cp -r redis-4.0.6/*  /usr/local/redis/
+    ls /usr/local/redis/
+    cd /usr/local/redis/
+    sudo make
+    sudo make test
+    sudo make install
+    ls /usr/local/bin/redis-*
+16, 安装react native环境
+    brew install watchman
+    npm install -g create-react-native-app
+
+    # 下面的不推荐
+    npm install -g react-native-cli
+    #android环境就算了吧。实现一个，另一个一样搞定
+    brew cask install android-sdk

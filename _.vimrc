@@ -32,6 +32,7 @@ Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'LKNguyen/papercolor-theme'
 "--------------------------------------------------------------------
+Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
@@ -67,7 +68,7 @@ set laststatus=2  "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number        "显示行号
 set ruler         "打开状态栏标尺
 " set guifont=Source\ Code\ Pro\ for\ Powerline:h15
-set guifont=Menlo\ for\ Powerline:h15
+set guifont=Menlo\ for\ Powerline:h14
 " au TabEnter * let t:current = 1
 " au TabLeave * let t:current = 0
 " set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
@@ -161,10 +162,6 @@ nmap <silent><D-0> :tabn 10<cr>
 " nmap <silent><M-k> :tabn<cr>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
-vmap <Leader>c "+y
-vmap <Leader>v "+p
-nmap <Leader>v "+p
-nmap <leader>w :w<CR>
 nmap <leader>g gg=G
 nmap <leader>i <c-w>F
 nmap <leader>t <c-w>gf
@@ -172,8 +169,9 @@ nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
 
-nmap <leader>s :call Search()<CR>
 map <Leader>a :AddHeader<CR>
+nmap <leader>s :call Search()<CR>
+nmap <leader>c :call SearchGithub()<CR>
 map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 map <Leader>f :Rg
@@ -245,6 +243,11 @@ func! Search()
   let url = "https://www.baidu.com/s?wd=" . keyword
   silent exec "!open '".url."'"
 endfun
+func! SearchGithub()
+  let keyword = expand("<cword>")
+  let url = "https://www.github.com/search?q=" . keyword
+  silent exec "!open '".url."'"
+endfun
 func! NERDTreeFindToggle()
   if g:NERDTree.IsOpen()
     execute ':NERDTreeClose'
@@ -266,3 +269,23 @@ function! HandleURL()
   endif
 endfunction
 nnoremap gx ::call HandleURL()<CR>
+
+
+
+" let g:LargeFile = 1024 * 500
+" augroup LargeFile
+"  autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+" augroup END
+"
+" function LargeFile()
+"  " no syntax highlighting etc
+"  set eventignore+=FileType
+"  " save memory when other file is viewed
+"  setlocal bufhidden=unload
+"  " is read-only (write with :w new_filename)
+"  setlocal buftype=nowrite
+"  " no undo possible
+"  setlocal undolevels=-1
+"  " display message
+"  autocmd VimEnter *  echo "文件大于 " . (g:LargeFile / 1024) . " KB, 以只读模式打开"
+" endfunction
