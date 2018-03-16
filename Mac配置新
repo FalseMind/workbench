@@ -81,7 +81,7 @@
       :echo syntastic#util#system('echo "$PATH"')   #在macvim里运行，应该没有发现.nvm/..../bin的路径
       echo $PATH   #展示现在bin路径，里面应该有.nvm/...../bin
       sudo launchctl config user path `echo $path`  #让启动项，主要是macvim也获取相同都环境路径
-      该项需要重启才能生效
+      killall Dock   #dock杀死后会自动重启，重启以后生效
 7, 配置 chrome
    安装vim 沙拉查词 redux-devtools
 8, 配置git

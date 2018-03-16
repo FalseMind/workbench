@@ -1,0 +1,7 @@
+query就是从Ecto.repo里读取数据，一般有两种写法, keyword和macro
+
+变量以及需要elixir计算的内容，需要以^开始
+
+Any value can be used on the right-side of in as long as it implements the
+Ecto.Queryable protocol. For now, we know the protocol is implemented for both
+atoms (like User) and strings (like “users”).

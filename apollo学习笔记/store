@@ -1,0 +1,5 @@
+Apollo performs two important core tasks: Executing queries and mutations, and caching the results.
+
+大多时候，他自己就更新了，或者自己手动更新
+如果你query了一条数据，然后又更新了他，那么，客户端会自动更新原来的缓存
+为了保持query和mutate的数据返回格式的统一，尽量使用fragments

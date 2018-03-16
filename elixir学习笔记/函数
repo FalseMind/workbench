@@ -1,0 +1,48 @@
+ 要定义匿名函数，我们需要 fn 和 end 关键字，在这两者之间，我们可以定义任意数量的参数和函数体，它们用 -> 分隔开
+sum = fn (a, b) -> a + b end
+handle_result = fn
+  {:ok, result} -> IO.puts "Handling result..."
+  {:error} -> IO.puts "An error has occurred!"
+end
+
+要定义命名函数，我们需要 def 关键字定义在某个模块中
+defmodule Greeter do
+  def hello(name) do
+    "Hello, " <> name
+  end
+  # 如果只有一行，可以这样写
+  def hello2(name), do "Hello, " <> name
+end
+
+
+当 Elixir 匹配某个函数之后，后面的卫兵都会被检测。
+
+
+
+Elixir 在处理多个匹配函数的时候，不喜欢默认参数这种模式，因为它很容易让人混淆。
+要处理这种情况，我们可以添加一个设置了默认参数值的函数头部：
+
+defmodule Greeter do
+  def hello(names, language_code \\ "en")
+
+  def hello(names, language_code) when is_list(names) do
+    names
+    |> Enum.join(", ")
+    |> hello(language_code)
+  end
+
+  def hello(name, language_code) when is_binary(name) do
+    phrase(language_code) <> name
+  end
+
+  defp phrase("en"), do: "Hello, "
+  defp phrase("es"), do: "Hola, "
+end
+
+当我们需要匹配条件而不是值的时候，可以使用 cond，这和其他语言的 else if 或者 elsif 相似：
+cond do
+  2 + 2 == 5 -> "This will not be true"
+  2 * 2 == 3 -> "Nor this"
+  1 + 1 == 2 -> "But this will"
+end
+"But this will"
