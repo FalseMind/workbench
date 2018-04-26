@@ -34,13 +34,6 @@ mac下vim全屏
 eslint插件安装
 http://usevim.com/2016/03/07/linting/
 
-cVim快捷键
-f 打开连接 F新tab里打开连接
-j k 上下 J K tab上下 H L 历史
-t 新tab打开历史
-o 当前tab打开页面
-gi 进入第一个input框
-
 
 
 "set statusline+=%#warningmsg#

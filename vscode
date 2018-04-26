@@ -1,0 +1,185 @@
+添加插件：
+eslint
+docker
+ElixirLS
+erlang
+ES7 React
+Go
+Git Lens
+Graphql for VSCode
+Live Server
+Vimvs
+Material Icon
+Prettier - Code Formatter
+
+comd + p 打开文件
+comd + t 打开tag
+comd + g 打开当前文件的git历史
+comd + o 打开项目历史
+comd + f 查找
+comd + shift + f 全项目查找
+
+comd + , 打开配置
+添加自定义配置如下
+
+{
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnSave": true,
+    "editor.fontSize": 13,
+    "workbench.colorTheme": "Solarized Light",
+    // "editor.renderWhitespace": "all",
+    "workbench.iconTheme": "material-icon-theme",
+    // 代码格式化参数
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "prettier.printWidth": 120,
+    // vim配置
+    "vim.leader": ",",
+    "vim.foldfix": true,
+    "vim.easymotion": true,
+    "vim.easymotionMarkerFontFamily": "Menlo, Monaco",
+    "vim.easymotionMarkerYOffset": 2,
+    "vim.easymotionMarkerHeight": 19,
+    "vim.easymotionMarkerWidthPerChar": 9,
+    "vim.easymotionMarkerBackgroundColor": "#000",
+    "workbench.activityBar.visible": true,
+    "workbench.statusBar.visible": true,
+    "search.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/.elixir_ls": true,
+        "**/_build": true,
+        "**/deps": true,
+        "**/node_modules": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/.elixir_ls": true,
+    },
+    "git.enableSmartCommit": true,
+    "workbench.panel.location": "bottom",
+    "window.zoomLevel": 0,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": true,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    },
+    "workbench.startupEditor": "newUntitledFile"
+}
+
+打开首选项，键盘快捷方式，打开keybindings.js
+// 将键绑定放入此文件中以覆盖默认值
+[
+    {
+        "key": "cmd+g",
+        "command": "gitlens.showQuickFileHistory"
+    },
+    {
+        "key": "cmd+[",
+        "command": "editor.fold",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+]",
+        "command": "editor.unfold",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+[",
+        "command": "editor.action.outdentLines",
+        "when": "-editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+]",
+        "command": "editor.action.indentLines",
+        "when": "-editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "ctrl+1",
+        "command": "-workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.openEditorAtIndex2"
+    },
+    {
+        "key": "ctrl+2",
+        "command": "-workbench.action.openEditorAtIndex2"
+    },
+    {
+        "key": "cmd+3",
+        "command": "workbench.action.openEditorAtIndex3"
+    },
+    {
+        "key": "ctrl+3",
+        "command": "-workbench.action.openEditorAtIndex3"
+    },
+    {
+        "key": "cmd+4",
+        "command": "workbench.action.openEditorAtIndex4"
+    },
+    {
+        "key": "ctrl+4",
+        "command": "-workbench.action.openEditorAtIndex4"
+    },
+    {
+        "key": "cmd+5",
+        "command": "workbench.action.openEditorAtIndex5"
+    },
+    {
+        "key": "ctrl+5",
+        "command": "-workbench.action.openEditorAtIndex5"
+    },
+    {
+        "key": "cmd+6",
+        "command": "workbench.action.openEditorAtIndex6"
+    },
+    {
+        "key": "ctrl+6",
+        "command": "-workbench.action.openEditorAtIndex6"
+    },
+    {
+        "key": "cmd+7",
+        "command": "workbench.action.openEditorAtIndex7"
+    },
+    {
+        "key": "ctrl+7",
+        "command": "-workbench.action.openEditorAtIndex7"
+    },
+    {
+        "key": "cmd+8",
+        "command": "workbench.action.openEditorAtIndex8"
+    },
+    {
+        "key": "ctrl+8",
+        "command": "-workbench.action.openEditorAtIndex8"
+    },
+    {
+        "key": "cmd+9",
+        "command": "workbench.action.openEditorAtIndex9"
+    },
+    {
+        "key": "ctrl+9",
+        "command": "-workbench.action.openEditorAtIndex9"
+    },
+    {
+        "key": "cmd+o",
+        "command": "workbench.action.openRecent"
+    },
+    {
+        "key": "cmd+o",
+        "command": "-workbench.action.files.openFileFolder"
+    }
+]
+
+

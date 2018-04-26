@@ -1,0 +1,13 @@
+docker image ls              #列出可用镜像----顶层镜像
+docker image ls -a           #列出可用镜像----包括中间层镜像
+
+docker ps                    #显示运行中的container
+docker ps -a                 #显示所有container
+docker stop 容器名或ID       #停止container
+
+docker rm 容器名或ID         #删除container
+docker diff 容器名或ID       #查看某容器的变化
+docker history 容器名或ID    #查看某容器的历史
+
+docker system df             #列出镜像、容器所占空间
+

@@ -1,8 +1,8 @@
-" File              : _.vimrc
+" File              : /Users/mantak/.vimrc
 " Author            : Mantak <mantak.cn@gmail.com>
 " Date              : 2017-09-05
-" Last Modified Date: 2017-12-01
-" Last Modified By  : Mantak <mantak.cn@gmail.com>
+" Last Modified Date: 2018-04-26
+" Last Modified By  : Mantak <mantak@hotmail.com>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件安装
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -30,7 +30,8 @@ Plugin 'vim-syntastic/syntastic'
 "--------------------------------------------------------------------
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
-Plugin 'LKNguyen/papercolor-theme'
+" Plugin 'LKNguyen/papercolor-theme'
+Plugin 'NLKNguyen/papercolor-theme'
 "--------------------------------------------------------------------
 Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
@@ -52,6 +53,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'Mantak/mantak-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
+
 "--------------------------------------------------------------------
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -103,7 +106,7 @@ autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 " autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 "---------------换行设置---------------------------------------------
 set nowrap linebreak nolist
-set textwidth=80 fo+=Mm "80字符换行
+set textwidth=100 fo+=Mm "100字符换行
 set colorcolumn=+1 "81字符提示
 set synmaxcol=255 "每行高亮显示的最大字符数，超过了，就不会高亮渲染了。默认是3000
 set display=lastline "长行不显示@
@@ -141,10 +144,10 @@ nmap K <Nop>
 imap <F2> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
 "---------------窗口快捷键设置----------------------------------------
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+map <D-h> <C-w>h
+map <D-j> <C-w>j
+map <D-k> <C-w>k
+map <D-l> <C-w>l
 "---------------tab快捷键设置----------------------------------------
 " map  <silent><D-t> :tabnew<CR>
 " map  <silent><D-w> :tabc<CR>
@@ -180,9 +183,13 @@ map <Leader>p :CtrlPBuffer<CR>
 map  <silent><D-e> :call NERDTreeFindToggle()<CR>
 imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
 " map  <fg> :call NERDTreeFindToggle()<CR>
+set completeopt=menu  "不要打开提示框
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- EasyMotion    ---------------------------------------
+map <Leader>, <Plug>(easymotion-bd-jk)
+map <Leader> <Plug>(easymotion-prefix)
 "-------------- YouCompleteMe ---------------------------------------
 let g:ycm_max_num_candidates = 10
 " let g:ycm_max_diagnostics_to_display = 20
@@ -215,7 +222,6 @@ let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:jsx_ext_required = 0
 "-------------- syntastic -------------------------------------------
 let g:syntastic_check_on_open = 0
-" let g:syntastic_javascript_eslint_exec='/Users/mantak/.nvm/versions/node/v9.2.0/bin/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '->'
 let g:syntastic_warning_symbol = '->'
@@ -228,9 +234,18 @@ highlight link SyntasticStyleWarningSign SignColumn
 "ㄨ
 "-------------- AddHeader -------------------------------------------
 let g:header_field_author = 'Mantak'
-let g:header_field_author_email = 'mantak.cn@gmail.com'
+let g:header_field_author_email = 'mantak@hotmail.com'
 let g:header_field_timestamp_format = '%Y-%m-%d'
 let g:header_auto_add_header = 0
+"-------------- VimPrettier -----------------------------------------
+let g:prettier#autoformat = 1
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#print_width = 100
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#arrow_parens = 'always'
+let g:prettier#config#bracket_spacing = 'true'
+autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
+" autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -260,7 +275,7 @@ au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键
 " 重写gx方法
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 function! HandleURL()
-  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;)]*')
   echo s:uri
   if s:uri != ""
     silent exec "!open '".s:uri."'"

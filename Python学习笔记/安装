@@ -1,0 +1,5 @@
+# 更新python到最新版本
+brew upgrade python
+pip3 install 某包
+
+python3 -m pip install jupyter

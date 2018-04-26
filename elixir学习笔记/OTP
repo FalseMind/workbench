@@ -1,0 +1,10 @@
+GenServer是一个OTP协议。OTP起作用的前提是假设模块定义了许多回掉函数
+
+Elixir应用程序监视器存在的唯一目的，管理一个或多个工作进程
+创建监视器的命令是 Supervsion
+//  module Xxxx.Application
+应用程序启动时，会先运行Application里的start，然后下列声明生效
+children = [
+  worker(XXX.Worker, [args])
+]
+Supervision.start_link(children, opts)
