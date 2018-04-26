@@ -61,7 +61,9 @@
       MacVim ->
         Quit MacVim -> ^q
         Hide MacVim -> ^h
-        List Errors -> ^L
+        List Errors -> ^l
+        Find...     -> ^f
+        Print       -> ^p
       iTerm ->
         Quit iTerm2 -> ^q
       FireFox ->

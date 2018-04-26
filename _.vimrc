@@ -27,6 +27,8 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-fugitive.git'
 "--------------------------------------------------------------------
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
@@ -178,10 +180,10 @@ nmap <leader>c :call SearchGithub()<CR>
 map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 map <Leader>f :Rg
-map <Leader>p :CtrlPBuffer<CR>
 "---------------插件快捷键设置---------------------------------------
-map  <silent><D-e> :call NERDTreeFindToggle()<CR>
-imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
+map <D-e> :NERDTreeToggle<CR>
+" map  <silent><D-e> :call NERDTreeFindToggle()<CR>
+" imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
 " map  <fg> :call NERDTreeFindToggle()<CR>
 set completeopt=menu  "不要打开提示框
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,6 +206,8 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " let NERDTreeWinPos=1 "窗口居右
 "-------------- CtrlP -----------------------------------------------
+let g:ctrlp_map = '<D-p>'
+map <Leader>p :CtrlPBuffer<CR>
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
@@ -246,6 +250,8 @@ let g:prettier#config#arrow_parens = 'always'
 let g:prettier#config#bracket_spacing = 'true'
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 " autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+"-------------- VimFugitive -----------------------------------------
+map <D-d> :Gvdiff<CR>  "查看与上一版本的不同
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -263,13 +269,6 @@ func! SearchGithub()
   let url = "https://www.github.com/search?q=" . keyword
   silent exec "!open '".url."'"
 endfun
-func! NERDTreeFindToggle()
-  if g:NERDTree.IsOpen()
-    execute ':NERDTreeClose'
-  else
-    execute ':NERDTreeFind'
-  endif
-endfunction
 " au BufRead,BufNewFile              : _.vimrc
 au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
 " 重写gx方法
