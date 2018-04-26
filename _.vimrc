@@ -250,8 +250,6 @@ let g:prettier#config#arrow_parens = 'always'
 let g:prettier#config#bracket_spacing = 'true'
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 " autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
-"-------------- VimFugitive -----------------------------------------
-map <D-d> :Gvdiff<CR>  "查看与上一版本的不同
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -303,3 +301,13 @@ nnoremap gx ::call HandleURL()<CR>
 "  " display message
 "  autocmd VimEnter *  echo "文件大于 " . (g:LargeFile / 1024) . " KB, 以只读模式打开"
 " endfunction
+
+" 常用命令 """""""""""""""""""""""""""""""""""""""""""""""""""
+" Gedit
+" Gstatus  dv
+" Glog
+"   :cnext
+"   :cprev
+"   :copen
+" Gvdiff
+" Gcommit
