@@ -222,10 +222,9 @@ if executable('ag')
 endif
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],
-      \ 'AcceptSelection("h")': ['<c-i>'],
-      \ 'AcceptSelection("t")': ['<c-t>'],
-      \ }
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 "-------------- vim-ripgrep -----------------------------------------
 let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
@@ -321,3 +320,6 @@ nnoremap gx ::call HandleURL()<CR>
 "   :copen
 " Gvdiff
 " Gcommit
+" ctrlP
+" Use <c-j>, <c-k> or the arrow keys to navigate the result list.
+" Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
