@@ -1,5 +1,8 @@
 安装手记
-
+先运行下面命令，阻止生成.DS_Store文件,重启Mac即可生效。
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+如果想恢复，可以运行
+defaults delete com.apple.desktopservices DSDontWriteNetworkStores
 ///////////////////////必装内容////////////////////////////////
 1, 到App Store里安装xcode，然后运行一下，以安装基本组件
    sudo xcode-select -s /Applications/Xcode.app/Contents/Developer

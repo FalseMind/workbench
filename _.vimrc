@@ -30,10 +30,9 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-fugitive.git'
 "--------------------------------------------------------------------
-Plugin 'sjl/badwolf'
-Plugin 'tomasr/molokai'
-" Plugin 'LKNguyen/papercolor-theme'
+Plugin 'morhetz/gruvbox'
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'altercation/vim-colors-solarized'
 "--------------------------------------------------------------------
 Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
@@ -72,8 +71,8 @@ set cmdheight=1   "设定命令行的行数为 1
 set laststatus=2  "显示状态栏 (默认值为 1, 无法显示状态栏)
 set number        "显示行号
 set ruler         "打开状态栏标尺
-" set guifont=Source\ Code\ Pro\ for\ Powerline:h15
-set guifont=Menlo\ for\ Powerline:h14
+set cursorcolumn  "打开竖线提示当前所在列
+set guifont=Menlo\ for\ Powerline:h15
 " au TabEnter * let t:current = 1
 " au TabLeave * let t:current = 0
 " set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
@@ -119,16 +118,15 @@ syntax on
 let macvim_skip_colorscheme=1
 let hour = strftime("%H")
 if 8 <= hour &&  hour < 16
-  set background=dark
-else
   set background=light
+else
+  set background=dark
 endif
-set background=dark
 let modDay = (strftime("%d"))%3
 if modDay == 0
-  colorscheme badwolf
+  colorscheme gruvbox
 elseif modDay == 1
-  colorscheme molokai
+  colorscheme solarized
 else
   colorscheme PaperColor
 endif
@@ -180,12 +178,6 @@ nmap <leader>c :call SearchGithub()<CR>
 map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 map <Leader>f :Rg
-"---------------插件快捷键设置---------------------------------------
-map <D-e> :NERDTreeToggle<CR>
-" map  <silent><D-e> :call NERDTreeFindToggle()<CR>
-" imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
-" map  <fg> :call NERDTreeFindToggle()<CR>
-set completeopt=menu  "不要打开提示框
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -205,6 +197,23 @@ let g:UltiSnipsExpandTrigger="<c-o>"
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " let NERDTreeWinPos=1 "窗口居右
+set completeopt=menu  "不要打开提示框
+" map <D-e> :NERDTreeToggle<CR>
+" map  <fg> :call NERDTreeFindToggle()<CR>
+" 切换NerdTree,不使用NERDTreeToggle的原因是，这个命令无法定位到文件位置
+map  <silent><D-e> :call NERDTreeFindToggle()<CR>
+imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
+func! NERDTreeFindToggle()
+  if g:NERDTree.IsOpen()
+    execute ':NERDTreeClose'
+  else
+    if !(getline(1) ==# '' && 1 == line('$'))
+      :NERDTreeFind
+    else
+      :NERDTreeCWD
+    endif
+  endif
+endfunction
 "-------------- CtrlP -----------------------------------------------
 let g:ctrlp_map = '<D-p>'
 map <Leader>p :CtrlPBuffer<CR>
@@ -248,12 +257,13 @@ let g:prettier#config#print_width = 100
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#arrow_parens = 'always'
 let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#parser = 'babylon'
 autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 " autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cd ~/MyDream
+cd ~/Company
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
