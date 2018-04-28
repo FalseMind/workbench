@@ -5,177 +5,176 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 defaults delete com.apple.desktopservices DSDontWriteNetworkStores
 ///////////////////////必装内容////////////////////////////////
 1, 到App Store里安装xcode，然后运行一下，以安装基本组件
-   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 2, 安装brew  参考：https://brew.sh
-   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 3, 安装必用软件
-   brew update && brew upgrade      更新brew
-   brew install git                 安装git
-   brew install ripgrep             vim ctrlF用
-   brew install the_silver_searcher vim ctrlP用
-   brew install wget                安装wget
-   brew install macvim --with-lua --with-python3 --with-override-system-vim
-   brew cask install google-chrome  安装 Google 浏览器
-   brew cask install shadowsocksx   安装梯子
-   brew install firefox             安装firefox
-   brew install -v imagemagick      安装图片处理
-   brew cleanup                     删除brew安装包
-   ls /usr/local/bin/               显示用户的命令
+brew update && brew upgrade      更新brew
+brew install git                 安装git
+brew install ripgrep             vim ctrlF用
+brew install the_silver_searcher vim ctrlP用
+brew install wget                安装wget
+brew install macvim --with-lua --with-python3 --with-override-system-vim
+brew cask install google-chrome  安装 Google 浏览器
+brew cask install shadowsocksx   安装梯子
+brew install firefox             安装firefox
+brew install -v imagemagick      安装图片处理
+brew cleanup                     删除brew安装包
+ls /usr/local/bin/               显示用户的命令
 5, 下载基本的配置文件
-   cd && mkdir Working && cd Working
-   git clone  https://github.com/Mantak/workbench
-   ln -s ~/Working/workbench/_.vimrc ~/.vimrc
-   ln -s ~/Working/workbench/_.agignore ~/.agignore
-   ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
-   ln -s ~/Working/workbench/_.gitignore ~/.gitignore
-   ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile
+cd && mkdir Working && cd Working
+git clone  https://github.com/Mantak/workbench
+ln -s ~/Working/workbench/_.vimrc ~/.vimrc
+ln -s ~/Working/workbench/_.agignore ~/.agignore
+## 不再需要ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
+ln -s ~/Working/workbench/_.gitignore ~/.gitignore
+ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile
 4, 安装node https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
-   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
-   运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
-   nvm ls-remote              #列出远程node列表
-   nvm install v8.4.0         #安装指定版本的node
-   nvm alias default v8.4.0   #设置某个版本为默认版本，默认的第一个安装的版本为默认版本
-   npm config set registry https://registry.npm.taobao.org/
-   // npm config set registry http://r.cnpmjs.org/
-   npm config get registry    #确认npm项目源
-   npm -g bin                 #获得npm的包目录，并复制
-   npm install -g yarn
-   yarn config set registry https://registry.npm.taobao.org/
-   npm install -g standard typescript prettier eslint babel-eslint eslint-plugin-react #为vim代码提示与检查做准备
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
+运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
+nvm ls-remote              #列出远程node列表
+nvm install v8.4.0         #安装指定版本的node
+nvm alias default v8.4.0   #设置某个版本为默认版本，默认的第一个安装的版本为默认版本
+npm config set registry https://registry.npm.taobao.org/
+// npm config set registry http://r.cnpmjs.org/
+npm config get registry    #确认npm项目源
+npm -g bin                 #获得npm的包目录，并复制
+npm install -g yarn
+yarn config set registry https://registry.npm.taobao.org/
+npm install -g prettier #为vim代码提示与检查做准备
 5, 安装Phoenix, nginx, postgreSql
-   erl --version
-   elixir --version
-   brew install elixir   #安装elixir(同时安装erlang)
-   brew upgrade elixir   #如果需要升级，则执行这个命令
-   mix local.hex         #安装或者更新hex(包管理)
-   mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez     #安装phoenix
-   brew install nginx               #安装nginx
-   brew install postgresql          #安装postgresql
-   brew services start postgresql   #ps设置为开机启动的服务
-   brew services stop postgresql
-   brew services restart postgresql
-   brew cask install pgadmin4       #安装postgresql图形界面
-   进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
-   下载并剪切到 ~/Application/ 中    http://www.psequel.com/
-6, 配置 macvim
-   1. mv /usr/local/Cellar/macvim/8.0-143/MacVim.app /Applications/
-      ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-143/
-      系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + ->
-      MacVim ->
-        Quit MacVim -> ^q
-        Hide MacVim -> ^h
-        List Errors -> ^l
-        Find...     -> ^f
-        Print       -> ^p
-      iTerm ->
-        Quit iTerm2 -> ^q
-      FireFox ->
-        退出 FireFox -> ^q
-   2. 安装vim包管理器
-      mkdir ~/.vim; mkdir ~/.vim/bundle
-      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-   3. 启动macvim 运行PluginInstall，如果youcompleteme安装很慢的话，注释掉，直接clone
-   4. 安装字体
-      cd && git clone https://github.com/abertsch/Menlo-for-Powerline
-      cd Menlo-for-Powerline && open Menlo\ for\ Powerline.ttf
-      选择安装字体
-      cd .. && rm -rf Menlo-for-Powerline
-   5. 安装tern
-      cd ~/.vim/bundle/tern_for_vim
-      npm i
-   6. 安装ycm
-      确保node, npm, typscript已经安装，并且可以通过命令行调用
-      cd ~/.vim/bundle/YouCompleteMe
-      ./install.py --js-completer --go-completer
-   7. 安装输入法智能切换
-      brew install fcitx-remote-for-osx
-      系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
-      系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
-   8. 将node路径添加到启动程序到path中，这样启动macvim的时候，才能找到node， eslint才能生效
-      echo $PATH   #展示现在bin路径，里面应该没有node的路径
-      方法1：每次更改了node版本以后都要执行一遍
-      sudo vim /etc/paths  更改path文件，把当前版本的node/bin添加进去，重启即可
-      /Users/mantak/.nvm/versions/node/v9.2.0/bin
-      方法2：这种方法，每次重启系统，都需要执行一遍
-      sudo launchctl config user path `echo $path`  #让启动项，主要是macvim也获取相同都环境路径
-      killall Dock   #dock杀死后会自动重启，重启以后生效
+erl --version
+  elixir --version
+brew install elixir   #安装elixir(同时安装erlang)
+  brew upgrade elixir   #如果需要升级，则执行这个命令
+mix local.hex         #安装或者更新hex(包管理)
+  mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez     #安装phoenix
+  brew install nginx               #安装nginx
+  brew install postgresql          #安装postgresql
+  brew services start postgresql   #ps设置为开机启动的服务
+  brew services stop postgresql
+  brew services restart postgresql
+  brew cask install pgadmin4       #安装postgresql图形界面
+  进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
+  下载并剪切到 ~/Application/ 中    http://www.psequel.com/
+  6, 配置 macvim
+  1. mv /usr/local/Cellar/macvim/8.0-143/MacVim.app /Applications/
+  ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-143/
+  系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + ->
+  MacVim ->
+    Quit MacVim -> ^q
+    Hide MacVim -> ^h
+    List Errors -> ^l
+    Find...     -> ^f
+    Print       -> ^p
+  iTerm ->
+    Quit iTerm2 -> ^q
+  2. 安装vim包管理器
+  mkdir ~/.vim; mkdir ~/.vim/bundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  3. 启动macvim 运行PluginInstall，如果youcompleteme安装很慢的话，注释掉，直接clone
+  4. 安装字体
+  cd && git clone https://github.com/abertsch/Menlo-for-Powerline
+  cd Menlo-for-Powerline && open Menlo\ for\ Powerline.ttf
+  选择安装字体
+  cd .. && rm -rf Menlo-for-Powerline
+  # 不再需要
+  # 5. 安装tern
+  # cd ~/.vim/bundle/tern_for_vim
+  # npm i
+  6. 安装ycm
+  确保node, npm, typscript已经安装，并且可以通过命令行调用
+  cd ~/.vim/bundle/YouCompleteMe
+  ./install.py --js-completer --go-completer
+  7. 安装输入法智能切换
+  brew install fcitx-remote-for-osx
+  系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
+  系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
+  8. 将node路径添加到启动程序到path中，这样启动macvim的时候，才能找到node， eslint才能生效
+  echo $PATH   #展示现在bin路径，里面应该没有node的路径
+  方法1：每次更改了node版本以后都要执行一遍
+  sudo vim /etc/paths  更改path文件，把当前版本的node/bin添加进去，重启即可
+  /Users/mantak/.nvm/versions/node/v9.2.0/bin
+  方法2：这种方法，每次重启系统，都需要执行一遍
+  sudo launchctl config user path `echo $path`  #让启动项，主要是macvim也获取相同都环境路径
+  killall Dock   #dock杀死后会自动重启，重启以后生效
 
-7, 配置 chrome
-   安装vim 沙拉查词 redux-devtools
-8, 配置git
-   git config --global user.name 'mantak'
-   git config --global user.email 'mantak.cn@gmail.com'
-   git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
-   git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
-   ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
-   复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
-   ssh -T git@github.com #测试ssh key 是否设置成功
-9, 安装配置 iterm zsh
-   访问并下载安装iterm2 https://www.iterm2.com/
-   运行iterm comman+,打开配置，更改字体为Menlo for Powerline 字号14
-   brew install zsh zsh-completions
-   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-   echo "source .bash_profile" >> ~/.zshrc
-   source ~/.zshrc
-10，App store 里安装讯飞语音输入
-11, App store 里安装网易邮箱大师
-12, App store 里安装iSee
-13, 去官网下载并安装迅雷 http://mac.xunlei.com/
-14, 安装docker
-    https://download.docker.com/mac/stable/Docker.dmg
-    登陆阿里云，获取专属加速通道  https://cr.console.aliyun.com/#/accelerator
-    打开docker属性设置,  Daemon栏
-    点击桌面顶栏的 docker 图标，选择 Preferences ，在 Daemon 标签下的 Registry mirrors 列表中将
-    https://jcdwsf13.mirror.aliyuncs.com 加到"registry-mirrors"的数组里，点击 Apply & Restart按钮，等待Docker重启并应用配置的镜像加速器。
-    删除所有已下镜像
-    docker system prune -a
-
+  7, 配置 chrome
+  安装vim 沙拉查词 redux-devtools
+  8, 配置git
+  git config --global user.name 'mantak'
+  git config --global user.email 'mantak.cn@gmail.com'
+  git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
+  git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
+  ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
+  复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
+  ssh -T git@github.com #测试ssh key 是否设置成功
+  9, 安装配置 iterm zsh
+  访问并下载安装iterm2 https://www.iterm2.com/
+  运行iterm comman+,打开配置，更改字体为Menlo for Powerline 字号14
+  brew install zsh zsh-completions
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  echo "source .bash_profile" >> ~/.zshrc
+  source ~/.zshrc
+  10，App store 里安装讯飞语音输入
+  11, App store 里安装网易邮箱大师
+  12, App store 里安装iSee
+  13, 去官网下载并安装迅雷 http://mac.xunlei.com/
+  14, 安装docker
+  https://download.docker.com/mac/stable/Docker.dmg
+  登陆阿里云，获取专属加速通道  https://cr.console.aliyun.com/#/accelerator
+  打开docker属性设置,  Daemon栏
+  点击桌面顶栏的 docker 图标，选择 Preferences ，在 Daemon 标签下的 Registry mirrors 列表中将
+  https://jcdwsf13.mirror.aliyuncs.com 加到"registry-mirrors"的数组里，点击 Apply & Restart按钮，等待Docker重启并应用配置的镜像加速器。
+  删除所有已下镜像
+  docker system prune -a
 
 
-15, 安装redis
-    wget http://download.redis.io/releases/redis-4.0.6.tar.gz
-    tar -zxvf redis-4.0.6.tar.gz
-    sudo mkdir -p /usr/local/redis/
-    sudo cp -r redis-4.0.6/*  /usr/local/redis/
-    ls /usr/local/redis/
-    cd /usr/local/redis/
-    sudo make
-    sudo make test
-    sudo make install
-    ls /usr/local/bin/redis-*
-16, 安装react native环境
-    brew install watchman
-    npm install -g create-react-native-app
 
-    # 下面的不推荐
-    npm install -g react-native-cli
-    #android环境就算了吧。实现一个，另一个一样搞定
-    brew cask install android-sdk
+  15, 安装redis
+  wget http://download.redis.io/releases/redis-4.0.6.tar.gz
+  tar -zxvf redis-4.0.6.tar.gz
+  sudo mkdir -p /usr/local/redis/
+  sudo cp -r redis-4.0.6/*  /usr/local/redis/
+                          ls /usr/local/redis/
+                          cd /usr/local/redis/
+                          sudo make
+                          sudo make test
+                          sudo make install
+                          ls /usr/local/bin/redis-*
+                          16, 安装react native环境
+                          brew install watchman
+                          npm install -g create-react-native-app
+
+# 下面的不推荐
+npm install -g react-native-cli
+#android环境就算了吧。实现一个，另一个一样搞定
+brew cask install android-sdk
 17, 安装温度监控
-    https://www.crystalidea.com/macs-fan-control/download
+https://www.crystalidea.com/macs-fan-control/download
 18, 安装配置vscode
-    comd + , 调出配置
-    {
-        "files.autoSave": "onFocusChange",
-        "editor.formatOnSave": true,
-        "editor.fontSize": 13,
-        "workbench.colorTheme": "Cobalt2",
-        // "editor.renderWhitespace": "all",
-        "workbench.iconTheme": "material-icon-theme",
-        "vim.leader": ",",
-        "vim.easymotion": true,
-        "vim.easymotionMarkerFontFamily": "Menlo, Monaco",
-        "vim.easymotionMarkerHeight": 19,
-        "vim.easymotionMarkerWidthPerChar": 9,
-        "vim.easymotionMarkerBackgroundColor": "#FFF"
-    }
-    插件：
-    ElixirLS
-    Prettier
-    GraphQL for VSCode
-    Live Server
-    VSCodeVim
-    Material Icon Theme
+comd + , 调出配置
+{
+"files.autoSave": "onFocusChange",
+"editor.formatOnSave": true,
+"editor.fontSize": 13,
+"workbench.colorTheme": "Cobalt2",
+  // "editor.renderWhitespace": "all",
+  "workbench.iconTheme": "material-icon-theme",
+  "vim.leader": ",",
+  "vim.easymotion": true,
+  "vim.easymotionMarkerFontFamily": "Menlo, Monaco",
+  "vim.easymotionMarkerHeight": 19,
+  "vim.easymotionMarkerWidthPerChar": 9,
+  "vim.easymotionMarkerBackgroundColor": "#FFF"
+  }
+  插件：
+  ElixirLS
+  Prettier
+  GraphQL for VSCode
+  Live Server
+  VSCodeVim
+  Material Icon Theme
 
-19, 安装c编译环境？
-    brew install automake
+  19, 安装c编译环境？
+  brew install automake

@@ -19,20 +19,18 @@ Plugin 'alpertuna/vim-header'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"--------------------------------------------------------------------
+"----- 功能增强 -----------------------------------------------------
 Plugin 'kien/ctrlp.vim'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'Lokaltog/vim-easymotion'
-"--------------------------------------------------------------------
-Plugin 'ternjs/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-fugitive.git'
-"--------------------------------------------------------------------
+"----- 配色方案 -----------------------------------------------------
 Plugin 'morhetz/gruvbox'
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'lifepillar/vim-solarized8'
 "--------------------------------------------------------------------
 Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
@@ -47,13 +45,14 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'briancollins/vim-jst'
 Plugin 'fleischie/vim-styled-components'
 Plugin 'jparise/vim-graphql'
-"--------------------------------------------------------------------
+"----- 代码风格 -----------------------------------------------------
 Plugin 'chemzqm/wxapp.vim'
 Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'
 Plugin 'Mantak/mantak-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'Chiel92/vim-autoformat'
 Plugin 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
 
 "--------------------------------------------------------------------
@@ -124,9 +123,9 @@ else
 endif
 let modDay = (strftime("%d"))%3
 if modDay == 0
-  colorscheme gruvbox
+  colorscheme solarized8
 elseif modDay == 1
-  colorscheme solarized
+  colorscheme gruvbox
 else
   colorscheme PaperColor
 endif
@@ -198,6 +197,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " let NERDTreeWinPos=1 "窗口居右
 set completeopt=menu  "不要打开提示框
+let NERDTreeShowBookmarks=1 "显示书签
 " map <D-e> :NERDTreeToggle<CR>
 " map  <fg> :call NERDTreeFindToggle()<CR>
 " 切换NerdTree,不使用NERDTreeToggle的原因是，这个命令无法定位到文件位置
@@ -222,9 +222,9 @@ if executable('ag')
 endif
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+      \ 'AcceptSelection("e")': ['<c-t>'],
+      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+      \ }
 "-------------- vim-ripgrep -----------------------------------------
 let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
@@ -232,33 +232,36 @@ let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 "-------------- vim-jsx ---------------------------------------------
 let g:jsx_ext_required = 0
-"-------------- syntastic -------------------------------------------
-let g:syntastic_check_on_open = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '->'
-let g:syntastic_warning_symbol = '->'
-let g:syntastic_error_style_symbol = '->'
-let g:syntastic_warning_style_symbol = '->'
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-"ㄨ
 "-------------- AddHeader -------------------------------------------
 let g:header_field_author = 'Mantak'
 let g:header_field_author_email = 'mantak@hotmail.com'
 let g:header_field_timestamp_format = '%Y-%m-%d'
 let g:header_auto_add_header = 0
-"-------------- VimPrettier -----------------------------------------
+" "-------------- VimPrettier -----------------------------------------
 let g:prettier#autoformat = 1
-let g:prettier#exec_cmd_async = 1
+" let g:prettier#exec_cmd_async = 1
 let g:prettier#config#print_width = 100
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#arrow_parens = 'always'
 let g:prettier#config#bracket_spacing = 'true'
 let g:prettier#config#parser = 'babylon'
-autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
+au BufWrite *.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 " autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+"-------------- VimAutoformat ---------------------------------------
+au BufWrite *.ex,*.exs,*.go :Autoformat
+"-------------- syntastic -------------------------------------------
+" 因为使用了Prettier，这个eslint的检查，似乎不再必要
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_error_symbol = '->'
+" let g:syntastic_warning_symbol = '->'
+" let g:syntastic_error_style_symbol = '->'
+" let g:syntastic_warning_style_symbol = '->'
+" highlight link SyntasticErrorSign SignColumn
+" highlight link SyntasticWarningSign SignColumn
+" highlight link SyntasticStyleErrorSign SignColumn
+" highlight link SyntasticStyleWarningSign SignColumn
+"ㄨ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编程环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
