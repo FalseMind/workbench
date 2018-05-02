@@ -37,9 +37,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式化
   "--- 语言支持 -----------------------------------------------------
   Plug 'elixir-editors/vim-elixir'     "Elixir 语法高亮
-  Plug 'slashmili/alchemist.vim'       "Elixir
-  Plug 'pangloss/vim-javascript'       "Javascript
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go
+  Plug 'slashmili/alchemist.vim'       "Elixir 语法补全
+  Plug 'pangloss/vim-javascript'       "Javascript高亮
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go高亮和补全
   "--- 语法补全 -----------------------------------------------------
   Plug 'ervandew/supertab'
   if has('nvim')
@@ -49,8 +49,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' }
-  Plug 'carlitux/deoplete-ternjs'
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' } "JS补全
+  Plug 'carlitux/deoplete-ternjs'                          "JS补全
+  "--- 语法检查 -----------------------------------------------------
+  " Plug 'w0rp/ale'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM设置
