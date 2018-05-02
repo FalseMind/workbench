@@ -49,9 +49,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' }
   Plug 'carlitux/deoplete-ternjs'
-  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM设置
