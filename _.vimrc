@@ -1,63 +1,58 @@
-" File              : /Users/mantak/.vimrc
-" Author            : Mantak <mantak.cn@gmail.com>
-" Date              : 2017-09-05
-" Last Modified Date: 2018-04-26
-" Last Modified By  : Mantak <mantak@hotmail.com>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 插件安装
+" 安装插件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                     " be iMproved, required
-filetype off                         " required
-set rtp+=~/.vim/bundle/Vundle.vim    " set the runtime path to include Vundle and initialize
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-"--------------------------------------------------------------------
-Plugin 'CodeFalling/fcitx-vim-osx'
-Plugin 'airblade/vim-rooter'
-Plugin 'alpertuna/vim-header'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-"----- 功能增强 -----------------------------------------------------
-Plugin 'kien/ctrlp.vim'
-Plugin 'jremmen/vim-ripgrep'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'mhinz/vim-signify'
-Plugin 'tpope/vim-fugitive.git'
-"----- 配色方案 -----------------------------------------------------
-Plugin 'morhetz/gruvbox'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'lifepillar/vim-solarized8'
-"--------------------------------------------------------------------
-Plugin 'slashmili/alchemist.vim'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'fatih/vim-go'
-Plugin 'othree/html5.vim'
-Plugin 'posva/vim-vue'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'groenewege/vim-less'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'briancollins/vim-jst'
-Plugin 'fleischie/vim-styled-components'
-Plugin 'jparise/vim-graphql'
-"----- 代码风格 -----------------------------------------------------
-Plugin 'chemzqm/wxapp.vim'
-Plugin 'epilande/vim-es2015-snippets'
-Plugin 'SirVer/ultisnips'
-Plugin 'Mantak/mantak-vim'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
-
-"--------------------------------------------------------------------
-call vundle#end()            " required
-filetype plugin indent on    " required
+" use scriptencoding when multibyte char exists
+scriptencoding utf-8
+" install plug.vim
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  augroup PlugInstall
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  augroup END
+endif
+call plug#begin('~/.vim/plugged')
+  "----- 界面插件 -----------------------------------------------------
+  Plug 'CodeFalling/fcitx-vim-osx'
+  Plug 'airblade/vim-rooter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  "--- 功能增强 -----------------------------------------------------
+  Plug 'alpertuna/vim-header'           "增加作者信息
+  Plug 'kien/ctrlp.vim'                 "快速打开文件
+  Plug 'jremmen/vim-ripgrep'            "全项目搜索
+  Plug 'Lokaltog/vim-easymotion'        "快速定位
+  Plug 'jiangmiao/auto-pairs'           "成对的括号
+  Plug 'scrooloose/nerdcommenter'       "注释
+  "--- Git支持  -----------------------------------------------------
+  Plug 'mhinz/vim-signify'              "显示文件中的改动
+  Plug 'tpope/vim-fugitive'             "git功能
+  "--- 配色方案 -----------------------------------------------------
+  Plug 'morhetz/gruvbox'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'lifepillar/vim-solarized8'
+  "--- 语法支持 -----------------------------------------------------
+  Plug 'prettier/vim-prettier'         "js css的自动格式化
+  Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式化
+  "--- 语言支持 -----------------------------------------------------
+  Plug 'elixir-editors/vim-elixir'     "Elixir 语法高亮
+  Plug 'slashmili/alchemist.vim'       "Elixir
+  Plug 'pangloss/vim-javascript'       "Javascript
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go
+  "--- 语法补全 -----------------------------------------------------
+  Plug 'ervandew/supertab'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern' }
+  Plug 'carlitux/deoplete-ternjs'
+  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
+call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -72,10 +67,6 @@ set number        "显示行号
 set ruler         "打开状态栏标尺
 set cursorcolumn  "打开竖线提示当前所在列
 set guifont=Menlo\ for\ Powerline:h15
-" au TabEnter * let t:current = 1
-" au TabLeave * let t:current = 0
-" set guitablabel=%{exists('t:current')&&t:current?'@_@':''}%N#\ %t\ %M
-" set ambiwidth=double  "设置Unicode字符可以正确显示
 "---------------基本设置---------------------------------------------
 xnoremap p pgvy  "阻止覆盖的时候复制
 set fileencodings=utf-8,gb2312,gbk,gb18030
@@ -85,10 +76,9 @@ set bufhidden=hide
 set history=50 "history文件中需要记录的行数
 set backspace=2 "使回格键（backspace）正常处理indent, eol, start等
 set mouse=a "可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-"set formatoptions=tcrqn "自动格式化
-"set maxmempattern=1000
 set foldenable "开始折叠
 set foldmethod=indent "设置缩进折叠
+set foldlevel=1 "超过1层，才会缩进
 set expandtab "设定取消tab符，改为空格代替
 set shiftwidth=2 "设定 < 和 > 命令移动时的宽度为 2
 set tabstop=2 "设定tab的空格数
@@ -99,15 +89,12 @@ set noerrorbells "关闭错误信息响铃
 set isk+=- "将-连接符也设置为单词
 set scrolloff=3 "上下滚动的时候留出3行
 set sidescrolloff=8 "左右滚动的时候,留出8个字符
-" let g:netrw_browsex_viewer="setsid xdg-open" "Xfce桌面不能正常使用gx，需要设置一下
 autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
 autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
-" autocmd BufWritePre * silent! :v/\_s*\S/d "保存的时候,自动删除末尾空行
-" autocmd! bufwritepost .vimrc source % "vimrc保存的时候自动应用
 "---------------换行设置---------------------------------------------
 set nowrap linebreak nolist
 set textwidth=100 fo+=Mm "100字符换行
-set colorcolumn=+1 "81字符提示
+set colorcolumn=+1 "行长提示
 set synmaxcol=255 "每行高亮显示的最大字符数，超过了，就不会高亮渲染了。默认是3000
 set display=lastline "长行不显示@
 nnoremap j gj
@@ -160,8 +147,6 @@ nmap <silent><D-7> :tabn 7<cr>
 nmap <silent><D-8> :tabn 8<cr>
 nmap <silent><D-9> :tabn 9<cr>
 nmap <silent><D-0> :tabn 10<cr>
-" nmap <silent><M-j> :tabp<cr>
-" nmap <silent><M-k> :tabn<cr>
 "---------------leader快捷键设置-------------------------------------
 let mapleader = ","
 nmap <leader>g gg=G
@@ -170,37 +155,28 @@ nmap <leader>t <c-w>gf
 nmap <leader>o :tabe<space>
 nmap <leader>/ :nohlsearch<CR>
 nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
-
-map <Leader>a :AddHeader<CR>
 nmap <leader>s :call Search()<CR>
 nmap <leader>c :call SearchGithub()<CR>
 map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
-
-map <Leader>f :Rg
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"-------------- EasyMotion    ---------------------------------------
+"-------------- Deoplete      ---------------------------------------
+let g:deoplete#enable_at_startup = 1
+"-------------- javascript-libraries-syntax  ------------------------
+let g:used_javascript_libs = 'underscore,react'
+"-------------- SuperTab      ---------------------------------------
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:SuperTabClosePreviewOnPopupClose = 1
+""-------------- EasyMotion    ---------------------------------------
 map <Leader>, <Plug>(easymotion-bd-jk)
 map <Leader> <Plug>(easymotion-prefix)
-"-------------- YouCompleteMe ---------------------------------------
-let g:ycm_max_num_candidates = 10
-" let g:ycm_max_diagnostics_to_display = 20
-let g:ycm_disable_for_files_larger_than_kb = 0
-"-------------- wxapp.vim -------------------------------------------
-autocmd File              : ~/.vimrc
-"-------------- Ultisnips -------------------------------------------
-let g:UltiSnipsExpandTrigger="<c-o>"
 "-------------- NerdTree --------------------------------------------
-"Open NERDTree if no files specified
-autocmd StdinReadPre * let s:std_in=1
+autocmd StdinReadPre * let s:std_in=1  "Open NERDTree if no files specified
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " let NERDTreeWinPos=1 "窗口居右
-set completeopt=menu  "不要打开提示框
+" set completeopt=menu  "不要打开提示框
 let NERDTreeShowBookmarks=1 "显示书签
-" map <D-e> :NERDTreeToggle<CR>
-" map  <fg> :call NERDTreeFindToggle()<CR>
-" 切换NerdTree,不使用NERDTreeToggle的原因是，这个命令无法定位到文件位置
 map  <silent><D-e> :call NERDTreeFindToggle()<CR>
 imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
 func! NERDTreeFindToggle()
@@ -214,6 +190,10 @@ func! NERDTreeFindToggle()
     endif
   endif
 endfunction
+"-------------- nerdcommenter -----------------------------------------
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultNesting = 1
+let g:NERDCustomDelimiters = { 'javascript': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' } }
 "-------------- CtrlP -----------------------------------------------
 let g:ctrlp_map = '<D-p>'
 map <Leader>p :CtrlPBuffer<CR>
@@ -226,6 +206,7 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
       \ }
 "-------------- vim-ripgrep -----------------------------------------
+map <Leader>f :Rg
 let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
@@ -237,35 +218,18 @@ let g:header_field_author = 'Mantak'
 let g:header_field_author_email = 'mantak@hotmail.com'
 let g:header_field_timestamp_format = '%Y-%m-%d'
 let g:header_auto_add_header = 0
-" "-------------- VimPrettier -----------------------------------------
+map <Leader>a :AddHeader<CR>
+"  "-------------- VimPrettier -----------------------------------------
 let g:prettier#autoformat = 1
-" let g:prettier#exec_cmd_async = 1
+let g:prettier#exec_cmd_async = 1
 let g:prettier#config#print_width = 100
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#arrow_parens = 'always'
 let g:prettier#config#bracket_spacing = 'true'
 let g:prettier#config#parser = 'babylon'
-au BufWrite *.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
-" autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
 "-------------- VimAutoformat ---------------------------------------
 au BufWrite *.ex,*.exs,*.go :Autoformat
-"-------------- syntastic -------------------------------------------
-" 因为使用了Prettier，这个eslint的检查，似乎不再必要
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_error_symbol = '->'
-" let g:syntastic_warning_symbol = '->'
-" let g:syntastic_error_style_symbol = '->'
-" let g:syntastic_warning_style_symbol = '->'
-" highlight link SyntasticErrorSign SignColumn
-" highlight link SyntasticWarningSign SignColumn
-" highlight link SyntasticStyleErrorSign SignColumn
-" highlight link SyntasticStyleWarningSign SignColumn
-"ㄨ
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 编程环境设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cd ~/Company
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -326,3 +290,7 @@ nnoremap gx ::call HandleURL()<CR>
 " ctrlP
 " Use <c-j>, <c-k> or the arrow keys to navigate the result list.
 " Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
+" 在nerdTree上，移动到文件夹上 :Bookmark 名字 即可添加书签
+" 删除书签，移动到书签上，shift+d 即可
+" 标签
+" ,cc 注释 ,cu 取消注释

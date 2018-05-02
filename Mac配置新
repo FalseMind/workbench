@@ -19,6 +19,7 @@ brew cask install google-chrome  安装 Google 浏览器
 brew cask install shadowsocksx   安装梯子
 brew install firefox             安装firefox
 brew install -v imagemagick      安装图片处理
+brew install ctags-exuberant     安装ctags
 brew cleanup                     删除brew安装包
 ls /usr/local/bin/               显示用户的命令
 5, 下载基本的配置文件
@@ -26,7 +27,8 @@ cd && mkdir Working && cd Working
 git clone  https://github.com/Mantak/workbench
 ln -s ~/Working/workbench/_.vimrc ~/.vimrc
 ln -s ~/Working/workbench/_.agignore ~/.agignore
-## 不再需要ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
+ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
+ln -s ~/Working/workbench/_.tern-config ~/.tern-config
 ln -s ~/Working/workbench/_.gitignore ~/.gitignore
 ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile
 4, 安装node https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
@@ -41,7 +43,6 @@ npm config get registry    #确认npm项目源
 npm -g bin                 #获得npm的包目录，并复制
 npm install -g yarn
 yarn config set registry https://registry.npm.taobao.org/
-npm install -g prettier #为vim代码提示与检查做准备
 5, 安装Phoenix, nginx, postgreSql
 erl --version
   elixir --version
@@ -79,13 +80,12 @@ mix local.hex         #安装或者更新hex(包管理)
   选择安装字体
   cd .. && rm -rf Menlo-for-Powerline
   # 不再需要
-  # 5. 安装tern
-  # cd ~/.vim/bundle/tern_for_vim
-  # npm i
-  6. 安装ycm
+  5. 安装开发必备插件，分别是语法检查，自动补全生成，代码格式化
+  npm i -g eslint tern prettier
+  6. 安装tern 和 ycm
   确保node, npm, typscript已经安装，并且可以通过命令行调用
-  cd ~/.vim/bundle/YouCompleteMe
-  ./install.py --js-completer --go-completer
+  cd ~/.vim/bundle/tern_for_vim && npm install
+  cd ~/.vim/bundle/YouCompleteMe && ./install.py --js-completer --go-completer
   7. 安装输入法智能切换
   brew install fcitx-remote-for-osx
   系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
@@ -93,8 +93,9 @@ mix local.hex         #安装或者更新hex(包管理)
   8. 将node路径添加到启动程序到path中，这样启动macvim的时候，才能找到node， eslint才能生效
   echo $PATH   #展示现在bin路径，里面应该没有node的路径
   方法1：每次更改了node版本以后都要执行一遍
-  sudo vim /etc/paths  更改path文件，把当前版本的node/bin添加进去，重启即可
+  sudo vim /etc/paths  更改path文件，把当前版本的node/bin添加进去
   /Users/mantak/.nvm/versions/node/v9.2.0/bin
+  killall Dock   #dock杀死后会自动重启，重启以后生效
   方法2：这种方法，每次重启系统，都需要执行一遍
   sudo launchctl config user path `echo $path`  #让启动项，主要是macvim也获取相同都环境路径
   killall Dock   #dock杀死后会自动重启，重启以后生效
@@ -152,29 +153,3 @@ npm install -g react-native-cli
 brew cask install android-sdk
 17, 安装温度监控
 https://www.crystalidea.com/macs-fan-control/download
-18, 安装配置vscode
-comd + , 调出配置
-{
-"files.autoSave": "onFocusChange",
-"editor.formatOnSave": true,
-"editor.fontSize": 13,
-"workbench.colorTheme": "Cobalt2",
-  // "editor.renderWhitespace": "all",
-  "workbench.iconTheme": "material-icon-theme",
-  "vim.leader": ",",
-  "vim.easymotion": true,
-  "vim.easymotionMarkerFontFamily": "Menlo, Monaco",
-  "vim.easymotionMarkerHeight": 19,
-  "vim.easymotionMarkerWidthPerChar": 9,
-  "vim.easymotionMarkerBackgroundColor": "#FFF"
-  }
-  插件：
-  ElixirLS
-  Prettier
-  GraphQL for VSCode
-  Live Server
-  VSCodeVim
-  Material Icon Theme
-
-  19, 安装c编译环境？
-  brew install automake
