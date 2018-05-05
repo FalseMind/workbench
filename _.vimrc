@@ -1,9 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 安装插件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" use scriptencoding when multibyte char exists
-scriptencoding utf-8
-" install plug.vim
+scriptencoding utf-8  "use scriptencoding when multibyte char exists
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -13,7 +11,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
   "----- 界面插件 -----------------------------------------------------
-  Plug 'CodeFalling/fcitx-vim-osx'
+  Plug 'CodeFalling/fcitx-vim-osx'      "切换输入法
   Plug 'airblade/vim-rooter'
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
@@ -29,16 +27,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-signify'              "显示文件中的改动
   Plug 'tpope/vim-fugitive'             "git功能
   "--- 配色方案 -----------------------------------------------------
-  Plug 'morhetz/gruvbox'
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'lifepillar/vim-solarized8'
+  " Plug 'morhetz/gruvbox'
+  " Plug 'NLKNguyen/papercolor-theme'
+  Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'sickill/vim-monokai'
   "--- 语法支持 -----------------------------------------------------
   Plug 'prettier/vim-prettier'         "js css的自动格式化
   Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式化
   "--- 语言支持 -----------------------------------------------------
   Plug 'elixir-editors/vim-elixir'     "Elixir 语法高亮
   Plug 'slashmili/alchemist.vim'       "Elixir 语法补全
-  Plug 'pangloss/vim-javascript'       "Javascript高亮
+  Plug 'pangloss/vim-javascript'       "Javascript 高亮
+  Plug 'mxw/vim-jsx'                   "React      高亮
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go高亮和补全
   "--- 语法补全 -----------------------------------------------------
   Plug 'ervandew/supertab'
@@ -49,10 +49,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' } "JS补全
-  Plug 'carlitux/deoplete-ternjs'                          "JS补全
-  "--- 语法检查 -----------------------------------------------------
-  " Plug 'w0rp/ale'
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM设置
@@ -96,26 +93,21 @@ autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 set nowrap linebreak nolist
 set textwidth=100 fo+=Mm "100字符换行
 set colorcolumn=+1 "行长提示
-set synmaxcol=255 "每行高亮显示的最大字符数，超过了，就不会高亮渲染了。默认是3000
+set synmaxcol=300 "每行高亮显示的最大字符数，超过了，就不会高亮渲染了。默认是3000
 set display=lastline "长行不显示@
 nnoremap j gj
 nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
 let macvim_skip_colorscheme=1
-let hour = strftime("%H")
-if 8 <= hour &&  hour < 16
-  set background=light
-else
-  set background=dark
-endif
-let modDay = (strftime("%d"))%3
+let modDay = (strftime("%d"))%2
 if modDay == 0
-  colorscheme solarized8
-elseif modDay == 1
-  colorscheme gruvbox
+  colorscheme dracula
 else
-  colorscheme PaperColor
+  colorscheme monokai
+  hi LineNr     guifg=#75715E guibg=#272822 "行数
+  hi NonText    guifg=#000000 guibg=#272822 "文件末尾
+  hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
@@ -137,7 +129,7 @@ map <D-k> <C-w>k
 map <D-l> <C-w>l
 "---------------tab快捷键设置----------------------------------------
 " map  <silent><D-t> :tabnew<CR>
-" map  <silent><D-w> :tabc<CR>
+map  <silent><D-q> :tabc<CR>
 nmap <silent><D-1> :tabn 1<cr>
 nmap <silent><D-2> :tabn 2<cr>
 nmap <silent><D-3> :tabn 3<cr>
@@ -162,14 +154,21 @@ map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"-------------- Deoplete      ---------------------------------------
+"-------------- vim-signify -----------------------------------------
+hi SignifySignAdd     guifg=#00FF00 guibg=NONE
+hi SignifySignDelete  guifg=#FF0000 guibg=NONE
+hi SignifySignChange  guifg=#FFFF00 guibg=NONE
+"-------------- vim-jsx ---------------------------------------------
+let g:jsx_ext_required = 0    "js文件也作为jsx文件看待
+"-------------- Deoplete --------------------------------------------
 let g:deoplete#enable_at_startup = 1
-"-------------- javascript-libraries-syntax  ------------------------
-let g:used_javascript_libs = 'underscore,react'
+" ------------- deoplete-ternjs -------------------------------------
+let g:deoplete#sources#ternjs#types = 1   "是否展示函数类型
+" let g:deoplete#sources#ternjs#docs = 1  "是否展示函数描述
 "-------------- SuperTab      ---------------------------------------
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
-""-------------- EasyMotion    ---------------------------------------
+""-------------- EasyMotion    --------------------------------------
 map <Leader>, <Plug>(easymotion-bd-jk)
 map <Leader> <Plug>(easymotion-prefix)
 "-------------- NerdTree --------------------------------------------
@@ -191,7 +190,7 @@ func! NERDTreeFindToggle()
     endif
   endif
 endfunction
-"-------------- nerdcommenter -----------------------------------------
+"-------------- nerdcommenter ---------------------------------------
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultNesting = 1
 let g:NERDCustomDelimiters = { 'javascript': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' } }
@@ -220,7 +219,7 @@ let g:header_field_author_email = 'mantak@hotmail.com'
 let g:header_field_timestamp_format = '%Y-%m-%d'
 let g:header_auto_add_header = 0
 map <Leader>a :AddHeader<CR>
-"  "-------------- VimPrettier -----------------------------------------
+"  "-------------- VimPrettier --------------------------------------
 let g:prettier#autoformat = 1
 let g:prettier#exec_cmd_async = 1
 let g:prettier#config#print_width = 100
