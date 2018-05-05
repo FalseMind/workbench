@@ -65,6 +65,7 @@ set number           "显示行号
 set ruler            "打开状态栏标尺
 set cursorcolumn     "打开竖线提示当前所在列
 set signcolumn=yes   "保持signcolumn打开
+set cursorline       "高亮当前行
 set guifont=Menlo\ for\ Powerline:h15
 "---------------基本设置---------------------------------------------
 xnoremap p pgvy  "阻止覆盖的时候复制
@@ -101,13 +102,15 @@ nnoremap k gk
 "---------------ColorScheme------------------------------------------
 syntax on
 let macvim_skip_colorscheme=1
-let modDay = (strftime("%d"))%2
+let modDay=(strftime("%d"))%2
 if modDay == 0
   colorscheme dracula
+  hi CursorLine guifg=NONE    guibg=#444759 "当前行
 else
   colorscheme monokai
   hi LineNr     guifg=#75715E guibg=#272822 "行数
-  hi Folded     guifg=#75715E guibg=#1D1E17 "高亮行
+  hi Folded     guifg=#75715E guibg=#1D1E17 "折叠行
+  hi CursorLine guifg=NONE    guibg=#3c3d37 "当前行
   hi NonText    guifg=#393939 guibg=#272822 "文件末尾
   hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
 endif
@@ -296,3 +299,4 @@ nnoremap gx ::call HandleURL()<CR>
 " 删除书签，移动到书签上，shift+d 即可
 " 标签
 " ,cc 注释 ,cu 取消注释
+"
