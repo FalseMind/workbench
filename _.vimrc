@@ -55,15 +55,16 @@ call plug#end()
 " VIM设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "---------------界面设置---------------------------------------------
-set guioptions-=m "去掉菜单
-set guioptions-=T "不显示工具栏
-set guioptions-=L "把gui左边的滑动条去掉
-set shortmess=atI "启动的时候不显示援助乌干达儿童的提示
-set cmdheight=1   "设定命令行的行数为 1
-set laststatus=2  "显示状态栏 (默认值为 1, 无法显示状态栏)
-set number        "显示行号
-set ruler         "打开状态栏标尺
-set cursorcolumn  "打开竖线提示当前所在列
+set guioptions-=m    "去掉菜单
+set guioptions-=T    "不显示工具栏
+set guioptions-=L    "把gui左边的滑动条去掉
+set shortmess=atI    "启动的时候不显示援助乌干达儿童的提示
+set cmdheight=1      "设定命令行的行数为 1
+set laststatus=2     "显示状态栏 (默认值为 1, 无法显示状态栏)
+set number           "显示行号
+set ruler            "打开状态栏标尺
+set cursorcolumn     "打开竖线提示当前所在列
+set signcolumn=yes   "保持signcolumn打开
 set guifont=Menlo\ for\ Powerline:h15
 "---------------基本设置---------------------------------------------
 xnoremap p pgvy  "阻止覆盖的时候复制
@@ -106,7 +107,8 @@ if modDay == 0
 else
   colorscheme monokai
   hi LineNr     guifg=#75715E guibg=#272822 "行数
-  hi NonText    guifg=#000000 guibg=#272822 "文件末尾
+  hi Folded     guifg=#75715E guibg=#1D1E17 "高亮行
+  hi NonText    guifg=#393939 guibg=#272822 "文件末尾
   hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
