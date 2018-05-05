@@ -106,12 +106,12 @@ let modDay=(strftime("%d"))%2
 if modDay == 0
   colorscheme dracula
   hi CursorLine guifg=NONE    guibg=#444759 "当前行
+  hi NonText    guifg=#393939 guibg=#30323F "文件末尾
 else
   colorscheme monokai
-  hi LineNr     guifg=#75715E guibg=#272822 "行数
-  hi Folded     guifg=#75715E guibg=#1D1E17 "折叠行
   hi CursorLine guifg=NONE    guibg=#3c3d37 "当前行
-  hi NonText    guifg=#393939 guibg=#272822 "文件末尾
+  hi LineNr     guifg=#75715E guibg=#272822 "行首数字
+  hi Folded     guifg=#75715E guibg=#1D1E17 "折叠高亮
   hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
