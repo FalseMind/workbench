@@ -31,15 +31,6 @@ call plug#begin('~/.vim/plugged')
   " Plug 'NLKNguyen/papercolor-theme'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'sickill/vim-monokai'
-  "--- 语法支持 -----------------------------------------------------
-  Plug 'prettier/vim-prettier'         "js css的自动格式化
-  Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式化
-  "--- 语言支持 -----------------------------------------------------
-  Plug 'elixir-editors/vim-elixir'     "Elixir 语法高亮
-  Plug 'slashmili/alchemist.vim'       "Elixir 语法补全
-  Plug 'pangloss/vim-javascript'       "Javascript 高亮
-  Plug 'mxw/vim-jsx'                   "React      高亮
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go高亮和补全
   "--- 语法补全 -----------------------------------------------------
   Plug 'ervandew/supertab'
   if has('nvim')
@@ -50,6 +41,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  "--- 语言支持 -----------------------------------------------------
+  Plug 'pangloss/vim-javascript'                      "Javascript
+  Plug 'mxw/vim-jsx'                                  "React
+  Plug 'elixir-editors/vim-elixir'                    "Elixir缩进
+  Plug 'slashmili/alchemist.vim'                      "Elixir提示
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go
+  "--- 代码格式化 ---------------------------------------------------
+  Plug 'prettier/vim-prettier'         "js css的自动格式化
+  Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式化
+  "--- 语法检查 -----------------------------------------------------
+  Plug 'w0rp/ale'                      "JS和Go都可以检查
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM设置
@@ -67,6 +69,7 @@ set cursorcolumn     "打开竖线提示当前所在列
 set signcolumn=yes   "保持signcolumn打开
 set cursorline       "高亮当前行
 set guifont=Menlo\ for\ Powerline:h15
+" set guifont=Source\ Code\ Pro\ for\ Powerline:h15
 "---------------基本设置---------------------------------------------
 xnoremap p pgvy  "阻止覆盖的时候复制
 set fileencodings=utf-8,gb2312,gbk,gb18030
@@ -94,7 +97,7 @@ autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 "---------------换行设置---------------------------------------------
 set nowrap linebreak nolist
 set textwidth=100 fo+=Mm "100字符换行
-set colorcolumn=+1 "行长提示
+" set colorcolumn=+1 "行长提示
 set synmaxcol=300 "每行高亮显示的最大字符数，超过了，就不会高亮渲染了。默认是3000
 set display=lastline "长行不显示@
 nnoremap j gj
@@ -106,10 +109,11 @@ let modDay=(strftime("%d"))%2
 if modDay == 0
   colorscheme dracula
   hi CursorLine guifg=NONE    guibg=#444759 "当前行
-  hi NonText    guifg=#393939 guibg=#30323F "文件末尾
+  hi NonText    guifg=#282A36 guibg=#282A36 "文件末尾
 else
   colorscheme monokai
   hi CursorLine guifg=NONE    guibg=#3c3d37 "当前行
+  hi NonText    guifg=#272822 guibg=#272822 "文件末尾
   hi LineNr     guifg=#75715E guibg=#272822 "行首数字
   hi Folded     guifg=#75715E guibg=#1D1E17 "折叠高亮
   hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
@@ -159,12 +163,17 @@ map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- ALE -------------------------------------------------
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '>>'
+hi ALEErrorSign   guifg=#C30500
+hi ALEWarningSign guifg=#F0C674
+nmap <silent> <D-k> <Plug>(ale_previous_wrap)
+nmap <silent> <D-j> <Plug>(ale_next_wrap)
 "-------------- vim-signify -----------------------------------------
 hi SignifySignAdd     guifg=#00FF00 guibg=NONE
 hi SignifySignDelete  guifg=#FF0000 guibg=NONE
 hi SignifySignChange  guifg=#FFFF00 guibg=NONE
-"-------------- vim-jsx ---------------------------------------------
-let g:jsx_ext_required = 0    "js文件也作为jsx文件看待
 "-------------- Deoplete --------------------------------------------
 let g:deoplete#enable_at_startup = 1
 " ------------- deoplete-ternjs -------------------------------------
@@ -214,8 +223,10 @@ let g:ctrlp_prompt_mappings = {
 map <Leader>f :Rg
 let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
+let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
+let g:airline#extensions#ale#enabled = 1
 "-------------- vim-jsx ---------------------------------------------
 let g:jsx_ext_required = 0
 "-------------- AddHeader -------------------------------------------
