@@ -1,0 +1,140 @@
+///////////////////////必装内容////////////////////////////////
+1, 到App Store里安装xcode，然后运行一下，以安装基本组件
+  sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+2, 安装brew  参考：https://brew.sh
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+3, 安装必用软件
+  brew update && brew upgrade      更新brew
+  brew install git                 安装git
+  brew install ripgrep             vim ctrlF用
+  brew install the_silver_searcher vim ctrlP用
+  brew install wget                安装wget
+  brew install macvim --with-lua --with-python3 --with-override-system-vim
+  brew cask install google-chrome  安装 Google 浏览器
+  brew install firefox             安装firefox
+  brew install -v imagemagick      安装图片处理
+  brew install ctags-exuberant     安装ctags
+  brew cleanup                     删除brew安装包
+  ls /usr/local/bin/               显示用户的命令
+4. 安装输入法智能切换
+  brew tap codefalling/fcitx-remote-for-osx
+  brew info codefalling/fcitx-remote-for-osx/fcitx-remote-for-osx
+  #### brew install fcitx-remote-for-osx --with-input-method=sogou-pinyin
+  brew install fcitx-remote-for-osx --with-input-method=osx-pinyin
+  系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
+  系统偏好设置 -> 键盘 -> 输入法 -> 保留美国和简体拼音
+5, 下载基本的配置文件
+  cd && mkdir Working && cd Working
+  git clone  https://github.com/Mantak/workbench
+  ln -s ~/Working/workbench/_.vimrc ~/.vimrc
+  ln -s ~/Working/workbench/_.fishrc ~/.config/fish/config.fish
+  ln -s ~/Working/workbench/_.agignore ~/.agignore
+  ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
+  ln -s ~/Working/workbench/_.tern-config ~/.tern-config
+  ln -s ~/Working/workbench/_.gitignore ~/.gitignore
+  双击 workbench/fonts 里的字体，安装
+6, 安装终端
+  访问并下载安装iterm2 https://www.iterm2.com/
+  运行iterm comman+,打开配置
+    更改字体为Source Code Pro for Powerline 字号15
+    更改配色选择import ~/Working/workbench/themes/Dracula.itermcolors
+  brew install fish
+  sudo vim /etc/shells
+  然后在列表末尾加上/usr/local/bin/fish
+  保存并退出，运行下面命令切换为fish
+  chsh -s /usr/local/bin/fish
+  安装oh-my-fish
+  curl -L https://get.oh-my.fish | fish
+  omf install nvm
+  omf install bobthefish
+7, 安装node
+  nvm ls-remote              #列出远程node列表
+  nvm install v8.4.0         #安装指定版本的node
+  nvm alias default v8.4.0   #设置某个版本为默认版本，默认的第一个安装的版本为默认版本
+  npm i -g yarn
+  npm config set registry https://registry.npm.taobao.org/
+  yarn config set registry https://registry.npm.taobao.org/
+  npm config get registry     #确认npm项目源
+  yarn config get registry    #确认yarn项目源
+8, 配置MacVim
+  mv /usr/local/Cellar/macvim/8.0-143/MacVim.app /Applications/
+  ln -s /Applications/MacVim.app /usr/local/Cellar/macvim/8.0-143/
+  系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + ->
+  MacVim ->
+    Quit MacVim -> ^q
+    Hide MacVim -> ^h
+    List Errors -> ^l
+    Find...     -> ^f
+    Print       -> ^p
+  iTerm ->
+    Quit iTerm2 -> ^q
+  运行macvim, 会自动安装插件，因为macvim从docker启动无法获得npm路径，做如下修改
+  echo $PATH   #展示现在bin路径，里面应该没有node的路径
+  sudo vim /etc/paths  更改path文件，把当前版本的node/bin添加进去
+  /Users/mantak/.nvm/versions/node/v9.2.0/bin
+  killall Dock   #dock杀死后会自动重启，重启以后生效
+9, 配置Git与Github
+  git config --global user.name 'mantak'
+  git config --global user.email 'mantak@hotmail.com'
+  git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
+  git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
+  ssh-keygen -t rsa -C "mantak@hotmail.com" #生成ssh key
+  复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
+  ssh -T git@github.com #测试ssh key 是否设置成功
+
+
+9, 安装elixir
+10, 安装go
+
+5, 安装Phoenix, nginx, postgreSql
+erl --version
+  elixir --version
+brew install elixir   #安装elixir(同时安装erlang)
+  brew upgrade elixir   #如果需要升级，则执行这个命令
+mix local.hex         #安装或者更新hex(包管理)
+  mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez     #安装phoenix
+  brew install nginx               #安装nginx
+  brew install postgresql          #安装postgresql
+  brew services start postgresql   #ps设置为开机启动的服务
+  brew services stop postgresql
+  brew services restart postgresql
+  brew cask install pgadmin4       #安装postgresql图形界面
+  进入pgAdmin4，添加一个用户名和密码都为postgres都Superuser
+  下载并剪切到 ~/Application/ 中    http://www.psequel.com/
+
+
+
+
+
+  14, 安装docker
+  https://download.docker.com/mac/stable/Docker.dmg
+  登陆阿里云，获取专属加速通道  https://cr.console.aliyun.com/#/accelerator
+  打开docker属性设置,  Daemon栏
+  点击桌面顶栏的 docker 图标，选择 Preferences ，在 Daemon 标签下的 Registry mirrors 列表中将
+  https://jcdwsf13.mirror.aliyuncs.com 加到"registry-mirrors"的数组里，点击 Apply & Restart按钮，等待Docker重启并应用配置的镜像加速器。
+  删除所有已下镜像
+  docker system prune -a
+
+
+
+  15, 安装redis
+  wget http://download.redis.io/releases/redis-4.0.6.tar.gz
+  tar -zxvf redis-4.0.6.tar.gz
+  sudo mkdir -p /usr/local/redis/
+  sudo cp -r redis-4.0.6/*  /usr/local/redis/
+                          ls /usr/local/redis/
+                          cd /usr/local/redis/
+                          sudo make
+                          sudo make test
+                          sudo make install
+                          ls /usr/local/bin/redis-*
+                          16, 安装react native环境
+                          brew install watchman
+                          npm install -g create-react-native-app
+
+# 下面的不推荐
+npm install -g react-native-cli
+#android环境就算了吧。实现一个，另一个一样搞定
+brew cask install android-sdk
+17, 安装温度监控
+https://www.crystalidea.com/macs-fan-control/download

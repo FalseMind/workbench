@@ -11,7 +11,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
   "----- 界面插件 -----------------------------------------------------
-  Plug 'CodeFalling/fcitx-vim-osx'      "切换输入法
+  " Plug 'CodeFalling/fcitx-vim-osx'      "切换输入法
   Plug 'airblade/vim-rooter'
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
@@ -31,6 +31,12 @@ call plug#begin('~/.vim/plugged')
   " Plug 'NLKNguyen/papercolor-theme'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'sickill/vim-monokai'
+  "--- 语言支持 -----------------------------------------------------
+  Plug 'pangloss/vim-javascript'                      "Javascript
+  Plug 'mxw/vim-jsx'                                  "React
+  Plug 'elixir-editors/vim-elixir'                    "Elixir缩进
+  Plug 'slashmili/alchemist.vim'                      "Elixir提示
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go
   "--- 语法补全 -----------------------------------------------------
   Plug 'ervandew/supertab'
   if has('nvim')
@@ -40,18 +46,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  "--- 语言支持 -----------------------------------------------------
-  Plug 'pangloss/vim-javascript'                      "Javascript
-  Plug 'mxw/vim-jsx'                                  "React
-  Plug 'elixir-editors/vim-elixir'                    "Elixir缩进
-  Plug 'slashmili/alchemist.vim'                      "Elixir提示
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go
-  "--- 代码格式化 ---------------------------------------------------
-  Plug 'prettier/vim-prettier'         "js css的自动格式化
-  Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式化
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "JS补全
+  Plug 'zchee/deoplete-go', { 'do': 'make' }                       "Go补全
   "--- 语法检查 -----------------------------------------------------
-  Plug 'w0rp/ale'                      "JS和Go都可以检查
+  Plug 'w0rp/ale', { 'do': 'npm install -g eslint babel-eslint eslint-plugin-react' }   "JS和Go都可以检查
+  "--- 代码格式化 ---------------------------------------------------
+  Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式
+  Plug 'prettier/vim-prettier', { 'do': 'npm install -g prettier' } "js css的自动格式化
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM设置
@@ -163,22 +164,33 @@ map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ㄨ
 "-------------- ALE -------------------------------------------------
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '>>'
-hi ALEErrorSign   guifg=#C30500
-hi ALEWarningSign guifg=#F0C674
-nmap <silent> <D-k> <Plug>(ale_previous_wrap)
-nmap <silent> <D-j> <Plug>(ale_next_wrap)
+" ALEInfo 可以查看ale的运行情况，根据该输出，来做相应的处理
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_sign_error = '*'
+let g:ale_sign_warning = '*'
+hi ALEErrorSign   guifg=#FF0000
+hi ALEWarningSign guifg=#FFFF00
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_linter_aliases = {'javascript.jsx': 'javascript', 'jsx': 'javascript'}
+"JS只使用eslint检测， html不做检测, Go语言使用默认检测
+let g:ale_linters = { 'javascript': ['eslint'], 'html': [] }
+"-------------- fcitx-vim-osx ---------------------------------------
+" au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
 "-------------- vim-signify -----------------------------------------
 hi SignifySignAdd     guifg=#00FF00 guibg=NONE
 hi SignifySignDelete  guifg=#FF0000 guibg=NONE
 hi SignifySignChange  guifg=#FFFF00 guibg=NONE
 "-------------- Deoplete --------------------------------------------
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1      "默认开启自动补全
+" set splitbelow                          "拆分的窗口放到下面
 " ------------- deoplete-ternjs -------------------------------------
 let g:deoplete#sources#ternjs#types = 1   "是否展示函数类型
-" let g:deoplete#sources#ternjs#docs = 1  "是否展示函数描述
+let g:deoplete#sources#ternjs#docs = 1    "是否展示函数描述
 "-------------- SuperTab      ---------------------------------------
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
@@ -186,6 +198,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 map <Leader>, <Plug>(easymotion-bd-jk)
 map <Leader> <Plug>(easymotion-prefix)
 "-------------- NerdTree --------------------------------------------
+" let NERDTreeMapActivateNode='<space>'
 autocmd StdinReadPre * let s:std_in=1  "Open NERDTree if no files specified
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " let NERDTreeWinPos=1 "窗口居右
@@ -223,7 +236,7 @@ let g:ctrlp_prompt_mappings = {
 map <Leader>f :Rg
 let g:rg_highlight = 'true'
 "-------------- AirLine ---------------------------------------------
-let g:airline_theme='deus'
+let g:airline_theme='murmur'
 let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
 let g:airline#extensions#tabline#enabled = 0  "不使用airline的tab页
 let g:airline#extensions#ale#enabled = 1
@@ -259,8 +272,6 @@ func! SearchGithub()
   let url = "https://www.github.com/search?q=" . keyword
   silent exec "!open '".url."'"
 endfun
-" au BufRead,BufNewFile              : _.vimrc
-au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
 " 重写gx方法
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 function! HandleURL()
@@ -310,4 +321,3 @@ nnoremap gx ::call HandleURL()<CR>
 " 删除书签，移动到书签上，shift+d 即可
 " 标签
 " ,cc 注释 ,cu 取消注释
-"

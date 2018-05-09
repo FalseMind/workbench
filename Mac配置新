@@ -16,7 +16,7 @@ brew install the_silver_searcher vim ctrlP用
 brew install wget                安装wget
 brew install macvim --with-lua --with-python3 --with-override-system-vim
 brew cask install google-chrome  安装 Google 浏览器
-brew cask install shadowsocksx   安装梯子
+# brew cask install shadowsocksx   安装梯子
 brew install firefox             安装firefox
 brew install -v imagemagick      安装图片处理
 brew install ctags-exuberant     安装ctags
@@ -26,11 +26,12 @@ ls /usr/local/bin/               显示用户的命令
 cd && mkdir Working && cd Working
 git clone  https://github.com/Mantak/workbench
 ln -s ~/Working/workbench/_.vimrc ~/.vimrc
+ln -s ~/Working/workbench/_.fishrc ~/.config/fish/config.fish
 ln -s ~/Working/workbench/_.agignore ~/.agignore
 ln -s ~/Working/workbench/_.eslintrc ~/.eslintrc
 ln -s ~/Working/workbench/_.tern-config ~/.tern-config
 ln -s ~/Working/workbench/_.gitignore ~/.gitignore
-ln -s ~/Working/workbench/_.bash_profile ~/.bash_profile
+
 4, 安装node https://github.com/creationix/nvm#install-script    #访问nvm项目，获取最新的安装版本
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
 运行上面命令，可以安装nvm，如果运行nvm --version 没有效果，就重启一下iterm
@@ -79,13 +80,12 @@ mix local.hex         #安装或者更新hex(包管理)
   cd Menlo-for-Powerline && open Menlo\ for\ Powerline.ttf
   选择安装字体
   cd .. && rm -rf Menlo-for-Powerline
-  # 不再需要
   5. 安装开发必备插件，分别是语法检查，自动补全生成，代码格式化
   npm i -g eslint tern prettier
-  6. 安装tern 和 ycm
-  确保node, npm, typscript已经安装，并且可以通过命令行调用
-  cd ~/.vim/bundle/tern_for_vim && npm install
-  cd ~/.vim/bundle/YouCompleteMe && ./install.py --js-completer --go-completer
+  #  6. 安装tern 和 ycm
+  #  确保node, npm, typscript已经安装，并且可以通过命令行调用
+  #  cd ~/.vim/bundle/tern_for_vim && npm install
+  #  cd ~/.vim/bundle/YouCompleteMe && ./install.py --js-completer --go-completer
   7. 安装输入法智能切换
   brew install fcitx-remote-for-osx
   系统偏好设置 -> 键盘 -> 快捷键 -> 输入法 -> 选择下一个输入法 -> ctrl + shift + z
@@ -110,13 +110,32 @@ mix local.hex         #安装或者更新hex(包管理)
   ssh-keygen -t rsa -C "TODO email" #替换成自己的eimail地址，生成ssh key
   复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
   ssh -T git@github.com #测试ssh key 是否设置成功
+
+  9, 安装fish
+  brew install fish
+  sudo vim /etc/shells
+  然后在列表末尾加上/usr/local/bin/fish
+  保存并退出，运行下面命令切换为fish
+  chsh -s /usr/local/bin/fish
+  安装oh-my-fish
+  curl -L https://get.oh-my.fish | fish
+  omf install nvm
+  omf install bobthefish
+
+
+
+
   9, 安装配置 iterm zsh
   访问并下载安装iterm2 https://www.iterm2.com/
-  运行iterm comman+,打开配置，更改字体为Menlo for Powerline 字号14
+  运行iterm comman+,打开配置，更改字体为Source Code Pro for Powerline 字号15
   brew install zsh zsh-completions
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   echo "source .bash_profile" >> ~/.zshrc
   source ~/.zshrc
+
+
+
+
   10，App store 里安装讯飞语音输入
   11, App store 里安装网易邮箱大师
   12, App store 里安装iSee
