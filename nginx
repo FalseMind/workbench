@@ -4,6 +4,7 @@ nginx -h         #查看帮助
 nginx            #启动nginx
 nginx -s stop    #停止nginx
 nginx -s reload  #重启nginx
+brew services start redis
 
 
 
