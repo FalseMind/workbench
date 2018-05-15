@@ -1,0 +1,40 @@
+# 配置参考： https://www.dreamxu.com/install-config-squirrel/
+patch:
+  us_keyboard_layout: true                   # 应用美式键盘布局
+  preset_color_schemes:
+    solarized:
+      back_color: 0x362b00                   # 窗体背景色
+      text_color: 0x362b00                   # 字体颜色，与背景色一致，是为了不显示inline时的提示符
+      comment_text_color: 0x969483           # 切换输入模式的提示文字色
+      hilited_text_color: 0x969483           # 内嵌输入时的字母提示
+      hilited_candidate_back_color: 0x8236d3 # 首选文字背景色
+      hilited_candidate_text_color: 0xffffff # 首选文字颜色
+      candidate_text_color: 0x969483         # 备选文字颜色
+  style:
+    color_scheme: solarized
+    horizontal: true
+    inline_preedit: true                     # 并不知道这行的含义
+    candidate_format: "%c\u2005%@ \u2005"    # 用 1/6 em 空格 U+2005 来控制编号 %c 和候选词 %@ 前后的空间。
+    font_point: 18                           # 候选文字大小
+    label_font_point: 17                     # 候选编号大小
+    corner_radius: 5                         # 候选条圆角
+    border_height: 0                         # 窗口边界高度，大于圆角半径才生效
+    border_width: 0                          # 窗口边界宽度，大于圆角半径才生效
+  app_options:
+    com.runningwithcrayons.Alfred-3:
+      ascii_mode: true
+    com.apple.Spotlight:
+      ascii_mode: true
+    com.blacktree.Quicksilver:
+      ascii_mode: true
+    com.apple.Terminal:
+      ascii_mode: true
+    com.googlecode.iterm2:
+      ascii_mode: true
+    org.vim.MacVim:
+      orascii_mode: true
+      orno_inline: true                        # 窗口紧跟光标
+    uk.foon.Neovim:
+      ascii_mode: true
+    com.google.Chrome:
+      ascii_mode: true

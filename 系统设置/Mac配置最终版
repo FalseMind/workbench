@@ -1,0 +1,100 @@
+///////////////////////必装内容////////////////////////////////
+1, 到App Store里安装xcode，然后运行一下，以安装基本组件
+  sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+2, 安装brew  参考：https://brew.sh
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+3, 安装必用软件
+  brew update && brew upgrade      更新brew
+  brew install git                 安装git
+  brew install ripgrep             vim ctrlF用
+  brew install the_silver_searcher vim ctrlP用
+  brew install wget                安装wget
+  brew cask install typora         安装markdown工具
+  brew cask install google-chrome  安装 Google 浏览器
+  brew cask install alfred         安装程序快速启动工具
+  brew install firefox             安装firefox
+  brew install -v imagemagick      安装图片处理
+  brew install ctags-exuberant     安装ctags
+  brew cleanup                     删除brew安装包
+  ls /usr/local/bin/               显示用户的命令
+4, 偏好设置
+  系统偏好设置 -> 程序坞 下面显示，自动显示和隐藏
+  系统偏好设置 -> 键盘 -> 快捷键 聚焦(spotlight) 改为optoin+space
+  系统偏好设置 -> 键盘 -> 输入 保留abc和简体拼音，选择capslock切换，其他的删除
+  打开alfred，设置快捷键为comand+space
+5, 下载基本的配置文件
+  cd && mkdir Working && cd Working
+  git clone  https://github.com/Mantak/workbench
+  cd ~/Working/workbench/系统设置/configs/
+  ln -sf ~/Working/workbench/系统设置/configs/_.vimrc ~/.vimrc
+  ln -sf ~/Working/workbench/系统设置/configs/_.fishrc ~/.config/fish/config.fish
+  ln -sf ~/Working/workbench/系统设置/configs/_.agignore ~/.agignore
+  ln -sf ~/Working/workbench/系统设置/configs/_.eslintrc ~/.eslintrc
+  ln -sf ~/Working/workbench/系统设置/configs/_.gitignore ~/.gitignore
+  cd ~/Working/workbench/系统设置/fonts/  &&  open *
+6, 安装终端
+  访问并下载安装iterm2 https://www.iterm2.com/
+  运行iterm comman+,打开配置
+    更改字体为Source Code Pro for Powerline 字号15
+    更改配色选择import ~/Working/workbench/themes/Dracula.itermcolors
+  brew install fish
+  sudo vim /etc/shells
+  然后在列表末尾加上/usr/local/bin/fish
+  保存并退出，运行下面命令切换为fish
+  chsh -s /usr/local/bin/fish
+  安装oh-my-fish
+  curl -L https://get.oh-my.fish | fish
+  omf install nvm
+  omf install bobthefish
+7, 安装node
+  nvm ls-remote              #列出远程node列表
+  nvm install v8.4.0         #安装指定版本的node
+  nvm alias default v8.4.0   #设置某个版本为默认版本，默认的第一个安装的版本为默认版本
+  npm i -g yarn
+  npm config set registry https://registry.npm.taobao.org/
+  yarn config set registry https://registry.npm.taobao.org/
+  npm config get registry     #确认npm项目源
+  yarn config get registry    #确认yarn项目源
+8, 安装MacVim
+  brew install macvim --with-lua --with-override-system-vim
+  用alfred打开一次即可出现在程序坞，并且启动的MacVim会带有iterm的$PATH
+  com+, 打开偏好设置,普通->窗口关闭退出vim, 高级->去掉draw text inline
+  系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + ->
+  MacVim ->
+    Quit MacVim -> ^q
+    Hide MacVim -> ^h
+    List Errors -> ^l
+    Find...     -> ^f
+    Print       -> ^p
+  iTerm ->
+    Quit iTerm2 -> ^q
+9, 配置Git与Github
+  git config --global user.name 'mantak'
+  git config --global user.email 'mantak@hotmail.com'
+  git config --global core.excludesfile '~/.gitignore'  #设置全局git ignore文件
+  git config --global core.quotepath false              #让git status的文件，汉字可以正确显示
+  ssh-keygen -t rsa -C "mantak@hotmail.com" #生成ssh key
+  复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
+  ssh -T git@github.com #测试ssh key 是否设置成功
+
+附： 安装开发环境
+  安装elixir
+  安装go
+附： 安装数据库
+  安装mongodb
+    brew install mongodb             #brew cask安装的版本，貌似低一点。
+    sudo mkdir -p /data/db           #mongodb默认的数据存放目录，用这个位置就挺好
+    sudo chown -R $USER /data/db     #添加当前用户的权限
+    mvim /usr/local/etc/mongod.conf  #查看mongodb的配置文件，将storage目录改为/data/db
+    mongod                           #启动
+    mongo                            #进入
+    brew services start mongodb      #设置mongodb开机启动
+    brew cask install robo-3t        #安装图形客户端
+    comand + space  robo             #启动robo 3t
+  安装redis
+    brew install redis
+    redis-server               #启动
+    redis-cli                  #进入
+    brew services start redis  #作为服务
+附： 安装其他工具
+  appstore 安装： handshaker

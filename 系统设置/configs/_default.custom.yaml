@@ -1,0 +1,14 @@
+# 配置参考： https://www.dreamxu.com/install-config-squirrel/
+patch:
+  schema_list:
+    - schema: luna_pinyin_simp
+  menu:
+    page_size: 6
+  ascii_composer:
+    good_old_caps_lock: false   #capslock键只做切换用，并不切换大小写
+    switch_key:
+      Caps_Lock: inline_ascii
+      Shift_L: noop
+      Shift_R: noop
+      Control_L: noop
+      Control_R: noop

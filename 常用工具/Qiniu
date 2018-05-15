@@ -1,7 +1,4 @@
 第一步，要有一个认证的账号，个人的即可
-
 第二步，新建一个存储空间
-
 第三部，生成密钥 参考地址，先生成一个测试token http://pchou.qiniudn.com/qiniutool/uptoken.html
-
 第四步，服务器端根据密钥生成token，客户端通过token，直接上传即可。就这么简单

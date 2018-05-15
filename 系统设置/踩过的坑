@@ -1,0 +1,16 @@
+# 下面的问题已经不存在
+# 如果在vim中运行:version发现有未支持的选项，可以通过下面命令重新安装，reinstall可以免去重新下载共有文件
+# brew reinstall macvim --with-lua  --with-override-system-vim
+# 运行macvim, 会自动安装插件，因为macvim从docker启动无法获得npm路径，做如下修改
+# echo $PATH   #展示现在bin路径，里面应该没有node的路径
+# sudo vim /etc/paths  更改path文件，把当前版本的node/bin添加进去
+# /Users/mantak/.nvm/versions/node/v9.2.0/bin
+# killall Dock   #dock杀死后会自动重启，重启以后生效
+#
+# brew cask install squirrel
+# 不安装特别的输入法，别的输入法，无法通过capslock来切换
+# ln -sf ~/Working/workbench/系统设置/configs/_default.custom.yaml ~/Library/Rime/default.custom.yaml
+# ln -sf ~/Working/workbench/系统设置/configs/_squirrel.custom.yaml ~/Library/Rime/squirrel.custom.yaml
+# 下面这个文件不要做引入了，没什么用,即便是重置了,也没什么实际作用
+# ln -sf ~/Working/workbench/系统设置/configs/_luna_pinyin_simp_schema_custom.yaml ~/Library/Rime/luna_pinyin_simp.custom.yaml
+# 重新deploy鼠须管
