@@ -6,8 +6,6 @@
 3, 安装必用软件
   brew update && brew upgrade      更新brew
   brew install git                 安装git
-  brew install ripgrep             vim ctrlF用
-  brew install the_silver_searcher vim ctrlP用
   brew install wget                安装wget
   brew cask install typora         安装markdown工具
   brew cask install google-chrome  安装 Google 浏览器
@@ -30,6 +28,7 @@
   ln -sf ~/Working/workbench/系统设置/configs/_.fishrc ~/.config/fish/config.fish
   ln -sf ~/Working/workbench/系统设置/configs/_.agignore ~/.agignore
   ln -sf ~/Working/workbench/系统设置/configs/_.eslintrc ~/.eslintrc
+  ln -sf ~/Working/workbench/系统设置/configs/_.prettierrc ~/.prettierrc
   ln -sf ~/Working/workbench/系统设置/configs/_.gitignore ~/.gitignore
   cd ~/Working/workbench/系统设置/fonts/  &&  open *
 6, 安装终端
@@ -56,6 +55,12 @@
   npm config get registry     #确认npm项目源
   yarn config get registry    #确认yarn项目源
 8, 安装MacVim
+  安装必要的包
+  brew install ripgrep                        #vim ctrlF用
+  brew install the_silver_searcher            #vim ctrlP用
+  npm i -g eslint eslint-config-airbnb
+  npm i -g eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint
+  安装MacVim
   brew install macvim --with-lua --with-override-system-vim
   用alfred打开一次即可出现在程序坞，并且启动的MacVim会带有iterm的$PATH
   com+, 打开偏好设置,普通->窗口关闭退出vim, 高级->去掉draw text inline

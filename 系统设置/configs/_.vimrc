@@ -32,7 +32,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'morhetz/gruvbox'
   " Plug 'NLKNguyen/papercolor-theme'
   Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'sickill/vim-monokai'
+  Plug 'crusoexia/vim-monokai'
   Plug 'joshdick/onedark.vim'
   "--- 语言支持 -----------------------------------------------------
   Plug 'godlygeek/tabular'                            "markdown需要
@@ -54,7 +54,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "JS补全
   Plug 'zchee/deoplete-go', { 'do': 'make' }                       "Go补全
   "--- 语法检查 -----------------------------------------------------
-  Plug 'w0rp/ale', { 'do': 'npm install -g eslint babel-eslint eslint-plugin-react' }   "JS和Go都可以检查
+  Plug 'w0rp/ale'                  "JS和Go都可以检查
   "--- 代码格式化 ---------------------------------------------------
   Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式
   Plug 'prettier/vim-prettier', { 'do': 'npm install -g prettier' } "js css的自动格式化
@@ -121,20 +121,19 @@ call plug#end()
   let macvim_skip_colorscheme=1
   let modDay=(strftime("%d"))%3
   if modDay == 0
-    colorscheme onedark
-    hi CursorLine guifg=NONE    guibg=#2F333D "当前行
-    hi NonText    guifg=#282C34 guibg=#282C34 "文件末尾
-  elseif modDay == 1
     colorscheme monokai
-    hi CursorLine guifg=NONE    guibg=#3c3d37 "当前行
-    hi NonText    guifg=#272822 guibg=#272822 "文件末尾
-    hi LineNr     guifg=#75715E guibg=#272822 "行首数字
-    hi Folded     guifg=#75715E guibg=#1D1E17 "折叠高亮
-    hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
+    hi NonText      guifg=#272822 guibg=#272822 "文件末尾
+    hi SignColumn   guifg=#808080 guibg=#272822 "左侧提示
+  elseif modDay == 1
+    colorscheme onedark
+    hi NonText      guifg=#282C34 guibg=#282C34 "文件末尾
+    hi LineNr       guifg=#75715E guibg=#2F333D "行首数字
+    hi CursorLineNR guifg=#ABB2BE guibg=#2F333D "高亮行的数字
   else
     colorscheme dracula
-    hi CursorLine guifg=NONE    guibg=#444759 "当前行
-    hi NonText    guifg=#282A36 guibg=#282A36 "文件末尾
+    hi NonText      guifg=#282A36 guibg=#282A36 "文件末尾
+    hi LineNr       guifg=#6373A2 guibg=#2D2F3D "行首数字
+    hi CursorLineNR guifg=#F1F992 guibg=#2D2F3D "高亮行的数字
   endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
@@ -182,7 +181,7 @@ call plug#end()
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------- vim-tabber ------------------------------------------
-map <D-r> :TabberLabel
+  map <D-r> :TabberLabel
 "-------------- ALE -------------------------------------------------
   " ALEInfo 可以查看ale的运行情况，根据该输出，来做相应的处理
   let g:ale_javascript_eslint_use_global = 1
@@ -194,9 +193,10 @@ map <D-r> :TabberLabel
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
   let g:ale_lint_on_save = 1
   let g:ale_lint_on_text_changed = 'never'
-  let g:ale_linter_aliases = {'javascript.jsx': 'javascript', 'jsx': 'javascript'}
-  "JS只使用eslint检测， html不做检测, Go语言使用默认检测
-  let g:ale_linters = { 'javascript': ['eslint'], 'html': [] }
+  let g:ale_linters = {
+  \  'javascript': ['eslint'],
+  \  'jsx': ['eslint']
+  \}
   "-------------- fcitx-vim-osx ---------------------------------------
   " au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
   "-------------- vim-signify -----------------------------------------
@@ -338,3 +338,7 @@ nnoremap gx ::call HandleURL()<CR>
 " 删除书签，移动到书签上，shift+d 即可
 " 标签
 " ,cc 注释 ,cu 取消注释
+" hi NonText    guifg=#272822 guibg=#272822 "文件末尾
+" hi Folded     guifg=#75715E guibg=#1D1E17 "折叠高亮
+" hi LineNr     guifg=#75715E guibg=#272822 "行首数字
+" hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
