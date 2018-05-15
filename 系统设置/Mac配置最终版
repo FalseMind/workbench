@@ -58,7 +58,7 @@
   安装必要的包
   brew install ripgrep                        #vim ctrlF用
   brew install the_silver_searcher            #vim ctrlP用
-  npm i -g eslint eslint-config-airbnb
+  npm i -g eslint prettier eslint-config-airbnb
   npm i -g eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint
   安装MacVim
   brew install macvim --with-lua --with-override-system-vim

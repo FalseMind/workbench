@@ -29,8 +29,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-signify'              "显示文件中的改动
   Plug 'tpope/vim-fugitive'             "git功能
   "--- 配色方案 -----------------------------------------------------
-  " Plug 'morhetz/gruvbox'
-  " Plug 'NLKNguyen/papercolor-theme'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'crusoexia/vim-monokai'
   Plug 'joshdick/onedark.vim'
@@ -57,7 +55,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0rp/ale'                  "JS和Go都可以检查
   "--- 代码格式化 ---------------------------------------------------
   Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式
-  Plug 'prettier/vim-prettier', { 'do': 'npm install -g prettier' } "js css的自动格式化
 call plug#end()
 "---------------输入法设置-------------------------------------------
   set noimdisable   "普通模式下, 只有英文可用
@@ -192,10 +189,16 @@ call plug#end()
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
   let g:ale_lint_on_save = 1
+  let g:ale_fix_on_save = 1
   let g:ale_lint_on_text_changed = 'never'
+  let g:ale_fix_on_text_changed = 'never'
   let g:ale_linters = {
   \  'javascript': ['eslint'],
   \  'jsx': ['eslint']
+  \}
+  let g:ale_fixers = {
+  \  'javascript': ['prettier'],
+  \  'jsx': ['prettier']
   \}
   "-------------- fcitx-vim-osx ---------------------------------------
   " au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
@@ -266,15 +269,6 @@ call plug#end()
   let g:header_field_timestamp_format = '%Y-%m-%d'
   let g:header_auto_add_header = 0
   map <Leader>a :AddHeader<CR>
-  "  "-------------- VimPrettier --------------------------------------
-  let g:prettier#autoformat = 1
-  let g:prettier#exec_cmd_async = 1
-  let g:prettier#config#print_width = 100
-  let g:prettier#config#single_quote = 'true'
-  let g:prettier#config#arrow_parens = 'always'
-  let g:prettier#config#bracket_spacing = 'true'
-  let g:prettier#config#parser = 'babylon'
-  autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
 "-------------- VimAutoformat ---------------------------------------
   au BufWrite *.ex,*.exs,*.go :Autoformat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
