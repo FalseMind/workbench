@@ -1,1 +1,6 @@
 确保安装了 node go docker
+
+复制 fabric/scripts/bootstrap.sh  到 fabric-samples 下
+cd fabric-samples
+chmod +x bootstrap.sh
+./bootstrap.sh

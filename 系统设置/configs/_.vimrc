@@ -52,7 +52,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "JS补全
   Plug 'zchee/deoplete-go', { 'do': 'make' }                       "Go补全
   "--- 语法检查 -----------------------------------------------------
-  Plug 'w0rp/ale'                  "JS和Go都可以检查
+  Plug 'w0rp/ale'                      "JS和Go都可以检查并格式化
   "--- 代码格式化 ---------------------------------------------------
   Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式
 call plug#end()
@@ -64,10 +64,10 @@ call plug#end()
   " set guioptions-=T    "不显示工具栏  macvim本身也没有这个东西
   " set guioptions-=m    "去掉菜单  macvim本身也没这个东西
   " set cmdheight=1      "设定命令行的行数为 1
-  " set laststatus=2     "显示状态栏 (默认值为 1, 无法显示状态栏)
   " set ruler            "打开状态栏标尺
   " set guioptions-=r    "把gui右边的滑动条去掉
-  " set showtabline=2    "默认显示tab页
+  set laststatus=2     "显示状态栏 (默认值为 1, 无法显示状态栏)
+  set showtabline=2    "保持tabline打开
   set guioptions=      "去掉左右的滑动条和tab页的默认渲染
   set linespace=1      "这个值可以让macvim可以拉到底部，如果不能，尝试改变为其他值
   set shortmess=atI    "启动的时候不显示援助乌干达儿童的提示
@@ -117,20 +117,18 @@ call plug#end()
   syntax on
   let macvim_skip_colorscheme=1
   let modDay=(strftime("%d"))%3
-  if modDay == 0
+  if modDay == 1
     colorscheme monokai
     hi NonText      guifg=#272822 guibg=#272822 "文件末尾
-    hi SignColumn   guifg=#808080 guibg=#272822 "左侧提示
+    hi SignColumn   guifg=#FB9633 guibg=#272822 "左侧提示
+    hi LineNr       guifg=#8F908A guibg=#272822 "行首数字
+    hi CursorLineNR guifg=#FB9633 guibg=#272822 "高亮行的数字
   elseif modDay == 1
     colorscheme onedark
     hi NonText      guifg=#282C34 guibg=#282C34 "文件末尾
-    hi LineNr       guifg=#75715E guibg=#2F333D "行首数字
-    hi CursorLineNR guifg=#ABB2BE guibg=#2F333D "高亮行的数字
   else
     colorscheme dracula
     hi NonText      guifg=#282A36 guibg=#282A36 "文件末尾
-    hi LineNr       guifg=#6373A2 guibg=#2D2F3D "行首数字
-    hi CursorLineNR guifg=#F1F992 guibg=#2D2F3D "高亮行的数字
   endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快捷键设置
@@ -182,6 +180,7 @@ call plug#end()
 "-------------- ALE -------------------------------------------------
   " ALEInfo 可以查看ale的运行情况，根据该输出，来做相应的处理
   let g:ale_javascript_eslint_use_global = 1
+  let g:ale_javascript_prettier_use_global = 1
   let g:ale_sign_error = '*'
   let g:ale_sign_warning = '*'
   hi ALEErrorSign   guifg=#FF0000
