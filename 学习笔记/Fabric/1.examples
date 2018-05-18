@@ -1,0 +1,32 @@
+参考文档：
+https://www.jianshu.com/p/e108cf655c0f
+https://www.cnblogs.com/chenfool/p/8353425.html
+
+A 搭建网络
+  1 网络环境
+    确保安装了node go docker，并在当前环境下都可用，docker已启动
+    添加一个docker加速器
+    https://aic2v8yz.mirror.aliyuncs.com
+  2 下载源代码，切换为1.0.0版本，最新版本docker有问题，并且也不适合走教程
+    git clone git@github.com:hyperledger/fabric.git
+    cd fabric
+    git tag
+    git checkout v1.0.0
+  3 进入演示项目，拉取指定版本的docker镜像
+    cd examples/e2e_cli
+    chmod +x download-dockerimages.sh
+    ./download-dockerimages.sh -c x86_64-1.0.0 -f x86_64-1.0.0
+  4 启动项目
+    ./network_setup.sh up <channel名，可省略>
+B 操作网络
+  1 进入docker的shell
+    docker exec -it cli bash
+  2 查看a余额
+    peer chaincode query -C mychannel -n mycc -c '{"Args":["query","a"]}'
+  3 转20给b
+    peer chaincode invoke -o orderer.example.com:7050  --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem  -C mychannel -n mycc -c '{"Args":["invoke","a","b","20"]}'
+  4 查看a余额
+  5 退出shell
+    exit
+  6 关闭网络
+    ./network_setup.sh down <channel名，可省略>

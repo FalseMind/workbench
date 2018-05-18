@@ -1,0 +1,16 @@
+确保下面软件已安装
+  Git
+  Go
+  Pip
+  Xcode
+  Docker
+  Docker Compose
+
+安装必要工具
+  brew install gnu-tar --with-default-names
+  brew install libtool
+  pip install --upgrade pip
+
+下载代码必须放到$GOPATH下
+  /Users/username/go/src/github.com/hyperledger/fabric
+  /Users/username/go/src/github.com/hyperledger/fabric-samples

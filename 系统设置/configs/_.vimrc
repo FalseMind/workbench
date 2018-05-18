@@ -1,3 +1,8 @@
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 安装插件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -14,24 +19,27 @@ endif
 call plug#begin('~/.vim/plugged')
   "----- 界面插件 ---------------------------------------------------
   Plug 'airblade/vim-rooter'
-  Plug 'scrooloose/nerdtree'
   Plug 'Mantak/vim-tabber'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   "--- 功能增强 -----------------------------------------------------
+  Plug 'tpope/vim-vinegar'              "文件目录，替代nerdtree
+  Plug 'mhinz/vim-startify'             "最近工作界面
   Plug 'alpertuna/vim-header'           "增加作者信息
   Plug 'kien/ctrlp.vim'                 "快速打开文件
   Plug 'jremmen/vim-ripgrep'            "全项目搜索
   Plug 'Lokaltog/vim-easymotion'        "快速定位
   Plug 'jiangmiao/auto-pairs'           "成对的括号
   Plug 'scrooloose/nerdcommenter'       "注释
+  " Plug 'mhinz/vim-startify'           "存储当前工作界面
   "--- Git支持  -----------------------------------------------------
   Plug 'mhinz/vim-signify'              "显示文件中的改动
+  " Plug 'airblade/vim-gitgutter'         "显示文件中的改动
   Plug 'tpope/vim-fugitive'             "git功能
   "--- 配色方案 -----------------------------------------------------
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'crusoexia/vim-monokai'
-  Plug 'joshdick/onedark.vim'
+  Plug 'sonph/onehalf', {'rtp': 'vim/'}
   "--- 语言支持 -----------------------------------------------------
   Plug 'godlygeek/tabular'                            "markdown需要
   Plug 'plasticboy/vim-markdown'                      "markdown
@@ -57,18 +65,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式
 call plug#end()
 "---------------输入法设置-------------------------------------------
-  set noimdisable   "普通模式下, 只有英文可用
-  set iminsert=0    "输入模式下, 0 :lmap is off and IM is off
-  set imsearch=0    "搜索模式下, 0 :lmap is off and IM is off
+  set noimdisable   "普通模式： 只有英文可用
+  set iminsert=1    "插入模式： 0 使用上次插入模式的输入法，1使用英文，2使用中文
+  " set imsearch=0    "搜索模式下, 0 :lmap is off and IM is off
 "---------------界面设置---------------------------------------------
   " set guioptions-=T    "不显示工具栏  macvim本身也没有这个东西
   " set guioptions-=m    "去掉菜单  macvim本身也没这个东西
   " set cmdheight=1      "设定命令行的行数为 1
-  " set ruler            "打开状态栏标尺
+  " set ruler            "通过airline统一设置
   " set guioptions-=r    "把gui右边的滑动条去掉
-  set laststatus=2     "显示状态栏 (默认值为 1, 无法显示状态栏)
+  set guioptions=      "去掉gui提供的界面
+  set laststatus=2     "保持状态栏打开
   set showtabline=2    "保持tabline打开
-  set guioptions=      "去掉左右的滑动条和tab页的默认渲染
   set linespace=1      "这个值可以让macvim可以拉到底部，如果不能，尝试改变为其他值
   set shortmess=atI    "启动的时候不显示援助乌干达儿童的提示
   set number           "显示行号
@@ -117,14 +125,14 @@ call plug#end()
   syntax on
   let macvim_skip_colorscheme=1
   let modDay=(strftime("%d"))%3
-  if modDay == 1
+  if modDay == 0
     colorscheme monokai
     hi NonText      guifg=#272822 guibg=#272822 "文件末尾
     hi SignColumn   guifg=#FB9633 guibg=#272822 "左侧提示
     hi LineNr       guifg=#8F908A guibg=#272822 "行首数字
-    hi CursorLineNR guifg=#FB9633 guibg=#272822 "高亮行的数字
+    hi CursorLineNR guifg=#FB9633 guibg=#272822 "高亮行首数字
   elseif modDay == 1
-    colorscheme onedark
+    colorscheme onehalfdark
     hi NonText      guifg=#282C34 guibg=#282C34 "文件末尾
   else
     colorscheme dracula
@@ -141,7 +149,7 @@ call plug#end()
   nmap S <Nop>
   nmap R <Nop>
   nmap K <Nop>
-  imap <F2> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
+  " imap <F2> <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
   nmap <silent><space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>
 "---------------窗口快捷键设置----------------------------------------
   map <D-h> <C-w>h
@@ -177,6 +185,8 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------- vim-tabber ------------------------------------------
   map <D-r> :TabberLabel
+"-------------- vim-vinegar ------------------------------------------
+  let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  "默认不显示隐藏文件
 "-------------- ALE -------------------------------------------------
   " ALEInfo 可以查看ale的运行情况，根据该输出，来做相应的处理
   let g:ale_javascript_eslint_use_global = 1
@@ -199,12 +209,31 @@ call plug#end()
   \  'javascript': ['prettier'],
   \  'jsx': ['prettier']
   \}
-  "-------------- fcitx-vim-osx ---------------------------------------
-  " au FocusGained * call Fcitx2en()  "进入vim，自动切换为英文，免去键盘问题
-  "-------------- vim-signify -----------------------------------------
-  hi SignifySignAdd     guifg=#00FF00 guibg=NONE
-  hi SignifySignDelete  guifg=#FF0000 guibg=NONE
-  hi SignifySignChange  guifg=#FFFF00 guibg=NONE
+"-------------- vim-startify -----------------------------------------
+  map <silent><D-e> :Startify <CR>
+ let g:startify_bookmarks = [
+    \ { 'a': '~/BlockChain/fabric' },
+    \ { 'b': '~/BlockChain/fabric-samples' },
+    \ { 'c': '~/Company/newWorld' },
+    \ { 'd': '~/Company/shoukuan-user/user-web' },
+    \ ]
+  let g:startify_lists = [
+    \ { 'header': ['最新：'],   'type': 'files' },
+    \ { 'header': ['会话：'],   'type': 'sessions' },
+    \ { 'header': ['书签：'],   'type': 'bookmarks' },
+    \ ]
+  let g:startify_files_number=9
+  let g:startify_padding_left=4
+  let g:startify_enable_special=0
+  " let g:startify_custom_header=0
+  let g:startify_custom_header='map(startify#fortune#boxed(), ''"   ".v:val'')'
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | endif
+"-------------- vim-signify -----------------------------------------
+  hi SignifySignAdd           guifg=#00FF00 guibg=NONE
+  hi SignifySignDelete        guifg=#FF0000 guibg=NONE
+  hi SignifySignChange        guifg=#FFFF00 guibg=NONE
+  hi SignifySignChangeDelete  guifg=#FF0000 guibg=NONE
+  let g:signify_sign_change = "~"
 "-------------- Deoplete --------------------------------------------
   let g:deoplete#enable_at_startup = 1      "默认开启自动补全
   " set splitbelow                          "拆分的窗口放到下面
@@ -214,29 +243,9 @@ call plug#end()
 "-------------- SuperTab      ---------------------------------------
   let g:SuperTabDefaultCompletionType = '<C-n>'
   let g:SuperTabClosePreviewOnPopupClose = 1
-""-------------- EasyMotion    --------------------------------------
+"--------------- EasyMotion    --------------------------------------
   map <Leader>, <Plug>(easymotion-bd-jk)
   map <Leader> <Plug>(easymotion-prefix)
-"-------------- NerdTree --------------------------------------------
-  " let NERDTreeMapActivateNode='<space>'  "使用空格打开文件
-  autocmd StdinReadPre * let s:std_in=1  "Open NERDTree if no files specified
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  " let NERDTreeWinPos=1 "窗口居右
-  " set completeopt=menu  "不要打开提示框
-  let NERDTreeShowBookmarks=1 "显示书签
-  map  <silent><D-e> :call NERDTreeFindToggle()<CR>
-  imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
-  func! NERDTreeFindToggle()
-    if g:NERDTree.IsOpen()
-      execute ':NERDTreeClose'
-    else
-      if !(getline(1) ==# '' && 1 == line('$'))
-        :NERDTreeFind
-      else
-        :NERDTreeCWD
-      endif
-    endif
-  endfunction
   "-------------- nerdcommenter ---------------------------------------
   let g:NERDSpaceDelims = 1
   let g:NERDDefaultNesting = 1
@@ -267,7 +276,7 @@ call plug#end()
   let g:header_field_author_email = 'mantak@hotmail.com'
   let g:header_field_timestamp_format = '%Y-%m-%d'
   let g:header_auto_add_header = 0
-  map <Leader>a :AddHeader<CR>
+  map <Leader>m :AddHeader<CR>
 "-------------- VimAutoformat ---------------------------------------
   au BufWrite *.ex,*.exs,*.go :Autoformat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -327,7 +336,6 @@ nnoremap gx ::call HandleURL()<CR>
 " ctrlP
 " Use <c-j>, <c-k> or the arrow keys to navigate the result list.
 " Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
-" 在nerdTree上，移动到文件夹上 :Bookmark 名字 即可添加书签
 " 删除书签，移动到书签上，shift+d 即可
 " 标签
 " ,cc 注释 ,cu 取消注释

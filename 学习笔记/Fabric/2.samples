@@ -1,0 +1,22 @@
+参考文档
+https://blog.csdn.net/fangdengfu123/article/details/79277300
+https://hyperledgercn.github.io/hyperledgerDocs/build_network_zh/#11
+https://www.netkiller.cn/blockchain/hyperledger/setup.ubuntu.html
+
+1 下载镜像
+  docker pull hyperledger/fabric-ca:x86_64-1.1.0
+  docker pull hyperledger/fabric-peer:x86_64-1.1.0
+  docker pull hyperledger/fabric-orderer:x86_64-1.1.0
+  docker pull hyperledger/fabric-couchdb:x86_64-1.1.0
+  docker pull hyperledger/fabric-tools:x86_64-1.1.0
+  docker tag hyperledger/fabric-ca:x86_64-1.1.0 hyperledger/fabric-ca
+  docker tag hyperledger/fabric-peer:x86_64-1.1.0 hyperledger/fabric-peer
+  docker tag hyperledger/fabric-orderer:x86_64-1.1.0 hyperledger/fabric-orderer
+  docker tag hyperledger/fabric-couchdb:x86_64-1.1.0 hyperledger/fabric-couchdb
+  docker tag hyperledger/fabric-tools:x86_64-1.1.0 hyperledger/fabric-tools
+2 复制bin文件夹
+  到fabric文件根目录里, build/bin文件夹复制到samples目录下
+3 生成网络实体
+  ./byfn.sh -m generate
+4 运行网络
+  ./byfn.sh -m up

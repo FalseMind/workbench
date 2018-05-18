@@ -85,6 +85,7 @@
 附： 安装开发环境
   安装elixir
   安装go
+     确认_.fishrc里设置了 gopath和gobin
 附： 安装数据库
   安装mongodb
     brew install mongodb             #brew cask安装的版本，貌似低一点。

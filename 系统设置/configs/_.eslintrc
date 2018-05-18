@@ -11,8 +11,11 @@
     "jasmine": true,
   },
   rules: {
+    ////////////////////////新添规则开始///////////////////////////
     'arrow-parens': [0],                   //新添了忽视箭头函数验证
     'no-confusing-arrow': [0],             //新添了忽视箭头函数验证
+    'guard-for-in': [0],                   //for in循环不需要做验证
+    ////////////////////////新添规则结束///////////////////////////
     'generator-star-spacing': [0],
     'consistent-return': [0],
     'react/forbid-prop-types': [0],
