@@ -31,18 +31,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'Lokaltog/vim-easymotion'        "快速定位
   Plug 'jiangmiao/auto-pairs'           "成对的括号
   Plug 'scrooloose/nerdcommenter'       "注释
-  " Plug 'mhinz/vim-startify'           "存储当前工作界面
   "--- Git支持  -----------------------------------------------------
   Plug 'mhinz/vim-signify'              "显示文件中的改动
-  " Plug 'airblade/vim-gitgutter'         "显示文件中的改动
   Plug 'tpope/vim-fugitive'             "git功能
   "--- 配色方案 -----------------------------------------------------
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'crusoexia/vim-monokai'
-  Plug 'sonph/onehalf', {'rtp': 'vim/'}
+  " Plug 'archseer/colibri.vim'         "紫色系，很不错
   "--- 语言支持 -----------------------------------------------------
   Plug 'godlygeek/tabular'                            "markdown需要
   Plug 'plasticboy/vim-markdown'                      "markdown
+  Plug 'jparise/vim-graphql'
   Plug 'pangloss/vim-javascript'                      "Javascript
   Plug 'mxw/vim-jsx'                                  "React
   Plug 'elixir-editors/vim-elixir'                    "Elixir缩进
@@ -124,16 +123,18 @@ call plug#end()
 "---------------ColorScheme------------------------------------------
   syntax on
   let macvim_skip_colorscheme=1
-  let modDay=(strftime("%d"))%3
+  set background=dark
+  let modDay=(strftime("%d"))%2
+  " let modDay=(strftime("%d"))%3
   if modDay == 0
     colorscheme monokai
     hi NonText      guifg=#272822 guibg=#272822 "文件末尾
     hi SignColumn   guifg=#FB9633 guibg=#272822 "左侧提示
     hi LineNr       guifg=#8F908A guibg=#272822 "行首数字
     hi CursorLineNR guifg=#FB9633 guibg=#272822 "高亮行首数字
-  elseif modDay == 1
-    colorscheme onehalfdark
-    hi NonText      guifg=#282C34 guibg=#282C34 "文件末尾
+  " elseif modDay == 1
+  "   colorscheme colibri
+  "   hi NonText      guifg=#3B234B guibg=#3B234B "文件末尾
   else
     colorscheme dracula
     hi NonText      guifg=#282A36 guibg=#282A36 "文件末尾
@@ -187,6 +188,8 @@ call plug#end()
   map <D-r> :TabberLabel
 "-------------- vim-vinegar ------------------------------------------
   let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  "默认不显示隐藏文件
+  " netrw打开的时候，按=，可以关闭
+  autocmd FileType netrw nmap <buffer> = <C-^>
 "-------------- ALE -------------------------------------------------
   " ALEInfo 可以查看ale的运行情况，根据该输出，来做相应的处理
   let g:ale_javascript_eslint_use_global = 1
@@ -203,7 +206,8 @@ call plug#end()
   let g:ale_fix_on_text_changed = 'never'
   let g:ale_linters = {
   \  'javascript': ['eslint'],
-  \  'jsx': ['eslint']
+  \  'jsx': ['eslint'],
+  \  'graphql': []
   \}
   let g:ale_fixers = {
   \  'javascript': ['prettier'],
@@ -212,21 +216,24 @@ call plug#end()
 "-------------- vim-startify -----------------------------------------
   map <silent><D-e> :Startify <CR>
  let g:startify_bookmarks = [
-    \ { 'a': '~/BlockChain/fabric' },
-    \ { 'b': '~/BlockChain/fabric-samples' },
+    \ { 'a': '~/BlockChain/fabric/examples/e2e_cli' },
+    \ { 'b': '~/BlockChain/fabric-samples/first-network' },
     \ { 'c': '~/Company/newWorld' },
     \ { 'd': '~/Company/shoukuan-user/user-web' },
+    \ { 'j': '~/MyDream/nearby_book_server' },
+    \ { 'k': '~/MyDream/newbook' },
+    \ { 'f': '~/MyDream/gqlgen' },
     \ ]
   let g:startify_lists = [
     \ { 'header': ['最新：'],   'type': 'files' },
     \ { 'header': ['会话：'],   'type': 'sessions' },
     \ { 'header': ['书签：'],   'type': 'bookmarks' },
     \ ]
-  let g:startify_files_number=9
+  let g:startify_files_number=7
   let g:startify_padding_left=4
   let g:startify_enable_special=0
   " let g:startify_custom_header=0
-  let g:startify_custom_header='map(startify#fortune#boxed(), ''"   ".v:val'')'
+  let g:startify_custom_header='map(startify#fortune#boxed(), ''"    ".v:val'')'
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Startify | endif
 "-------------- vim-signify -----------------------------------------
   hi SignifySignAdd           guifg=#00FF00 guibg=NONE
@@ -256,11 +263,12 @@ call plug#end()
   if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
   endif
-  let g:ctrlp_working_path_mode = 'ra'
+  let g:ctrlp_working_path_mode = 'r'
   let g:ctrlp_prompt_mappings = {
-        \ 'AcceptSelection("e")': ['<c-t>'],
-        \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-        \ }
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+  let g:ctrlp_custom_ignore = '~\|node_modules\|DS_Store\|git'
   "-------------- vim-ripgrep -----------------------------------------
   map <Leader>f :Rg
   let g:rg_highlight = 'true'
@@ -273,7 +281,7 @@ call plug#end()
   let g:jsx_ext_required = 0
 "-------------- AddHeader -------------------------------------------
   let g:header_field_author = 'Mantak'
-  let g:header_field_author_email = 'mantak@hotmail.com'
+  let g:header_field_author_email = 'mantak@foxmail.com'
   let g:header_field_timestamp_format = '%Y-%m-%d'
   let g:header_auto_add_header = 0
   map <Leader>m :AddHeader<CR>
@@ -343,3 +351,6 @@ nnoremap gx ::call HandleURL()<CR>
 " hi Folded     guifg=#75715E guibg=#1D1E17 "折叠高亮
 " hi LineNr     guifg=#75715E guibg=#272822 "行首数字
 " hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
+" SSave 保存当前会话
+" SDelete 删除会话
+" netrw 中，I打开帮助，%新建文件并进入buffer，保存即可，d新建目录

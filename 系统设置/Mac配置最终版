@@ -58,8 +58,8 @@
   安装必要的包
   brew install ripgrep                        #vim ctrlF用
   brew install the_silver_searcher            #vim ctrlP用
-  npm i -g eslint prettier eslint-config-airbnb
-  npm i -g eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint
+  npm i -g eslint prettier eslint-config-airbnb   #代码检查，代码格式化，风格标准
+  npm i -g eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint  #前3个是aribnb的必要插件，后一个是eslint的必要插件
   安装MacVim
   brew install macvim --with-lua --with-override-system-vim
   用alfred打开一次即可出现在程序坞，并且启动的MacVim会带有iterm的$PATH
@@ -84,6 +84,7 @@
 
 附： 安装开发环境
   安装elixir
+     项目里安装了credo, vim ale会自动做代码检查
   安装go
      确认_.fishrc里设置了 gopath和gobin
 附： 安装数据库
@@ -104,3 +105,10 @@
     brew services start redis  #作为服务
 附： 安装其他工具
   appstore 安装： handshaker
+
+
+
+
+安装代码搜索插件
+brew install codequery
+sudo gem install starscope
