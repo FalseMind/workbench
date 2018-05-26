@@ -1,3 +1,8 @@
+" File              : /Users/mantak/.vimrc
+" Author            : Mantak <mantak@foxmail.com>
+" Date              : 2018-05-26
+" Last Modified Date: 2018-05-26
+" Last Modified By  : Mantak <mantak@foxmail.com>
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__
@@ -44,9 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jparise/vim-graphql'
   Plug 'pangloss/vim-javascript'                      "Javascript
   Plug 'mxw/vim-jsx'                                  "React
-  Plug 'elixir-editors/vim-elixir'                    "Elixir缩进
-  Plug 'slashmili/alchemist.vim'                      "Elixir提示
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  "Go
+  Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' } "Go
   "--- 语法补全 -----------------------------------------------------
   Plug 'ervandew/supertab'
   if has('nvim')
@@ -58,10 +61,21 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' } "JS补全
   Plug 'zchee/deoplete-go', { 'do': 'make' }                       "Go补全
+  "--- tag 树   -----------------------------------------------------
+  Plug 'majutsushi/tagbar'
   "--- 语法检查 -----------------------------------------------------
   Plug 'w0rp/ale'                      "JS和Go都可以检查并格式化
   "--- 代码格式化 ---------------------------------------------------
   Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式
+  "--- 翻译工具 -----------------------------------------------------
+  " Plug 'VincentCordobes/vim-translate'
+  Plug 'echuraev/translate-shell.vim'
+  "--- Elixir 配置 --------------------------------------------------
+  " Plug 'elixir-editors/vim-elixir'                    "Elixir缩进
+  " Plug 'slashmili/alchemist.vim'                      "Elixir提示
+  " let g:alchemist_tag_disable = 1
+  " Plug 'ludovicchabant/vim-gutentags'                 "tags插件
+  " let g:gutentags_cache_dir = '~/.tags_cache'
 call plug#end()
 "---------------输入法设置-------------------------------------------
   set noimdisable   "普通模式： 只有英文可用
@@ -96,13 +110,11 @@ call plug#end()
   set bufhidden=hide
   set history=50 "history文件中需要记录的行数
   set backspace=2 "使回格键（backspace）正常处理indent, eol, start等
-  set mouse=a "可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
+  set mouse= "禁用鼠标
   set foldenable "开始折叠
   set foldmethod=indent "设置缩进折叠
   set foldlevel=1 "超过1层，才会缩进
-  set expandtab "设定取消tab符，改为空格代替
   set shiftwidth=2 "设定 < 和 > 命令移动时的宽度为 2
-  set tabstop=2 "设定tab的空格数
   set ignorecase smartcase "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
   set hlsearch "搜索时高亮显示被找到的文本
   set autoindent "开新行的时候，自动对齐缩进
@@ -111,7 +123,9 @@ call plug#end()
   set scrolloff=3 "上下滚动的时候留出3行
   set sidescrolloff=8 "左右滚动的时候,留出8个字符
   autocmd BufWritePre * silent! :%s/\s\+$//e "保存的时候,自动去掉行尾空格
-  autocmd BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
+  set expandtab "设定取消tab符，改为空格代替
+  set tabstop=2 "设定tab的空格数
+  " au BufWritePre * silent! :retab "保存的时候,自动将tab换成空格
 "---------------换行设置---------------------------------------------
   set nowrap linebreak nolist
   set textwidth=100 fo+=Mm "100字符换行
@@ -172,24 +186,59 @@ call plug#end()
   nmap <silent><D-0> :tabn 10<cr>
 "---------------leader快捷键设置-------------------------------------
   let mapleader = ","
-  nmap <leader>g gg=G
-  nmap <leader>i <c-w>F
-  nmap <leader>t <c-w>gf
+  " nmap <leader>g gg=G
+  " nmap <leader>i <c-w>F
+  " nmap <leader>t <c-w>gf
   nmap <leader>o :tabe<space>
   nmap <leader>/ :nohlsearch<CR>
   nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
   nmap <leader>s :call Search()<CR>
-  nmap <leader>c :call SearchGithub()<CR>
+  nmap <leader>g :call SearchGithub()<CR>
   map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- translate-shell.vim ---------------------------------
+  " nnoremap <silent> <leader>t :Translate en:zh-CN<CR>
+  " vnoremap <silent> <leader>t :TranslateVisual en:zh-CN<CR>
+  nnoremap <silent> <leader>t :Trans<CR>
+  vnoremap <silent> <leader>t :TransVisual -brief :zh<CR>
+"-------------- vim-tagbar ------------------------------------------
+  let g:tagbar_type_elixir = {
+      \ 'ctagstype' : 'elixir',
+      \ 'kinds' : [
+          \ 'f:functions',
+          \ 'functions:functions',
+          \ 'c:callbacks',
+          \ 'd:delegates',
+          \ 'e:exceptions',
+          \ 'i:implementations',
+          \ 'a:macros',
+          \ 'o:operators',
+          \ 'm:modules',
+          \ 'p:protocols',
+          \ 'r:records',
+          \ 't:tests'
+      \ ]
+      \ }
+  map <C-m> :TagbarToggle<CR>
 "-------------- vim-tabber ------------------------------------------
   map <D-r> :TabberLabel
 "-------------- vim-vinegar ------------------------------------------
   let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  "默认不显示隐藏文件
-  " netrw打开的时候，按=，可以关闭
-  autocmd FileType netrw nmap <buffer> = <C-^>
+  " let g:netrw_liststyle = 3
+  " - 进入目录
+  " Esc回到刚才编辑文件
+  au FileType netrw nmap <buffer> 0 <C-^>
+  " shift+c 切换到文件夹当前目录
+  " au FileType netrw nmap <buffer> = :Ntree <CR>
+  au FileType netrw nmap <buffer> = <C-^>
+  " o 打开文件
+  au FileType netrw nmap <buffer> o <Enter>
+  " 空格打开文件
+  au FileType netrw nmap <buffer> <space> <Enter>
+  " 删除文件
+  au FileType netrw nmap <buffer> md D
 "-------------- ALE -------------------------------------------------
   " ALEInfo 可以查看ale的运行情况，根据该输出，来做相应的处理
   let g:ale_javascript_eslint_use_global = 1
@@ -207,22 +256,25 @@ call plug#end()
   let g:ale_linters = {
   \  'javascript': ['eslint'],
   \  'jsx': ['eslint'],
-  \  'graphql': []
+  \  'graphql': ['gqlint'],
+  \  'go': ['golint'],
   \}
   let g:ale_fixers = {
   \  'javascript': ['prettier'],
-  \  'jsx': ['prettier']
+  \  'jsx': ['prettier'],
+  \  'json': ['prettier'],
+  \  'graphql': ['prettier'],
   \}
 "-------------- vim-startify -----------------------------------------
   map <silent><D-e> :Startify <CR>
- let g:startify_bookmarks = [
+  let g:startify_bookmarks = [
     \ { 'a': '~/BlockChain/fabric/examples/e2e_cli' },
     \ { 'b': '~/BlockChain/fabric-samples/first-network' },
     \ { 'c': '~/Company/newWorld' },
     \ { 'd': '~/Company/shoukuan-user/user-web' },
-    \ { 'j': '~/MyDream/nearby_book_server' },
-    \ { 'k': '~/MyDream/newbook' },
-    \ { 'f': '~/MyDream/gqlgen' },
+    \ { 'z': '~/MyDream/nearby_book_server' },
+    \ { 'y': '~/MyDream/newbook' },
+    \ { 'v': '~/go/src/work' },
     \ ]
   let g:startify_lists = [
     \ { 'header': ['最新：'],   'type': 'files' },
@@ -244,6 +296,9 @@ call plug#end()
 "-------------- Deoplete --------------------------------------------
   let g:deoplete#enable_at_startup = 1      "默认开启自动补全
   " set splitbelow                          "拆分的窗口放到下面
+"--------------deoplete-go ------------------------------------------
+  let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+  let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 " ------------- deoplete-ternjs -------------------------------------
   let g:deoplete#sources#ternjs#types = 1   "是否展示函数类型
   let g:deoplete#sources#ternjs#docs = 1    "是否展示函数描述
@@ -251,17 +306,19 @@ call plug#end()
   let g:SuperTabDefaultCompletionType = '<C-n>'
   let g:SuperTabClosePreviewOnPopupClose = 1
 "--------------- EasyMotion    --------------------------------------
-  map <Leader>, <Plug>(easymotion-bd-jk)
   map <Leader> <Plug>(easymotion-prefix)
+  map <Leader>l <Plug>(easymotion-bd-jk)
   "-------------- nerdcommenter ---------------------------------------
   let g:NERDSpaceDelims = 1
   let g:NERDDefaultNesting = 1
   let g:NERDCustomDelimiters = { 'javascript': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' } }
 "-------------- CtrlP -----------------------------------------------
   let g:ctrlp_map = '<D-p>'
-  map <Leader>p :CtrlPBuffer<CR>
+  map <Leader>, :CtrlPBuffer<CR>
   if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
   endif
   let g:ctrlp_working_path_mode = 'r'
   let g:ctrlp_prompt_mappings = {
@@ -272,6 +329,7 @@ call plug#end()
   "-------------- vim-ripgrep -----------------------------------------
   map <Leader>f :Rg
   let g:rg_highlight = 'true'
+  au FileType qf nnoremap <buffer> t <C-W><Enter><C-W>T
   "-------------- AirLine ---------------------------------------------
   let g:airline_theme='murmur'
   let g:airline_powerline_fonts = 1   "这个是安装字体后(https://github.com/powerline/fonts) 必须设置此项
@@ -287,6 +345,9 @@ call plug#end()
   map <Leader>m :AddHeader<CR>
 "-------------- VimAutoformat ---------------------------------------
   au BufWrite *.ex,*.exs,*.go :Autoformat
+"-------------- vim-go ----------------------------------------------
+  let g:go_auto_sameids = 1             "自动高亮当前光标下的变量
+  au Filetype go setlocal shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -353,4 +414,22 @@ nnoremap gx ::call HandleURL()<CR>
 " hi SignColumn guifg=#808080 guibg=#272822 "左侧提示
 " SSave 保存当前会话
 " SDelete 删除会话
-" netrw 中，I打开帮助，%新建文件并进入buffer，保存即可，d新建目录
+" netrw 中，
+"   I打开帮助，
+"   %新建文件并进入buffer，保存即可，
+"   d新建目录，
+"   D删除，
+"   R重命名，
+"   a切换显示内容为隐藏与否
+" ]] takes you to the next function or method
+" [[ takes you to the previous function or method
+" ctrl ]  <=> ctrl t  函数与函数定义之间跳转
+" 函数上按K， 打开doc
+" Use the clipboard of Mac OS
+
+if has('mac')
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+end
+

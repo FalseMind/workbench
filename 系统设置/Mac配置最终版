@@ -4,17 +4,18 @@
 2, 安装brew  参考：https://brew.sh
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 3, 安装必用软件
-  brew update && brew upgrade      更新brew
-  brew install git                 安装git
-  brew install wget                安装wget
-  brew cask install typora         安装markdown工具
-  brew cask install google-chrome  安装 Google 浏览器
-  brew cask install alfred         安装程序快速启动工具
-  brew install firefox             安装firefox
-  brew install -v imagemagick      安装图片处理
-  brew install ctags-exuberant     安装ctags
-  brew cleanup                     删除brew安装包
-  ls /usr/local/bin/               显示用户的命令
+  brew update && brew upgrade        新brew
+  brew install git                   装git
+  brew install wget                  安装wget
+  brew cask install typora           安装markdown工具
+  brew cask install google-chrome    安装 Google 浏览器
+  brew cask install alfred           安装程序快速启动工具
+  brew install firefox               安装firefox
+  brew install -v imagemagick        安装图片处理
+  brew install ctags-exuberant       安装ctags
+  brew install gawk translate-shell  安装翻译工具
+  brew cleanup                       删除brew安装包
+  ls /usr/local/bin/                 显示用户的命令
 4, 偏好设置
   系统偏好设置 -> 程序坞 下面显示，自动显示和隐藏
   系统偏好设置 -> 键盘 -> 快捷键 聚焦(spotlight) 改为optoin+space
@@ -30,6 +31,7 @@
   ln -sf ~/Working/workbench/系统设置/configs/_.eslintrc ~/.eslintrc
   ln -sf ~/Working/workbench/系统设置/configs/_.prettierrc ~/.prettierrc
   ln -sf ~/Working/workbench/系统设置/configs/_.gitignore ~/.gitignore
+  ln -sf ~/Working/workbench/系统设置/configs/_.ctags ~/.ctags
   cd ~/Working/workbench/系统设置/fonts/  &&  open *
 6, 安装终端
   访问并下载安装iterm2 https://www.iterm2.com/
@@ -58,7 +60,7 @@
   安装必要的包
   brew install ripgrep                        #vim ctrlF用
   brew install the_silver_searcher            #vim ctrlP用
-  npm i -g eslint prettier eslint-config-airbnb   #代码检查，代码格式化，风格标准
+  npm i -g eslint prettier eslint-config-airbnb gqlint #js检查，代码格式化，风格标准，graphql检查
   npm i -g eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint  #前3个是aribnb的必要插件，后一个是eslint的必要插件
   安装MacVim
   brew install macvim --with-lua --with-override-system-vim
@@ -67,7 +69,7 @@
   系统偏好设置 -> 键盘 -> 快捷键 -> 应用快捷键 -> + ->
   MacVim ->
     Quit MacVim -> ^q
-    Hide MacVim -> ^h
+    Hide MacVim -> ctrl + comd + h
     List Errors -> ^l
     Find...     -> ^f
     Print       -> ^p
@@ -81,12 +83,47 @@
   ssh-keygen -t rsa -C "mantak@hotmail.com" #生成ssh key
   复制~/.ssh/id_rsa.pub里的内容，到 https://github.com/settings/ssh中 #创建或者重置ssh key
   ssh -T git@github.com #测试ssh key 是否设置成功
+  下载git图形化界面，需要梯子：
+  curl -o Fork.dmg https://git-fork.com/update/files/Fork.dmg
 
+附： 科学上网
+  下载： https://github.com/shadowsocks/ShadowsocksX-NG/releases/
+  购买账号，剩下的就是扫描二维码上网了
+  终端里要使用，先copy一下，然后在终端里运行一下即可
+  如果账号可用，但是无法上网，
+  cd ~/Library/LaunchAgents
+  rm com.qiuyuzhou.shadowsocksX-NG.http.plist
+  rm com.qiuyuzhou.shadowsocksX-NG.kcptun.plist
+  rm com.qiuyuzhou.shadowsocksX-NG.local.plist
+  然后重启软件即可
 附： 安装开发环境
   安装elixir
      项目里安装了credo, vim ale会自动做代码检查
+     但是要手动的运行 ctags -R .
   安装go
      确认_.fishrc里设置了 gopath和gobin
+     brew install go
+     brew install dep              #管理当前项目的包
+     brew uninstall --force go     #删除go
+  运行完vim以后，go/bin/下多出下面的内容
+    -rwxr-xr-x  1 mantak  staff   2.6M  5 22 19:35 asmfmt
+    -rwxr-xr-x  1 mantak  staff    17M  5 22 19:35 dlv
+    -rwxr-xr-x  1 mantak  staff   5.1M  5 22 19:34 errcheck
+    -rwxr-xr-x  1 mantak  staff   5.5M  5 22 19:34 fillstruct
+    -rwxr-xr-x  1 mantak  staff    11M  5 22 19:35 gocode
+    -rwxr-xr-x  1 mantak  staff   5.5M  5 22 19:34 godef
+    -rwxr-xr-x  1 mantak  staff   5.8M  5 22 19:34 gogetdoc
+    -rwxr-xr-x  1 mantak  staff   4.9M  5 22 19:35 goimports
+    -rwxr-xr-x  1 mantak  staff   5.3M  5 22 19:34 golint
+    -rwxr-xr-x  1 mantak  staff   6.1M  5 22 19:36 gometalinter
+    -rwxr-xr-x  1 mantak  staff   4.0M  5 22 19:35 gomodifytags
+    -rwxr-xr-x  1 mantak  staff   5.5M  5 22 19:35 gorename
+    -rwxr-xr-x  1 mantak  staff   2.9M  5 22 19:35 gotags
+    -rwxr-xr-x  1 mantak  staff   8.4M  5 22 19:34 guru
+    -rwxr-xr-x  1 mantak  staff   4.9M  5 22 19:35 impl
+    -rwxr-xr-x  1 mantak  staff   5.4M  5 22 19:35 keyify
+    -rwxr-xr-x  1 mantak  staff   3.3M  5 22 19:34 motion
+
 附： 安装数据库
   安装mongodb
     brew install mongodb             #brew cask安装的版本，貌似低一点。
