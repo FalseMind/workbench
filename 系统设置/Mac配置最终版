@@ -14,6 +14,7 @@
   brew install -v imagemagick        安装图片处理
   brew install ctags-exuberant       安装ctags
   brew install gawk translate-shell  安装翻译工具
+  brew install libsodium             需要安装 libsodium  支持salsa20或chacha20或chacha20-ietf算法
   brew cleanup                       删除brew安装包
   ls /usr/local/bin/                 显示用户的命令
 4, 偏好设置
@@ -34,10 +35,11 @@
   ln -sf ~/Working/workbench/系统设置/configs/_.ctags ~/.ctags
   cd ~/Working/workbench/系统设置/fonts/  &&  open *
 6, 安装终端
-  访问并下载安装iterm2 https://www.iterm2.com/
-  运行iterm comman+,打开配置
-    更改字体为Source Code Pro for Powerline 字号15
-    更改配色选择import ~/Working/workbench/themes/Dracula.itermcolors
+  # 不使用iterm了，不太稳定
+  # 访问并下载安装iterm2 https://www.iterm2.com/
+  # 运行iterm comman+,打开配置
+  #   更改字体为Source Code Pro for Powerline 字号15
+  #   更改配色选择import ~/Working/workbench/themes/Dracula.itermcolors
   brew install fish
   sudo vim /etc/shells
   然后在列表末尾加上/usr/local/bin/fish
@@ -60,8 +62,9 @@
   安装必要的包
   brew install ripgrep                        #vim ctrlF用
   brew install the_silver_searcher            #vim ctrlP用
-  npm i -g eslint prettier eslint-config-airbnb gqlint #js检查，代码格式化，风格标准，graphql检查
-  npm i -g eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint  #前3个是aribnb的必要插件，后一个是eslint的必要插件
+  npm i -g solium eslint prettier eslint-config-airbnb gqlint #solidity检查 js检查，代码格式化，风格标准，graphql检查
+  npm i -g eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import babel-eslint
+  eslint-plugin-vue  #前3个是aribnb的必要插件，后一个是eslint的必要插件, 最后一个是vue必要插件
   安装MacVim
   brew install macvim --with-lua --with-override-system-vim
   用alfred打开一次即可出现在程序坞，并且启动的MacVim会带有iterm的$PATH

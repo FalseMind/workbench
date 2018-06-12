@@ -1,8 +1,3 @@
-" File              : /Users/mantak/.vimrc
-" Author            : Mantak <mantak@foxmail.com>
-" Date              : 2018-05-26
-" Last Modified Date: 2018-05-26
-" Last Modified By  : Mantak <mantak@foxmail.com>
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__
@@ -28,7 +23,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   "--- 功能增强 -----------------------------------------------------
-  Plug 'tpope/vim-vinegar'              "文件目录，替代nerdtree
+  " Plug 'tpope/vim-vinegar'              "文件目录，替代nerdtree
+  Plug 'scrooloose/nerdtree'            "文件目录
   Plug 'mhinz/vim-startify'             "最近工作界面
   Plug 'alpertuna/vim-header'           "增加作者信息
   Plug 'kien/ctrlp.vim'                 "快速打开文件
@@ -46,10 +42,14 @@ call plug#begin('~/.vim/plugged')
   "--- 语言支持 -----------------------------------------------------
   Plug 'godlygeek/tabular'                            "markdown需要
   Plug 'plasticboy/vim-markdown'                      "markdown
-  Plug 'jparise/vim-graphql'
+  Plug 'tomlion/vim-solidity'                         "Solidity
+  Plug 'jparise/vim-graphql'                          "Graphql
   Plug 'pangloss/vim-javascript'                      "Javascript
   Plug 'mxw/vim-jsx'                                  "React
+  Plug 'posva/vim-vue'                                "Vue
   Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' } "Go
+  Plug 'elixir-editors/vim-elixir'                    "Elixir
+  Plug 'chemzqm/wxapp.vim'                            "wx
   "--- 语法补全 -----------------------------------------------------
   Plug 'ervandew/supertab'
   if has('nvim')
@@ -66,16 +66,13 @@ call plug#begin('~/.vim/plugged')
   "--- 语法检查 -----------------------------------------------------
   Plug 'w0rp/ale'                      "JS和Go都可以检查并格式化
   "--- 代码格式化 ---------------------------------------------------
-  Plug 'Chiel92/vim-autoformat'        "其他语言的自动格式
+  Plug 'Chiel92/vim-autoformat'        "go elixir 的自动格式化
   "--- 翻译工具 -----------------------------------------------------
   " Plug 'VincentCordobes/vim-translate'
   Plug 'echuraev/translate-shell.vim'
-  "--- Elixir 配置 --------------------------------------------------
-  " Plug 'elixir-editors/vim-elixir'                    "Elixir缩进
-  " Plug 'slashmili/alchemist.vim'                      "Elixir提示
-  " let g:alchemist_tag_disable = 1
-  " Plug 'ludovicchabant/vim-gutentags'                 "tags插件
-  " let g:gutentags_cache_dir = '~/.tags_cache'
+  "--- Tag 配置 -----------------------------------------------------
+  Plug 'ludovicchabant/vim-gutentags'                 "tags插件
+  let g:gutentags_cache_dir = '~/.tags_cache'
 call plug#end()
 "---------------输入法设置-------------------------------------------
   set noimdisable   "普通模式： 只有英文可用
@@ -191,18 +188,59 @@ call plug#end()
   " nmap <leader>t <c-w>gf
   nmap <leader>o :tabe<space>
   nmap <leader>/ :nohlsearch<CR>
+  nmap <leader>i <c-w>F
+  nmap <leader>t <c-w>gf
   nmap <leader>8 :set fileencoding=utf-8<CR>:set fileformat=unix<CR>
+  " search
   nmap <leader>s :call Search()<CR>
-  nmap <leader>g :call SearchGithub()<CR>
+  " code
+  nmap <leader>c :call SearchGithub()<CR>
   map <Leader>d :r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-------------- vim-vinegar ------------------------------------------
+  " 实在不习惯
+  " let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  "默认不显示隐藏文件
+  " " let g:netrw_liststyle = 3
+  " " - 进入目录
+  " " Esc回到刚才编辑文件
+  " au FileType netrw nmap <buffer> 0 <C-^>
+  " " shift+c 切换到文件夹当前目录
+  " " au FileType netrw nmap <buffer> = :Ntree <CR>
+  " au FileType netrw nmap <buffer> = <C-^>
+  " " o 打开文件
+  " au FileType netrw nmap <buffer> o <Enter>
+  " " 空格打开文件
+  " au FileType netrw nmap <buffer> <space> <Enter>
+  " " 删除文件
+  " au FileType netrw nmap <buffer> md D
+"-------------- NerdTree --------------------------------------------
+  " let NERDTreeMapActivateNode='<space>'  "使用空格打开文件
+  " autocmd StdinReadPre * let s:std_in=1  "Open NERDTree if no files specified
+  " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  " let NERDTreeWinPos=1 "窗口居右
+  " set completeopt=menu  "不要打开提示框
+  let NERDTreeShowBookmarks=1 "显示书签
+  let g:NERDTreeWinSize=36    "窗口宽度
+  map  <silent><D-e> :call NERDTreeFindToggle()<CR>
+  imap <silent><D-e> <ESC>:call NERDTreeFindToggle()<CR>
+  func! NERDTreeFindToggle()
+    if g:NERDTree.IsOpen()
+      execute ':NERDTreeClose'
+    else
+      if !(getline(1) ==# '' && 1 == line('$'))
+        :NERDTreeFind
+      else
+        :NERDTreeCWD
+      endif
+    endif
+  endfunction
 "-------------- translate-shell.vim ---------------------------------
   " nnoremap <silent> <leader>t :Translate en:zh-CN<CR>
   " vnoremap <silent> <leader>t :TranslateVisual en:zh-CN<CR>
-  nnoremap <silent> <leader>t :Trans<CR>
-  vnoremap <silent> <leader>t :TransVisual -brief :zh<CR>
+  nnoremap <silent> <leader>ts :Trans<CR>
+  vnoremap <silent> <leader>ts :TransVisual -brief :zh<CR>
 "-------------- vim-tagbar ------------------------------------------
   let g:tagbar_type_elixir = {
       \ 'ctagstype' : 'elixir',
@@ -221,24 +259,10 @@ call plug#end()
           \ 't:tests'
       \ ]
       \ }
-  map <C-m> :TagbarToggle<CR>
+  " normal模式下，回车打开tagbar
+  map <Leader>tt :TagbarToggle<CR>
 "-------------- vim-tabber ------------------------------------------
   map <D-r> :TabberLabel
-"-------------- vim-vinegar ------------------------------------------
-  let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  "默认不显示隐藏文件
-  " let g:netrw_liststyle = 3
-  " - 进入目录
-  " Esc回到刚才编辑文件
-  au FileType netrw nmap <buffer> 0 <C-^>
-  " shift+c 切换到文件夹当前目录
-  " au FileType netrw nmap <buffer> = :Ntree <CR>
-  au FileType netrw nmap <buffer> = <C-^>
-  " o 打开文件
-  au FileType netrw nmap <buffer> o <Enter>
-  " 空格打开文件
-  au FileType netrw nmap <buffer> <space> <Enter>
-  " 删除文件
-  au FileType netrw nmap <buffer> md D
 "-------------- ALE -------------------------------------------------
   " ALEInfo 可以查看ale的运行情况，根据该输出，来做相应的处理
   let g:ale_javascript_eslint_use_global = 1
@@ -254,19 +278,22 @@ call plug#end()
   let g:ale_lint_on_text_changed = 'never'
   let g:ale_fix_on_text_changed = 'never'
   let g:ale_linters = {
+  \  'solidity': ['solium'],
   \  'javascript': ['eslint'],
   \  'jsx': ['eslint'],
+  \  'vue': ['prettier'],
   \  'graphql': ['gqlint'],
   \  'go': ['golint'],
   \}
   let g:ale_fixers = {
   \  'javascript': ['prettier'],
   \  'jsx': ['prettier'],
+  \  'vue': ['prettier'],
   \  'json': ['prettier'],
   \  'graphql': ['prettier'],
   \}
 "-------------- vim-startify -----------------------------------------
-  map <silent><D-e> :Startify <CR>
+  map <silent><Leader>e :Startify <CR>
   let g:startify_bookmarks = [
     \ { 'a': '~/BlockChain/fabric/examples/e2e_cli' },
     \ { 'b': '~/BlockChain/fabric-samples/first-network' },
@@ -311,7 +338,7 @@ call plug#end()
   "-------------- nerdcommenter ---------------------------------------
   let g:NERDSpaceDelims = 1
   let g:NERDDefaultNesting = 1
-  let g:NERDCustomDelimiters = { 'javascript': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' } }
+  let g:NERDCustomDelimiters = { 'javascript': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' }, 'erlang': {'left': '%%'} }
 "-------------- CtrlP -----------------------------------------------
   let g:ctrlp_map = '<D-p>'
   map <Leader>, :CtrlPBuffer<CR>
@@ -327,6 +354,7 @@ call plug#end()
     \ }
   let g:ctrlp_custom_ignore = '~\|node_modules\|DS_Store\|git'
   "-------------- vim-ripgrep -----------------------------------------
+  map <D-f> :Rg
   map <Leader>f :Rg
   let g:rg_highlight = 'true'
   au FileType qf nnoremap <buffer> t <C-W><Enter><C-W>T
@@ -421,15 +449,9 @@ nnoremap gx ::call HandleURL()<CR>
 "   D删除，
 "   R重命名，
 "   a切换显示内容为隐藏与否
+"   i切换展示内容的形式
+"   tree模式下，gn，光标下的文件夹设为root
 " ]] takes you to the next function or method
 " [[ takes you to the previous function or method
 " ctrl ]  <=> ctrl t  函数与函数定义之间跳转
 " 函数上按K， 打开doc
-" Use the clipboard of Mac OS
-
-if has('mac')
-  set clipboard=unnamed
-else
-  set clipboard=unnamedplus
-end
-
